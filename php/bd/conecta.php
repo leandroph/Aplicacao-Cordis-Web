@@ -1,5 +1,5 @@
 <?php
-	$dbname="db_e_impressoras";
+	$dbname="bd_clinica_cordis";
 	$host="localhost";
 	$usuario="root";
 	$senha="";
