@@ -5862,3 +5862,142 @@ insert into tb_cidades (id, nome, id_estado) values
 	(5563, 'Wanderlândia', 27),
 	(5564, 'Xambioá', 27);
 
+INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_cidade) VALUES  
+	(1, 'Rua Arno Günther Seibert', 'Timbaúva', '20', '97984-452', 'Ap 202', 4216),
+	(2, 'Rua Arno Günther Seibert', 'Timbaúva', '20', '97984-452', 'Ap 202', 4216), 
+	(3, 'Porto Vera Cruz', 'Travessa do Porto', '156', '97984-587', 'Casa', 4177), 
+	(4, 'Avenida Expedicionario Weber', 'Centro', '2030', '97984-452', 'Casa', 4216), 
+	(5, 'Rua São Pedro', 'Floresta', '20', '97984-452', 'Ap 202', 3919), 
+	(6, 'Rua Francisco Timm', 'Timbaúva', '20', '97984-452', 'Ap 202', 4216), 
+	(7, 'Rua Carlos Albert', 'Centro', '104', '97984-452', 'Ap 202', 4216), 
+	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
+
+INSERT INTO tb_contatos(id, email, telefone1, telefone2) VALUES 
+	(1, 'leandroph1992@teste.com.br', '55999261479', '9999999999'),
+	(2, 'daniel@teste.com.br', '9999999999', '9999999999'),
+	(3, 'cristiano@teste.com.br', '99999999999', '9999999999'),
+	(4, 'ana@teste.com.br', '9999999999', '9999999999'),
+	(5, 'paulo@teste.com.br', '9999999999', '9999999999'),
+	(6, 'douglas@teste.com.br', '9999999999', '9999999999'),
+	(7, 'carmem@teste.com.br', '9999999999', '9999999999'),
+	(8, 'jeferson@teste.com.br', '9999999999', '9999999999');
+
+INSERT INTO tb_permissoes(id, nome) VALUES 
+	(1, 'Administrativo'),
+	(2, 'Paciente'),
+	(3, 'Médico'),
+	(4, 'Secretária');
+
+INSERT INTO tb_usuarios(id, login, senha, ativo) VALUES 
+	(1, 'leandro', 'heck',  false),
+	(2, 'daniel', 'buchholz', false),
+	(3, 'cristiano', 'kunas', false),
+	(4, 'ana', 'user', false),
+	(5, 'paulo', 'user', false),
+	(6, 'douglas', 'hoffmann', false),
+	(7, 'carmem', 'user', false),
+	(8, 'jeferson', 'user', false);
+
+INSERT INTO  tb_usuarios_permissoes(id, id_usuario, id_permissao) VALUES 
+	(1, 1, 1),
+	(2, 2, 1),
+	(3, 3, 1),
+	(4, 2, 2),
+	(5, 2, 2),
+	(6, 2, 3),
+	(7, 2, 4),
+	(8, 2, 2);
+
+INSERT INTO tb_pacientes(id, nome, cpf, sexo, nascimento, id_endereco, id_contato, id_usuario) VALUES 
+	(1, 'Ana', '575.528.440-78', 'F', '1990-03-25', 4, 4, 4),
+	(2, 'Paulo', '887.328.790-59', 'M', '1993-06-12', 5, 5, 5),
+	(3, 'Jeferson', '517.232.710-04', 'M', '1992-08-15', 8, 8, 8);
+
+INSERT INTO tb_prontuarios(id, nome, ativo, id_paciente) VALUES 
+	(1, 'Exames da Ana', true, 1),
+	(2, 'Colesterol Paulo', false, 2),
+	(3, 'Exame de Sangue Jeferson' , true, 3);
+
+INSERT INTO tb_medicos(id, nome, cpf, rg, sexo, nascimento, cor_agenda, crm, especialidade, ativo, id_endereco, id_contato, id_usuario) VALUES 
+	(1, 'Douglas Hoffmann', '456.111.480-77', '1111111111', 'M', '1996-06-23', 'Azul', '1530205070', 'Clinico Geral', false, 6, 6, 6);
+	
+INSERT INTO tb_secretarias(id, nome, cpf, rg, sexo, nascimento, cor_agenda, ativo, id_endereco, id_contato, id_usuario) VALUES 
+	(1, 'Carmem Menin', '074.820.940-91', '222222222', 'M', '1992-11-04', 'Verde', false, 7, 7, 7);
+
+-- INSERT INTO tb_convenios(id, nome, ativo, nome_empresa, cnpj_empresa, id_endereco, id_contato, id_usuario) VALUES 
+
+INSERT INTO tb_exames(id, nome, valor, especial, ativo) VALUES 
+	(1, 'Abdominoscopia', 100.00, false, false),
+	(2, 'Abreugrafia', 100.00, false, false),
+	(3, 'Adenograma', 100.00, false, false),
+	(4, 'Análise molecular para a síndrome do X frágil', 100.00, false, false),
+	(5, 'Antibiograma', 100.00, false, false),
+	(6, 'Anuscopia', 100.00, false, false),
+	(7, 'Biópsia', 100.00, false, false),
+	(8, 'Calcemia', 100.00, false, false),
+	(9, 'Capnometria', 100.00, false, false),
+	(10, 'Carga viral', 100.00, false, false),
+	(11, 'Cartão de Guthrie', 100.00, false, false),
+	(12, 'Cateterismo', 100.00, false, false),
+	(13, 'Cistocentese', 100.00, false, false),
+	(14, 'Citometria de fluxo', 100.00, false, false),
+	(15, 'Coagulograma', 100.00, false, false),
+	(16, 'Colonoscopia', 100.00, false, false),
+	(17, 'Coloração diferencial', 100.00, false, false),
+	(18, 'Corante Sudan', 100.00, false, false),
+	(19, 'CURB-65', 100.00, false, false),
+	(20, 'Densitometria óssea', 100.00, false, false),
+	(21, 'Dermatoscopia', 100.00, false, false),
+	(22, 'Dieta de exclusão', 100.00, false, false),
+	(23, 'Doença residual mínima', 100.00, false, false),
+	(24, 'Doppler transcraniano', 100.00, false, false),
+	(25, 'Ecodoppler carotídeo e vertebral', 100.00, false, false),
+	(26, 'Ecodoppler venoso dos membros inferiores', 100.00, false, false),
+	(27, 'Eletronistagmografia', 100.00, false, false),
+	(28, 'ELISA', 100.00, false, false),
+	(29, 'Escala de Equilíbrio de Berg', 100.00, false, false),
+	(30, 'Escore de Bishop', 100.00, false, false),
+	(31, 'Esofagografia', 100.00, false, false),
+	(32, 'Esofagograma', 100.00, false, false),
+	(33, 'Espéculo', 100.00, false, false),
+	(34, 'Espermograma', 100.00, false, false),
+	(35, 'Espirometria', 100.00, false, false),
+	(36, 'Estudo da condução nervosa', 100.00, false, false),
+	(37, 'Gasometria arterial', 100.00, false, false),
+	(39, 'Glicorraquia', 100.00, false, false),
+	(40, 'Hemograma', 100.00, false, false),
+	(41, 'Histerosalpingografia', 100.00, false, false),
+	(42, 'Manobra de Phalen', 100.00, false, false),
+	(43, 'Manometria esofágica', 100.00, false, false),
+	(44, 'Mielograma', 100.00, false, false),
+	(45, 'Nasofaringoscopia', 100.00, false, false),
+	(46, 'Nasofibroscopia', 100.00, false, false),
+	(47, 'Prova cruzada', 100.00, false, false),
+	(48, 'Prova da tuberculina', 100.00, false, false),
+	(49, 'Prova de aglutinação em látex', 100.00, false, false),
+	(50, 'Reação de Agostini', 100.00, false, false),
+	(51, 'Reação intradérmica', 100.00, false, false),
+	(52, 'Retossigmoidoscopia', 100.00, false, false),
+	(53, 'Sigmoidoscopia', 100.00, false, false),
+	(54, 'Teste de Allen', 100.00, false, false),
+	(55, 'Teste de ácido nucleico', 100.00, false, false),
+	(56, 'Teste de Ham', 100.00, false, false),
+	(57, 'Teste do suor', 100.00, false, false),
+	(58, 'Teste de gravidez', 100.00, false, false),
+	(59, 'Teste de inclinação ortostática', 100.00, false, false),
+	(60, 'Teste de Papanicolau', 100.00, false, false),
+	(61, 'Teste do pezinho', 100.00, false, false),
+	(62, 'Teste VDRL', 100.00, false, false),
+	(63, 'Tipagem sanguínea', 100.00, false, false),
+	(64, 'Tonometria', 100.00, false, false),
+	(65, 'Uranálise', 100.00, false, false),
+	(66, 'Urocultura', 100.00, false, false),
+	(67, 'Urografia', 100.00, false, false),
+	(68, 'Xenodiagnóstico', 100.00, false, false),
+	(69, 'Exame parasitológico de fezes', 100.00, false, false),
+	(70, 'Método de Faust', 100.00, false, false),
+	(71, 'Método de Graham', 100.00, false, false),
+	(72, 'CA 19-9', 100.00, false, false),
+	(73, 'Exame da glicose', 100.00, false, false),
+	(74, 'Exame de HIV', 100.00, false, false),
+	(75, 'Hemaglutinação', 100.00, false, false);
