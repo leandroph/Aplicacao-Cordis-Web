@@ -5,37 +5,44 @@ session_start();
 
 $login_incorreto = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['acesso'])) {
 
     $login = isset($_POST["login"]) ? addslashes(trim($_POST["login"])) : FALSE;
     // criptografa em MD5 
-    $senha = isset($_POST["senha"]) ? md5($_POST["senha"]) : FALSE;
+    $senha = isset($_POST["senha"]) ? $_POST["senha"] : FALSE;
 
     $sql = "SELECT 	u.id, u.login, u.senha, g.id_usuario, g.id_permissao 
-    FROM tb_usuario u join tb_usuarios_permissoes g on (g.id_usuario = u.id_usuario) 
-    where 	u.login =  '" . $login . "' and u.senha = '" . $senha . "'";
+    FROM tb_usuarios u join tb_usuarios_permissoes g on (g.id_usuario = u.id) 
+    where 	u.login = '" . $login . "' and u.senha = '" . $senha . "'";
 
     $resultado = mysqli_query($id_conexao, $sql);
 
     $count = mysqli_num_rows($resultado);
 
     // If result matched $myusername and $mypassword, table row must be 1 row
-
+    echo $count;
     if ($count == 1) {
+
+        $login_incorreto = false;
 
         $dados = mysqli_fetch_array($resultado);
         // Armazena os dados na sessão e redireciona o usuário 
         session_start();
-        $grupo = $dados["id_grupo"];
+        $permissao = $dados["id_permissao"];
 
         $_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
 
-        if ($grupo == 1) {
-            echo 
+        if ($permissao == 1) {
+            echo "Administrativo Bem-Vindo";
+        } else if ($permissao == 2) {
+            echo "Paciente Bem-Vindo";
+        } else if ($permissao == 3) {
+            echo "Médico Bem-Vindo";
+        } else if ($permissao == 4) {
+            echo "Secretario Bem-Vindo";
         } else {
-            header('Location: ../view/areaCliente.php');
+            echo "Permissao Invalida";
         }
-
     } else {
         $login_incorreto = true;
     }
@@ -106,22 +113,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         		</div>
                             </div> -->
                         <div class="form-bottom">
-                            <form role="form" action="" method="post" class="login-form">
+                            <form role="form" action="" method="POST" name="acesso" class="login-form">
                                 <div class="form-group">
+                                    <?php if ($login_incorreto) { ?>
+                                    <div style="margin-bottom: 20px;">
+                                        <h6 class="text-center" style="color:red;">Login ou Senha Incorretos!</h6>
+                                    </div>
+                                    <?php } ?>
                                     <label class="sr-only" for="form-username">Usuario</label>
-                                    <input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+                                    <input type="text" name="login" placeholder="Usuario..." class="form-username form-control" id="form-username">
                                     <!-- <div class="valid-feedback">
                                         Looks good!
                                     </div> -->
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Senha</label>
-                                    <input type="password" name="form-password" placeholder="Senha..." class="form-password form-control" id="form-password">
+                                    <input type="password" name="senha" placeholder="Senha..." class="form-password form-control" id="form-password">
                                     <!-- <div class="valid-feedback">
                                         Looks good!
                                     </div> -->
                                 </div>
-                                <button type="submit" class="btn">Entrar</button>
+                                <button type="submit" name="acesso" class="btn">Entrar</button>
                             </form>
                         </div>
                     </div>
