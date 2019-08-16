@@ -3,41 +3,43 @@
 require "php/bd/conecta.php";
 session_start();
 
-$login = isset($_POST["login"]) ? addslashes(trim($_POST["login"])) : FALSE;
-// criptografa em MD5 
-$senha = isset($_POST["senha"]) ? md5($_POST["senha"]) : FALSE;
+$login_incorreto = false;
 
-$sql = "SELECT 	u.id_usuario, u.id_pessoa, u.usuario, u.senha, g.id_grupo, g.id_usuario
-FROM   	usuario u
-join usuarios_grupo g on (g.id_usuario = u.id_usuario)
-where 	u.usuario =  '" . $login . "' and u.senha = '" . $senha . "'";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$resultado = mysqli_query($id_conexao, $sql);
+    $login = isset($_POST["login"]) ? addslashes(trim($_POST["login"])) : FALSE;
+    // criptografa em MD5 
+    $senha = isset($_POST["senha"]) ? md5($_POST["senha"]) : FALSE;
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form 
-    
-    $myusername = mysqli_real_escape_string($db,$_POST['login']);
-    $mypassword = mysqli_real_escape_string($db,$_POST['senha']); 
-    
-    $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-    $result = mysqli_query($db,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $active = $row['active'];
-    
-    $count = mysqli_num_rows($result);
-    
+    $sql = "SELECT 	u.id, u.login, u.senha, g.id_usuario, g.id_permissao 
+    FROM tb_usuario u join tb_usuarios_permissoes g on (g.id_usuario = u.id_usuario) 
+    where 	u.login =  '" . $login . "' and u.senha = '" . $senha . "'";
+
+    $resultado = mysqli_query($id_conexao, $sql);
+
+    $count = mysqli_num_rows($resultado);
+
     // If result matched $myusername and $mypassword, table row must be 1 row
-      
-    if($count == 1) {
-       session_register("myusername");
-       $_SESSION['login_user'] = $myusername;
-       
-       header("location: welcome.php");
-    }else {
-       $error = "Your Login Name or Password is invalid";
+
+    if ($count == 1) {
+
+        $dados = mysqli_fetch_array($resultado);
+        // Armazena os dados na sessão e redireciona o usuário 
+        session_start();
+        $grupo = $dados["id_grupo"];
+
+        $_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
+
+        if ($grupo == 1) {
+            echo 
+        } else {
+            header('Location: ../view/areaCliente.php');
+        }
+
+    } else {
+        $login_incorreto = true;
     }
- }
+}
 
 ?>
 
