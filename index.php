@@ -20,7 +20,7 @@ if (isset($_POST['acesso'])) {
     $count = mysqli_num_rows($resultado);
 
     // If result matched $myusername and $mypassword, table row must be 1 row
-    echo $count;
+    
     if ($count == 1) {
 
         $login_incorreto = false;
