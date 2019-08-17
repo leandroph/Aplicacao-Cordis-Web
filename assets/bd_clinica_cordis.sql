@@ -5721,7 +5721,7 @@ insert into tb_cidades (id, nome, id_estado) values
 	(5423, 'Tobias Barreto', 25),
 	(5424, 'Tomar do Geru', 25),
 	(5425, 'Umbaúba', 25),
-	-- CIDADES DO ESTADO DE TOCANTINS
+	-- CIDADES DO ESTADO DE TOCANTINSS
 	(5426, 'Abreulândia', 27),
 	(5427, 'Aguiarnópolis', 27),
 	(5428, 'Aliança do Tocantins', 27),
