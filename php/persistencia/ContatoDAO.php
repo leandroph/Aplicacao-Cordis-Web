@@ -1,6 +1,6 @@
 <?php
 
-class AgendamentoDAO {
+class ContatoDAO {
 
     private $pdo;
 
