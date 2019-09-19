@@ -21,17 +21,6 @@ class ClienteDAO {
         }
     }
 
-    // public function alterar(Cliente $cliente) {
-    //     $sql = $this->pdo->prepare('update cliente id_pessoa = :id_pessoa where id_cliente = :id');
-    //     $sql->bindValue(':id_pessoa', $cliente->getId_Pessoa());
-    //     if ($sql->execute()) {
-    //         // Query succeeded.
-    //         return true;
-    //     } else {
-    //         // Query failed.
-    //         echo $sql->errorCode();
-    //     }
-    // }
 
     public function excluir(Pessoa $pessoa) {
         $sql = $this->pdo->prepare('delete from cliente where id_pessoa = :id_pessoa');
