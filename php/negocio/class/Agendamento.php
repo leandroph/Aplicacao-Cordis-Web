@@ -1,7 +1,7 @@
 <?php
 class Agendamento
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
     private $id;
     private $dataHoraInicio;
     private $dataHoraFim;
@@ -10,12 +10,8 @@ class Agendamento
     private $status;
     private $pago;
 	
-	// Geters and Seters
+	/**Geters and Seters */
 	
-
-	
-
-
     /**
      * Get the value of id
      */ 

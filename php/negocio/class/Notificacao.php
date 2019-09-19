@@ -1,7 +1,7 @@
 <?php
 class Notificacao
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
 	private $id;
     private $nome;
     private $ativo;
@@ -9,7 +9,7 @@ class Notificacao
     private $textoConfirmacao;
     private $nomeRemetente;
 	
-	// Geters and Seters
+	/**Geters and Seters */
 	public function setId($id){
 		$this->id = $id;
 	}

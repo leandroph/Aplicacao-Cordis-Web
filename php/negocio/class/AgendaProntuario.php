@@ -1,12 +1,12 @@
 <?php
 class AgendaProntuario
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
     private $id;
     private $idProntuario;
     private $idAgendamento;
 	
-	// Geters and Seters
+	/**Geters and Seters */
 
     /**
      * Get the value of id
