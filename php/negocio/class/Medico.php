@@ -1,7 +1,7 @@
 <?php
 class Medico
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
 	private $id;
 	private $nome;
     private $cpf;
@@ -13,8 +13,7 @@ class Medico
     private $especialidade;
     private $ativo
 
-	
-	// Geters and Seters
+	/**Geters and Seters */
 	public function setId($id){
 		$this->id = $id;
 	}

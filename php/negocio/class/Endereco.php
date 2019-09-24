@@ -1,7 +1,7 @@
 <?php
 class Endereco
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
 	private $id;
 	private $logradouro;
     private $bairro;
@@ -9,7 +9,7 @@ class Endereco
     private $cep;
     private $complemento;
 	
-	// Geters and Seters
+	/**Geters and Seters */
 	public function setId($id){
 		$this->id = $id;
 	}

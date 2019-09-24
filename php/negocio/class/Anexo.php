@@ -1,12 +1,12 @@
 <?php
 class Anexo
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
     private $id;
     private $nome;
     private $caminho;
 	
-    // Geters and Seters
+    /**Geters and Seters */
     
     /**
      * Get the value of id

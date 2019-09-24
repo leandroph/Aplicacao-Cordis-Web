@@ -1,7 +1,7 @@
 <?php
 class Notificacao
 {
-    // declaração de propriedade
+    /**Declaração de propriedade */
 	private $emailRemetente;
     private $servidor;
     private $porta;
@@ -11,27 +11,30 @@ class Notificacao
     private $emailOculto;
     private $emailCopia;
 	
-	// Geters and Seters
-	
-	public function getEmailRemetente()
-	{
+	/**Geters and Seters */
+    
+    /**
+     * Get the value of emailRemetente
+     */ 
+	public function getEmailRemetente(){
 		return $this->emailRemetente;
 	}
 
-	public function setEmailRemetente($emailRemetente)
-	{
+    /**
+     * Set the value of emailRemetente
+     *
+     * @return  self
+     */
+	public function setEmailRemetente($emailRemetente){
 		$this->emailRemetente = $emailRemetente;
-
 		return $this;
     }
-    
     
 
     /**
      * Get the value of servidor
      */ 
-    public function getServidor()
-    {
+    public function getServidor(){
         return $this->servidor;
     }
 
@@ -40,18 +43,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setServidor($servidor)
-    {
+    public function setServidor($servidor){
         $this->servidor = $servidor;
-
         return $this;
     }
 
     /**
      * Get the value of porta
      */ 
-    public function getPorta()
-    {
+    public function getPorta(){
         return $this->porta;
     }
 
@@ -60,18 +60,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setPorta($porta)
-    {
+    public function setPorta($porta){
         $this->porta = $porta;
-
         return $this;
     }
 
     /**
      * Get the value of usuario
      */ 
-    public function getUsuario()
-    {
+    public function getUsuario(){
         return $this->usuario;
     }
 
@@ -80,18 +77,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setUsuario($usuario)
-    {
+    public function setUsuario($usuario){
         $this->usuario = $usuario;
-
         return $this;
     }
 
     /**
      * Get the value of senha
      */ 
-    public function getSenha()
-    {
+    public function getSenha(){
         return $this->senha;
     }
 
@@ -100,18 +94,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setSenha($senha)
-    {
+    public function setSenha($senha){
         $this->senha = $senha;
-
         return $this;
     }
 
     /**
      * Get the value of criptografia
      */ 
-    public function getCriptografia()
-    {
+    public function getCriptografia(){
         return $this->criptografia;
     }
 
@@ -120,18 +111,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setCriptografia($criptografia)
-    {
+    public function setCriptografia($criptografia){
         $this->criptografia = $criptografia;
-
         return $this;
     }
 
     /**
      * Get the value of emailOculto
      */ 
-    public function getEmailOculto()
-    {
+    public function getEmailOculto(){
         return $this->emailOculto;
     }
 
@@ -140,18 +128,15 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setEmailOculto($emailOculto)
-    {
+    public function setEmailOculto($emailOculto){
         $this->emailOculto = $emailOculto;
-
         return $this;
     }
 
     /**
      * Get the value of emailCopia
      */ 
-    public function getEmailCopia()
-    {
+    public function getEmailCopia(){
         return $this->emailCopia;
     }
 
@@ -160,10 +145,8 @@ class Notificacao
      *
      * @return  self
      */ 
-    public function setEmailCopia($emailCopia)
-    {
+    public function setEmailCopia($emailCopia){
         $this->emailCopia = $emailCopia;
-
         return $this;
     }
 }
