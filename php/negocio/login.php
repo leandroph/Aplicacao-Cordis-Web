@@ -1,45 +1,37 @@
 <?php
-// Conexão com o banco de dados 
-require "../bd/conecta.php";
 
-// Inicia sessões 
 session_start();
 
-$login = isset($_POST["login"]) ? addslashes(trim($_POST["login"])) : FALSE;
-// criptografa em MD5 
-$senha = isset($_POST["senha"]) ? md5($_POST["senha"]) : FALSE;
+include("conexao.php");
 
-// Usuário não forneceu a senha ou o login 
-if (!$login || !$senha) {
-	echo "Você deve digitar sua senha e login!";
-	exit;
+if(isset($_POST['email']) && isset($_POST['senha'])){
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $teste = md5($senha);
+
+    $get = mysql_query("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+    $num = mysql_num_rows($get);
+
+    if($num == 1){
+         while($percorrer = mysql_fetch_array($get)){
+             $adm = $percorrer['adm'];
+$nome = $percorrer['nome'];
+session_cache_expire(10);
+session_start();
+             if($adm == 1){
+                 $_SESSION['adm'] = $nome;
+             } else{
+                 $_SESSION['nor'] = $nome;
+             }
+             echo '<script type="text/javascript">window.location = "index.html"</script>';
+         }
+    }else{
+        // echo "Email ou senha incorreta"; nessa linha você apenas mostrava os dados errados na mesma pagina login.php
+      
+      	// aqui voce manda pra session invalido o error que deu no request e redireciona pra index de login
+      	$_SESSION["invalido"] = $error;
+    	header("location: index.php");
+    }
 }
 
-
-$sql = "SELECT 	u.id_usuario, u.id_pessoa, u.usuario, u.senha, g.id_grupo, g.id_usuario
-FROM   	usuario u
-join usuarios_grupo g on (g.id_usuario = u.id_usuario)
-where 	u.usuario =  '" . $login . "' and u.senha = '" . $senha . "'";
-
-$resultado = mysqli_query($id_conexao, $sql);
-
-if (mysqli_num_rows($resultado) == 1) {
-
-	$dados = mysqli_fetch_array($resultado);
-	// Armazena os dados na sessão e redireciona o usuário 
-	session_start();
-	$grupo = $dados["id_grupo"];
-
-	$_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
-
-	if ($grupo == 1) {
-		header('Location: ../view/areaADM.php');
-	} else {
-		header('Location: ../view/areaCliente.php');
-	}
-} else {
-	session_start();
-	
-	$_SESSION["resposta"]= serialize("negado"); 
-	header('Location: ../view/formLogin.php');
-}
+?>
