@@ -2,7 +2,7 @@
 
 session_start();
 
-include("conexao.php");
+include("php/bd/conecta.php");
 
 if(isset($_POST['email']) && isset($_POST['senha'])){
     $email = $_POST['email'];

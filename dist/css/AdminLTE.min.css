@@ -3787,8 +3787,10 @@ table.text-center th {
 
 .login-page,
 .register-page {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto;
     height: auto;
-    /* width: 100%; */
     background-image: url("../img/clinica-01.png");
     background-repeat: no-repeat;
 }
