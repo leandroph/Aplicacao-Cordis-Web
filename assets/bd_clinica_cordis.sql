@@ -133,6 +133,23 @@ CREATE TABLE tb_secretarias (
 	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
 );
 
+CREATE TABLE tb_administradores(
+	id						INT NOT NULL AUTO_INCREMENT,
+	nome					VARCHAR(60) NOT NULL ,
+	cpf						CHAR(14) NOT NULL ,
+	rg						CHAR(12) NOT NULL ,
+	sexo					CHAR(1) NOT NULL ,
+	nascimento				DATE NOT NULL ,
+	ativo					BOOLEAN NOT NULL ,
+	id_endereco				INT NOT NULL ,
+	id_contato				INT NOT NULL ,
+	id_usuario				INT NOT NULL ,
+	PRIMARY KEY (id) ,
+	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
+	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id),
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+);
+
 CREATE TABLE tb_convenios (
   	id						INT NOT NULL AUTO_INCREMENT,
 	nome					VARCHAR(60) NOT NULL ,
@@ -5922,10 +5939,14 @@ INSERT INTO tb_medicos(id, nome, cpf, rg, sexo, nascimento, cor_agenda, crm, esp
 	(1, 'Douglas Hoffmann', '456.111.480-77', '1111111111', 'M', '1996-06-23', 'Azul', '1530205070', 'Clinico Geral', false, 6, 6, 6);
 	
 INSERT INTO tb_secretarias(id, nome, cpf, rg, sexo, nascimento, cor_agenda, ativo, id_endereco, id_contato, id_usuario) VALUES 
-	(1, 'Carmem Menin', '074.820.940-91', '222222222', 'M', '1992-11-04', 'Verde', false, 7, 7, 7);
+	(1, 'Leandro Heck', '027.359.660.89', '222222222', 'M', '1992-11-04', false, 1, 1, 1),
+	(2 'Daniel Buchholz', '027.359.660.78', '222222222', 'M', '1992-11-04', false, 2, 2, 2),
+	(3, 'Cristiano Kunas', '027.859.860.89', '222222222', 'M', '1992-11-04', false, 3, 3, 3),
 
 -- INSERT INTO tb_convenios(id, nome, ativo, nome_empresa, cnpj_empresa, id_endereco, id_contato, id_usuario) VALUES 
 
+INSERT INTO tb_administradores(id, nome, cpf, rg, sexo, nascimento, ativo, id_endereco, id_contato, id_usuario) VALUES 
+	(1, 'Leandro Heck', '074.820.940-91', '222222222', 'M', '1992-11-04', 'Verde', false, 7, 7, 7);
 INSERT INTO tb_exames(id, nome, valor, especial, ativo) VALUES 
 	(1, 'Abdominoscopia', 100.00, false, false),
 	(2, 'Abreugrafia', 100.00, false, false),
