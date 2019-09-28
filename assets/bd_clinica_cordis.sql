@@ -5902,11 +5902,11 @@ INSERT INTO  tb_usuarios_permissoes(id, id_usuario, id_permissao) VALUES
 	(1, 1, 1),
 	(2, 2, 1),
 	(3, 3, 1),
-	(4, 2, 2),
-	(5, 2, 2),
-	(6, 2, 3),
-	(7, 2, 4),
-	(8, 2, 2);
+	(4, 4, 2),
+	(5, 5, 2),
+	(6, 6, 3),
+	(7, 7, 4),
+	(8, 8, 2);
 
 INSERT INTO tb_pacientes(id, nome, cpf, sexo, nascimento, id_endereco, id_contato, id_usuario) VALUES 
 	(1, 'Ana', '575.528.440-78', 'F', '1990-03-25', 4, 4, 4),
