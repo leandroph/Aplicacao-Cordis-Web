@@ -150,6 +150,13 @@ CREATE TABLE tb_administradores(
 	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
 );
 
+CREATE TABLE tb_foto_usuario (
+	id 					    INT NOT NULL AUTO_INCREMENT,
+	nome                    VARCHAR(60) NOT NULL,
+	id_usuario				INT NOT NULL ,
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+);
+
 CREATE TABLE tb_convenios (
   	id						INT NOT NULL AUTO_INCREMENT,
 	nome					VARCHAR(60) NOT NULL ,
