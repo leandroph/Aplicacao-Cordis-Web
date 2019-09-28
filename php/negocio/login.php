@@ -27,18 +27,18 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         $permissao = $dados["id_permissao"];
         $_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
         if ($permissao == 1) {
-            echo "Administrativo Bem-Vindo";
+            header("location: ../../pages/administrativo.html");
         } else if ($permissao == 2) {
-            echo "Paciente Bem-Vindo";
+            header("location: ../../pages/paciente.html");
         } else if ($permissao == 3) {
-            echo "Médico Bem-Vindo";
+            header("location: ../../pages/medico.html");
         } else if ($permissao == 4) {
-            echo "Secretario Bem-Vindo";
+            header("location: ../../pages/secretaria.html");
         } else {
             echo "Permissao Invalida";
         }
     } else {
-        $_SESSION["invalido"] = $error;
-        // header("location: ../../index.php");
+        $_SESSION["invalido"] = "negado";
+        header("location: ../../index.php");
     }
 }
