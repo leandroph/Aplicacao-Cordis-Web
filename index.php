@@ -43,14 +43,29 @@
       <p class="login-box-msg">Entre para iniciar sua sessão</p>
 
       <form action="php/negocio/login.php" method="post">
+
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          <input type="text" name="login" class="form-control" placeholder="Usuario" required>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="senha" class="form-control" placeholder="Senha" required>
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
+        <div class="form-group has-feedback">
+          <?php
+          // verifica se a variavel session['invalido'] existe, se existir mostra o erro
+
+          if (isset($_SESSION["invalido"])) {
+
+            echo "<h6>Incorreto</h6>";
+
+            $dados_invalidos = $_SESSION["invalido"];
+            echo "<span>$dados_invalidos</span>";
+          }
+          ?>
+        </div>
+
         <div class="row">
           <div class="col-xs-8">
             <div class="checkbox icheck">
@@ -61,7 +76,7 @@
           </div>
           <!-- /.col -->
           <div class="col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
           </div>
           <!-- /.col -->
         </div>
@@ -93,3 +108,5 @@
 </body>
 
 </html>
+
+<?php unset($_SESSION["invalido"]); ?>

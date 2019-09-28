@@ -2,36 +2,43 @@
 
 session_start();
 
-include("php/bd/conecta.php");
+include("../bd/conecta.php");
 
-if(isset($_POST['email']) && isset($_POST['senha'])){
-    $email = $_POST['email'];
+if (isset($_POST['login']) && isset($_POST['senha'])) {
+    $login = $_POST['login'];
     $senha = $_POST['senha'];
-    $teste = md5($senha);
+    // $teste = md5($senha);
 
-    $get = mysql_query("SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
-    $num = mysql_num_rows($get);
+    $sql = "SELECT 	u.id, u.login, u.senha, g.id_usuario, g.id_permissao 
+    FROM tb_usuarios u join tb_usuarios_permissoes g on (g.id_usuario = u.id) 
+    where 	u.login = '" . $login . "' and u.senha = '" . $senha . "'";
+    
+    $resultado = mysqli_query($id_conexao, $sql);
+    
+    $count = mysqli_num_rows($resultado);
 
-    if($num == 1){
-         while($percorrer = mysql_fetch_array($get)){
-             $adm = $percorrer['adm'];
-$nome = $percorrer['nome'];
-session_cache_expire(10);
-session_start();
-             if($adm == 1){
-                 $_SESSION['adm'] = $nome;
-             } else{
-                 $_SESSION['nor'] = $nome;
-             }
-             echo '<script type="text/javascript">window.location = "index.html"</script>';
-         }
-    }else{
-        // echo "Email ou senha incorreta"; nessa linha você apenas mostrava os dados errados na mesma pagina login.php
-      
-      	// aqui voce manda pra session invalido o error que deu no request e redireciona pra index de login
-      	$_SESSION["invalido"] = $error;
-    	header("location: index.php");
+    echo $count;
+
+    if ($count == 1) {
+        
+        $dados = mysqli_fetch_array($resultado);
+        // Armazena os dados na sessão e redireciona o usuário 
+        session_start();
+        $permissao = $dados["id_permissao"];
+        $_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
+        if ($permissao == 1) {
+            echo "Administrativo Bem-Vindo";
+        } else if ($permissao == 2) {
+            echo "Paciente Bem-Vindo";
+        } else if ($permissao == 3) {
+            echo "Médico Bem-Vindo";
+        } else if ($permissao == 4) {
+            echo "Secretario Bem-Vindo";
+        } else {
+            echo "Permissao Invalida";
+        }
+    } else {
+        $_SESSION["invalido"] = $error;
+        // header("location: ../../index.php");
     }
 }
-
-?>
