@@ -1,3 +1,8 @@
+<?php session_start();
+
+    $id_usuario_logado = $_SESSION["id_usuario"];
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -140,42 +145,42 @@ desired effect
                         <a href="pages/calendar.html">
                             <i class="fa fa-home"></i> <span>Painel</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <li class="">
                         <a href="pages/calendar.html">
                             <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <li class="">
                         <a href="pages/calendar.html">
                             <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <li class="">
                         <a href="pages/calendar.html">
                             <i class="fa fa-flask"></i> <span>Cadastro Exames</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <li class="">
                         <a href="pages/calendar.html">
                             <i class="fa fa-medkit"></i> <span>Cadastro Convenio</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <li class="">
                         <a href="pages/calendar.html">
                             <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica</span>
                             <span class="pull-right-container">
-              </span>
+                            </span>
                         </a>
                     </li>
                     <!-- <li class="header">Acesso Client</li>
