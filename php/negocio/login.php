@@ -25,7 +25,9 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         // Armazena os dados na sessão e redireciona o usuário 
         session_start();
         $permissao = $dados["id_permissao"];
-        $_SESSION["id_pessoa"] = serialize($dados["id_pessoa"]);
+
+        $_SESSION["id_usuario"] = serialize($dados["id"]);
+
         if ($permissao == 1) {
             header("location: ../../pages/administrativo.html");
         } else if ($permissao == 2) {
