@@ -38,14 +38,6 @@ CREATE TABLE tb_enderecos (
 	FOREIGN KEY (id_cidade) REFERENCES tb_cidades (id) 
 );
 
-CREATE TABLE tb_contatos (
-    id		    		   	INT NOT NULL AUTO_INCREMENT,
-    email					VARCHAR(60) NOT NULL ,
-    telefone1				VARCHAR(30) NOT NULL ,
-    telefone2				VARCHAR(30) NOT NULL ,	
-	PRIMARY KEY (id) 
-);
-
 CREATE TABLE tb_permissoes (
     id			        	INT NOT NULL AUTO_INCREMENT,
     nome                	VARCHAR(30) NOT NULL ,
@@ -71,19 +63,33 @@ CREATE TABLE tb_usuarios_permissoes(
 );
 
 -- mascara da data yyyy-mm-dd, sexo M, F ou O
-CREATE TABLE tb_pacientes (
+CREATE TABLE tb_pessoas (
 	id        			    INT NOT NULL AUTO_INCREMENT,	
 	nome					VARCHAR(60) NOT NULL ,
     cpf						CHAR(14) NOT NULL ,
     sexo					CHAR(1) NOT NULL ,
     nascimento				DATE NOT NULL ,
+	email					VARCHAR(60) NOT NULL ,
     id_endereco				INT NOT NULL ,
-    id_contato				INT NOT NULL ,
     id_usuario				INT NOT NULL ,
 	PRIMARY KEY (id),
-	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id) ,
-	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id) ,
+	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
 	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+);
+
+CREATE TABLE tb_contatos (
+    id		    		   	INT NOT NULL AUTO_INCREMENT,
+    telefone				VARCHAR(30) NOT NULL ,
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
+);
+
+CREATE TABLE tb_pacientes (
+	id                      INT NOT NULL AUTO_INCREMENT,
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_prontuarios (
@@ -96,41 +102,23 @@ CREATE TABLE tb_prontuarios (
 );
 
 CREATE TABLE tb_medicos (
-  	id						INT NOT NULL AUTO_INCREMENT,
-	nome					VARCHAR(60) NOT NULL ,
-	cpf						CHAR(14) NOT NULL ,
-	rg						CHAR(12) NOT NULL ,
-	sexo					CHAR(1) NOT NULL ,
-	nascimento				DATE NOT NULL ,
+	id                      INT NOT NULL AUTO_INCREMENT,
 	cor_agenda				VARCHAR(10) NOT NULL ,
 	crm						VARCHAR(30) NOT NULL ,
 	especialidade			VARCHAR(60) NOT NULL ,
 	ativo					BOOLEAN NOT NULL ,
-	id_endereco				INT NOT NULL ,
-	id_contato				INT NOT NULL ,
-	id_usuario				INT NOT NULL ,
+	id_pessoa               INT NOT NULL,
 	PRIMARY KEY (id) ,
-	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
-	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id),
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_secretarias (
-  	id						INT NOT NULL AUTO_INCREMENT,
-	nome					VARCHAR(60) NOT NULL ,
-	cpf						CHAR(14) NOT NULL ,
-	rg						CHAR(12) NOT NULL ,
-	sexo					CHAR(1) NOT NULL ,
-	nascimento				DATE NOT NULL ,
+	id                      INT NOT NULL AUTO_INCREMENT,
 	cor_agenda				VARCHAR(10) NOT NULL ,
 	ativo					BOOLEAN NOT NULL ,
-	id_endereco				INT NOT NULL ,
-	id_contato				INT NOT NULL ,
-	id_usuario				INT NOT NULL ,
+	id_pessoa               INT NOT NULL,
 	PRIMARY KEY (id) ,
-	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
-	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id),
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_administradores(
@@ -154,6 +142,7 @@ CREATE TABLE tb_foto_usuario (
 	id 					    INT NOT NULL AUTO_INCREMENT,
 	nome                    VARCHAR(60) NOT NULL,
 	id_usuario				INT NOT NULL ,
+	PRIMARY KEY (id),
 	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
 );
 
@@ -5896,16 +5885,6 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 	(7, 'Rua Carlos Albert', 'Centro', '104', '97984-452', 'Ap 202', 4216), 
 	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
 
-INSERT INTO tb_contatos(id, email, telefone1, telefone2) VALUES 
-	(1, 'leandroph1992@teste.com.br', '55999261479', '9999999999'),
-	(2, 'daniel@teste.com.br', '9999999999', '9999999999'),
-	(3, 'cristiano@teste.com.br', '99999999999', '9999999999'),
-	(4, 'ana@teste.com.br', '9999999999', '9999999999'),
-	(5, 'paulo@teste.com.br', '9999999999', '9999999999'),
-	(6, 'douglas@teste.com.br', '9999999999', '9999999999'),
-	(7, 'carmem@teste.com.br', '9999999999', '9999999999'),
-	(8, 'jeferson@teste.com.br', '9999999999', '9999999999');
-
 INSERT INTO tb_permissoes(id, nome) VALUES 
 	(1, 'Administrativo'),
 	(2, 'Paciente'),
@@ -5932,21 +5911,38 @@ INSERT INTO  tb_usuarios_permissoes(id, id_usuario, id_permissao) VALUES
 	(7, 7, 4),
 	(8, 8, 2);
 
-INSERT INTO tb_pacientes(id, nome, cpf, sexo, nascimento, id_endereco, id_contato, id_usuario) VALUES 
-	(1, 'Ana', '575.528.440-78', 'F', '1990-03-25', 4, 4, 4),
-	(2, 'Paulo', '887.328.790-59', 'M', '1993-06-12', 5, 5, 5),
-	(3, 'Jeferson', '517.232.710-04', 'M', '1992-08-15', 8, 8, 8);
+INSERT INTO tb_pessoas(id, nome, cpf, sexo, nascimento, email, id_endereco, id_usuario) VALUES 
+	(1, 'Ana', '575.528.440-78', 'F', '1990-03-25', 'ana@teste.com', 4, 4),
+	(2, 'Paulo', '887.328.790-59', 'M', '1993-06-12','paulo@teste.com', 5, 5),
+	(3, 'Jeferson', '517.232.710-04', 'M', '1992-08-15', 'jeferson@teste.com', 8, 8),
+	(4, 'Douglas Hoffmann', '456.111.480-77', 'M', '1996-06-23', 'douglas@teste.com', 6, 6),
+	(5, 'Carmem Paz', '074.820.940-91', 'F', '1992-11-04', 'carmem@teste.com', 7, 7);
+
+INSERT INTO tb_contatos(id, telefone, id_pessoa) VALUES 
+	(1, '55999261479', 1),
+	(2, '9999999999', 2),
+	(3, '9999999999', 3),
+	(4, '9999999999', 4),
+	(5, '9999999999', 5),
+	(6, '9999999999', 1),
+	(7, '9999999999', 2),
+	(8, '9999999999', 3);
+
+INSERT INTO tb_pacientes(id, id_pessoa) VALUES
+	(1, 2),
+	(2, 3),
+	(3, 3);
 
 INSERT INTO tb_prontuarios(id, nome, ativo, id_paciente) VALUES 
 	(1, 'Exames da Ana', true, 1),
 	(2, 'Colesterol Paulo', false, 2),
 	(3, 'Exame de Sangue Jeferson' , true, 3);
 
-INSERT INTO tb_medicos(id, nome, cpf, rg, sexo, nascimento, cor_agenda, crm, especialidade, ativo, id_endereco, id_contato, id_usuario) VALUES 
-	(1, 'Douglas Hoffmann', '456.111.480-77', '1111111111', 'M', '1996-06-23', 'Azul', '1530205070', 'Clinico Geral', false, 6, 6, 6);
+INSERT INTO tb_medicos(id, cor_agenda, crm, especialidade, ativo, id_pessoa) VALUES 
+	(1, 'Azul', '1530205070', 'Clinico Geral', false, 4);
 	
-INSERT INTO tb_secretarias(id, nome, cpf, rg, sexo, nascimento, cor_agenda, ativo, id_endereco, id_contato, id_usuario) VALUES 
-	(1, 'Carmem Paz', '074.820.940-91', '222222222', 'M', '1992-11-04', 'Verde', false, 7, 7, 7);
+INSERT INTO tb_secretarias(id, cor_agenda, ativo, id_pessoa) VALUES 
+	(1, 'Verde', false, 5);
 
 INSERT INTO tb_administradores(id, nome, cpf, rg, sexo, nascimento, ativo, id_endereco, id_contato, id_usuario) VALUES 
 	(1, 'Leandro Heck', '027.359.660.89', '222222222', 'M', '1992-11-04', false, 1, 1, 1),
