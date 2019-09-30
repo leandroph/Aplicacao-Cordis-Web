@@ -67,6 +67,7 @@ CREATE TABLE tb_pessoas (
 	id        			    INT NOT NULL AUTO_INCREMENT,	
 	nome					VARCHAR(60) NOT NULL ,
     cpf						CHAR(14) NOT NULL ,
+	rg                      CHAR(10) NOT NULL,
     sexo					CHAR(1) NOT NULL ,
     nascimento				DATE NOT NULL ,
 	email					VARCHAR(60) NOT NULL ,
@@ -5902,15 +5903,15 @@ INSERT INTO  tb_usuarios_permissoes(id, id_usuario, id_permissao) VALUES
 	(7, 7, 4),
 	(8, 8, 2);
 
-INSERT INTO tb_pessoas(id, nome, cpf, sexo, nascimento, email, id_endereco, id_usuario) VALUES 
-	(1, 'Ana', '575.528.440-78', 'F', '1990-03-25', 'ana@teste.com', 4, 4),
-	(2, 'Paulo', '887.328.790-59', 'M', '1993-06-12','paulo@teste.com', 5, 5),
-	(3, 'Jeferson', '517.232.710-04', 'M', '1992-08-15', 'jeferson@teste.com', 8, 8),
-	(4, 'Douglas Hoffmann', '456.111.480-77', 'M', '1996-06-23', 'douglas@teste.com', 6, 6),
-	(5, 'Carmem Paz', '074.820.940-91', 'F', '1992-11-04', 'carmem@teste.com', 7, 7),
-	(6, 'Leandro Heck', '027.359.660.89', 'M', '1992-11-04', 'leandro@teste.com', 1, 1),
-	(7, 'Daniel Buchholz', '027.359.660.78', 'M', '1992-11-04', 'daniel@teste.com', 2, 2),
-	(8, 'Cristiano Kunas', '027.859.860.89', 'M', '1992-11-04', 'cristiano@teste.com', 3, 3);
+INSERT INTO tb_pessoas(id, nome, cpf, rg, sexo, nascimento, email, id_endereco, id_usuario) VALUES 
+	(1, 'Ana', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4, 4),
+	(2, 'Paulo', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5, 5),
+	(3, 'Jeferson', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8, 8),
+	(4, 'Douglas Hoffmann', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6, 6),
+	(5, 'Carmem Paz', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7, 7),
+	(6, 'Leandro Heck', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1, 1),
+	(7, 'Daniel Buchholz', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2, 2),
+	(8, 'Cristiano Kunas', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3, 3);
 
 INSERT INTO tb_contatos(id, telefone, id_pessoa) VALUES 
 	(1, '55999261479', 1),
