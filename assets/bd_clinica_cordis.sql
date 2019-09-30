@@ -123,19 +123,10 @@ CREATE TABLE tb_secretarias (
 
 CREATE TABLE tb_administradores(
 	id						INT NOT NULL AUTO_INCREMENT,
-	nome					VARCHAR(60) NOT NULL ,
-	cpf						CHAR(14) NOT NULL ,
-	rg						CHAR(12) NOT NULL ,
-	sexo					CHAR(1) NOT NULL ,
-	nascimento				DATE NOT NULL ,
 	ativo					BOOLEAN NOT NULL ,
-	id_endereco				INT NOT NULL ,
-	id_contato				INT NOT NULL ,
-	id_usuario				INT NOT NULL ,
-	PRIMARY KEY (id) ,
-	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
-	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id),
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_foto_usuario (
@@ -5916,7 +5907,10 @@ INSERT INTO tb_pessoas(id, nome, cpf, sexo, nascimento, email, id_endereco, id_u
 	(2, 'Paulo', '887.328.790-59', 'M', '1993-06-12','paulo@teste.com', 5, 5),
 	(3, 'Jeferson', '517.232.710-04', 'M', '1992-08-15', 'jeferson@teste.com', 8, 8),
 	(4, 'Douglas Hoffmann', '456.111.480-77', 'M', '1996-06-23', 'douglas@teste.com', 6, 6),
-	(5, 'Carmem Paz', '074.820.940-91', 'F', '1992-11-04', 'carmem@teste.com', 7, 7);
+	(5, 'Carmem Paz', '074.820.940-91', 'F', '1992-11-04', 'carmem@teste.com', 7, 7),
+	(6, 'Leandro Heck', '027.359.660.89', 'M', '1992-11-04', 'leandro@teste.com', 1, 1),
+	(7, 'Daniel Buchholz', '027.359.660.78', 'M', '1992-11-04', 'daniel@teste.com', 2, 2),
+	(8, 'Cristiano Kunas', '027.859.860.89', 'M', '1992-11-04', 'cristiano@teste.com', 3, 3);
 
 INSERT INTO tb_contatos(id, telefone, id_pessoa) VALUES 
 	(1, '55999261479', 1),
@@ -5944,10 +5938,10 @@ INSERT INTO tb_medicos(id, cor_agenda, crm, especialidade, ativo, id_pessoa) VAL
 INSERT INTO tb_secretarias(id, cor_agenda, ativo, id_pessoa) VALUES 
 	(1, 'Verde', false, 5);
 
-INSERT INTO tb_administradores(id, nome, cpf, rg, sexo, nascimento, ativo, id_endereco, id_contato, id_usuario) VALUES 
-	(1, 'Leandro Heck', '027.359.660.89', '222222222', 'M', '1992-11-04', false, 1, 1, 1),
-	(2, 'Daniel Buchholz', '027.359.660.78', '222222222', 'M', '1992-11-04', false, 2, 2, 2),
-	(3, 'Cristiano Kunas', '027.859.860.89', '222222222', 'M', '1992-11-04', false, 3, 3, 3);
+INSERT INTO tb_administradores(id, ativo,  id_pessoa) VALUES 
+	(1, false, 6),
+	(2, false, 7),
+	(3, false, 8);
 
 -- INSERT INTO tb_convenios(id, nome, ativo, nome_empresa, cnpj_empresa, id_endereco, id_contato, id_usuario) VALUES 
 
