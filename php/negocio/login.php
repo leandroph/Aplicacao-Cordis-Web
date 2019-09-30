@@ -29,7 +29,7 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         $_SESSION["id_usuario"] = serialize($dados["id"]);
 
         if ($permissao == 1) {
-            header("location: ../../pages/administrativo.html");
+            header("location: ../../pages/administrativo.php");
         } else if ($permissao == 2) {
             header("location: ../../pages/paciente.html");
         } else if ($permissao == 3) {
