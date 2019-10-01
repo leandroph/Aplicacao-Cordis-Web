@@ -81,6 +81,7 @@ CREATE TABLE tb_pessoas (
 CREATE TABLE tb_contatos (
     id		    		   	INT NOT NULL AUTO_INCREMENT,
     telefone				VARCHAR(30) NOT NULL ,
+	tipo                    VARCHAR(15) NOT NULL,
 	id_pessoa               INT NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
@@ -5913,15 +5914,15 @@ INSERT INTO tb_pessoas(id, nome, cpf, rg, sexo, nascimento, email, id_endereco, 
 	(7, 'Daniel Buchholz', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2, 2),
 	(8, 'Cristiano Kunas', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3, 3);
 
-INSERT INTO tb_contatos(id, telefone, id_pessoa) VALUES 
-	(1, '55999261479', 1),
-	(2, '9999999999', 2),
-	(3, '9999999999', 3),
-	(4, '9999999999', 4),
-	(5, '9999999999', 5),
-	(6, '9999999999', 1),
-	(7, '9999999999', 2),
-	(8, '9999999999', 3);
+INSERT INTO tb_contatos(id, telefone, tipo, id_pessoa) VALUES 
+	(1, '55999261479', 'pessoal', 1),
+	(2, '9999999999', 'pessoal', 2),
+	(3, '9999999999', 'pessoal', 3),
+	(4, '9999999999', 'pessoal', 4),
+	(5, '9999999999', 'pessoal', 5),
+	(6, '9999999999', 'pessoal', 1),
+	(7, '9999999999', 'pessoal', 2),
+	(8, '9999999999', 'pessoal', 3);
 
 INSERT INTO tb_pacientes(id, id_pessoa) VALUES
 	(1, 2),
