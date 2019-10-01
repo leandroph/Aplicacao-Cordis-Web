@@ -142,14 +142,14 @@ desired effect
                     <!-- <li class="header">Acesso ADMIN</li> -->
                     <!-- Optionally, you can add icons to the links -->
                     <li class="active">
-                        <a href="pages/calendar.html">
+                        <a href="#">
                             <i class="fa fa-home"></i> <span>Painel</span>
                             <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="pages/calendar.html">
+                        <a href="cadastro_medico.php">
                             <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
                             <span class="pull-right-container">
                             </span>
