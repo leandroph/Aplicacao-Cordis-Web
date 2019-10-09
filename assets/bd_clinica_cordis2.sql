@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS bd_clinica_cordis_teste;
-CREATE DATABASE bd_clinica_cordis_teste;
-USE bd_clinica_cordis_teste;
+﻿DROP DATABASE IF EXISTS bd_clinica_cordis;
+CREATE DATABASE bd_clinica_cordis;
+USE bd_clinica_cordis;
 
 CREATE TABLE tb_paises (
 	id 						INT NOT NULL AUTO_INCREMENT,	
@@ -44,20 +44,27 @@ CREATE TABLE tb_permissoes (
 	PRIMARY KEY (id)
 );
 
+-- SENHA SERÁ APLICADA HASH MD5
 CREATE TABLE tb_usuarios(
 	id 				        INT NOT NULL AUTO_INCREMENT,
 	login					VARCHAR(60) NOT NULL,
 	senha					VARCHAR(32) NOT NULL,
 	ativo 					BOOLEAN NOT NULL,
-	perm_paciente			BOOLEAN NOT NULL,
-	perm_medico				BOOLEAN NOT NULL,
-	perm_secretaria 		BOOLEAN NOT NULL,
-	perm_administrador		BOOLEAN NOT NULL,
-    PRIMARY KEY(id)
+	PRIMARY KEY (id)
 );
 
+CREATE TABLE tb_usuarios_permissoes(
+	id 						INT NOT NULL AUTO_INCREMENT,	
+	id_usuario 				INT NOT NULL,
+	id_permissao			INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
+	FOREIGN KEY (id_permissao) REFERENCES tb_permissoes (id)
+);
+
+-- mascara da data yyyy-mm-dd, sexo M, F ou O
 CREATE TABLE tb_pessoas (
-	id_usuario 			    INT NOT NULL,	
+	id        			    INT NOT NULL AUTO_INCREMENT,	
 	nome					VARCHAR(60) NOT NULL ,
     cpf						CHAR(14) NOT NULL ,
 	rg                      CHAR(10) NOT NULL,
@@ -65,64 +72,71 @@ CREATE TABLE tb_pessoas (
     nascimento				DATE NOT NULL ,
 	email					VARCHAR(60) NOT NULL ,
     id_endereco				INT NOT NULL ,
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY (id_usuario),
-	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id)
+    id_usuario				INT NOT NULL ,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+);
+
+CREATE TABLE tb_contatos (
+    id		    		   	INT NOT NULL AUTO_INCREMENT,
+    telefone				VARCHAR(30) NOT NULL ,
+	tipo                    VARCHAR(15) NOT NULL,
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_pacientes (
-	id_usuario 				INT NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
+	id                      INT NOT NULL AUTO_INCREMENT,
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_prontuarios (
-    id						INT NOT NULL AUTO_INCREMENT,
-	id_usuario              INT NOT NULL,
+  	id						INT NOT NULL AUTO_INCREMENT,
 	nome					VARCHAR(60) NOT NULL ,
 	ativo 					BOOLEAN NOT NULL ,
-    PRIMARY KEY (id) ,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
+	id_paciente				INT NOT NULL ,
+	PRIMARY KEY (id) ,
+	FOREIGN KEY (id_paciente) REFERENCES tb_pacientes (id)
 );
 
 CREATE TABLE tb_medicos (
-	id_usuario              INT NOT NULL,
+	id                      INT NOT NULL AUTO_INCREMENT,
 	cor_agenda				VARCHAR(10) NOT NULL ,
 	crm						VARCHAR(30) NOT NULL ,
 	especialidade			VARCHAR(60) NOT NULL ,
 	ativo					BOOLEAN NOT NULL ,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id) ,
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_secretarias (
-	id_usuario              INT NOT NULL,
+	id                      INT NOT NULL AUTO_INCREMENT,
 	cor_agenda				VARCHAR(10) NOT NULL ,
 	ativo					BOOLEAN NOT NULL ,
-	id_pessoa               INT NOT NULL,          
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id) ,
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_administradores(
-    id_usuario              INT NOT NULL,
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
-);
-
-CREATE TABLE tb_contatos (
-    id_usuario               INT NOT NULL,
-    telefone				VARCHAR(30) NOT NULL ,
-	tipo                    VARCHAR(15) NOT NULL,
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
+	id						INT NOT NULL AUTO_INCREMENT,
+	ativo					BOOLEAN NOT NULL ,
+	id_pessoa               INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_pessoa) REFERENCES tb_pessoas (id)
 );
 
 CREATE TABLE tb_foto_usuario (
-	id_usuario 					    INT NOT NULL AUTO_INCREMENT,
+	id 					    INT NOT NULL AUTO_INCREMENT,
 	nome                    VARCHAR(60) NOT NULL,
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY (id_usuario)
+	id_usuario				INT NOT NULL ,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
 );
 
 CREATE TABLE tb_convenios (
@@ -134,10 +148,10 @@ CREATE TABLE tb_convenios (
 	id_endereco				INT NOT NULL ,
 	id_contato				INT NOT NULL ,
 	id_usuario				INT NOT NULL ,
+	PRIMARY KEY (id) ,
 	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id),
-	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id_usuario),
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY (id)
+	FOREIGN KEY (id_contato) REFERENCES tb_contatos (id),
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id)
 );
 
 CREATE TABLE tb_exames (
@@ -200,9 +214,9 @@ CREATE TABLE tb_agendamentos (
 	FOREIGN KEY (id_not_sms) REFERENCES tb_notificacoes_sms (id_notificacao) ,
 	FOREIGN KEY (id_convenio) REFERENCES tb_convenios (id) ,
 	FOREIGN KEY (id_exame) REFERENCES tb_exames (id) ,
-	FOREIGN KEY (id_secretaria) REFERENCES tb_secretarias (id_usuario) ,
-	FOREIGN KEY (id_paciente) REFERENCES tb_pacientes (id_usuario),
-	FOREIGN KEY (id_medico) REFERENCES tb_medicos (id_usuario)
+	FOREIGN KEY (id_secretaria) REFERENCES tb_secretarias (id) ,
+	FOREIGN KEY (id_paciente) REFERENCES tb_pacientes (id),
+	FOREIGN KEY (id_medico) REFERENCES tb_medicos (id)
 );
 
 -- SENHA APLICAR HASH MD5
@@ -224,7 +238,6 @@ CREATE TABLE tb_anexos (
 	PRIMARY KEY (id) ,
 	FOREIGN KEY (id_agendamento) REFERENCES tb_agendamentos (id)
 );
-
 
 insert into tb_paises (id, nome, sigla) values
 	(1, 'Brasil','BRA'),
@@ -5871,55 +5884,66 @@ INSERT INTO tb_permissoes(id, nome) VALUES
 	(3, 'Médico'),
 	(4, 'Secretária');
 
-INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
-	(1, 'leandro', 'heck',  false, true, true, true, true),
-	(2, 'daniel', 'buchholz', false, true, true, true, false),
-	(3, 'cristiano', 'kunas', false, true, true, false, true),
-	(4, 'ana', 'user', false, true, false, true, true),
-	(5, 'paulo', 'user', false, false, true, true, true),
-	(6, 'douglas', 'hoffmann', false, false, true, true, true),
-	(7, 'carmem', 'user', false, false, true, true, true),
-	(8, 'jeferson', 'user', false, false, true, true, true);
+INSERT INTO tb_usuarios(id, login, senha, ativo) VALUES 
+	(1, 'leandro', 'heck',  false),
+	(2, 'daniel', 'buchholz', false),
+	(3, 'cristiano', 'kunas', false),
+	(4, 'ana', 'user', false),
+	(5, 'paulo', 'user', false),
+	(6, 'douglas', 'hoffmann', false),
+	(7, 'carmem', 'user', false),
+	(8, 'jeferson', 'user', false);
 
-INSERT INTO tb_pessoas(id_usuario, nome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
-	(1, 'Leandro', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
-	(2, 'Daniel', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5),
-	(3, 'Cristiano', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8),
-	(4, 'Ana', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6),
-	(5, 'Paulo', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7),
-	(6, 'Douglas', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1),
-	(7, 'Carmem', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2),
-	(8, 'Jeferson', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3);
+INSERT INTO  tb_usuarios_permissoes(id, id_usuario, id_permissao) VALUES 
+	(1, 1, 1),
+	(2, 2, 1),
+	(3, 3, 1),
+	(4, 4, 2),
+	(5, 5, 2),
+	(6, 6, 3),
+	(7, 7, 4),
+	(8, 8, 2);
 
-INSERT INTO tb_contatos(id_usuario, telefone, tipo) VALUES 
-	(1, '55999261479', 'pessoal'),
-	(2, '9999999999', 'pessoal'),
-	(3, '9999999999', 'pessoal'),
-	(4, '9999999999', 'pessoal'),
-	(5, '9999999999', 'pessoal'),
-	(6, '9999999999', 'pessoal'),
-	(7, '9999999999', 'pessoal'),
-	(8, '9999999999', 'pessoal');
+INSERT INTO tb_pessoas(id, nome, cpf, rg, sexo, nascimento, email, id_endereco, id_usuario) VALUES 
+	(1, 'Ana', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4, 4),
+	(2, 'Paulo', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5, 5),
+	(3, 'Jeferson', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8, 8),
+	(4, 'Douglas Hoffmann', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6, 6),
+	(5, 'Carmem Paz', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7, 7),
+	(6, 'Leandro Heck', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1, 1),
+	(7, 'Daniel Buchholz', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2, 2),
+	(8, 'Cristiano Kunas', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3, 3);
 
-INSERT INTO tb_pacientes(id_usuario) VALUES
-	(1),
-	(3);
+INSERT INTO tb_contatos(id, telefone, tipo, id_pessoa) VALUES 
+	(1, '55999261479', 'pessoal', 1),
+	(2, '9999999999', 'pessoal', 2),
+	(3, '9999999999', 'pessoal', 3),
+	(4, '9999999999', 'pessoal', 4),
+	(5, '9999999999', 'pessoal', 5),
+	(6, '9999999999', 'pessoal', 1),
+	(7, '9999999999', 'pessoal', 2),
+	(8, '9999999999', 'pessoal', 3);
 
-INSERT INTO tb_prontuarios(id, id_usuario, nome, ativo) VALUES 
-	(1, 2, 'Exames da Ana', true),
-	(2, 1, 'Colesterol Paulo', false),
-	(3, 3, 'Exame de Sangue Jeferson' , true);
+INSERT INTO tb_pacientes(id, id_pessoa) VALUES
+	(1, 2),
+	(2, 3),
+	(3, 3);
 
-INSERT INTO tb_medicos(id_usuario, cor_agenda, crm, especialidade, ativo) VALUES 
-	(1, 'Azul', '1530205070', 'Clinico Geral', false);
+INSERT INTO tb_prontuarios(id, nome, ativo, id_paciente) VALUES 
+	(1, 'Exames da Ana', true, 1),
+	(2, 'Colesterol Paulo', false, 2),
+	(3, 'Exame de Sangue Jeferson' , true, 3);
+
+INSERT INTO tb_medicos(id, cor_agenda, crm, especialidade, ativo, id_pessoa) VALUES 
+	(1, 'Azul', '1530205070', 'Clinico Geral', false, 4);
 	
-INSERT INTO tb_secretarias(id_usuario, cor_agenda, ativo) VALUES 
-	(1, 'Verde', false);
+INSERT INTO tb_secretarias(id, cor_agenda, ativo, id_pessoa) VALUES 
+	(1, 'Verde', false, 5);
 
-INSERT INTO tb_administradores(id_usuario) VALUES 
-	(1),
-	(2),
-	(3);
+INSERT INTO tb_administradores(id, ativo,  id_pessoa) VALUES 
+	(1, false, 6),
+	(2, false, 7),
+	(3, false, 8);
 
 -- INSERT INTO tb_convenios(id, nome, ativo, nome_empresa, cnpj_empresa, id_endereco, id_contato, id_usuario) VALUES 
 
