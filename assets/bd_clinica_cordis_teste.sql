@@ -49,17 +49,11 @@ CREATE TABLE tb_usuarios(
 	login					VARCHAR(60) NOT NULL,
 	senha					VARCHAR(32) NOT NULL,
 	ativo 					BOOLEAN NOT NULL,
-    PRIMARY KEY(id)
-);
-
-CREATE TABLE tb_usuarios_permissoes(
-	id_usuario 				INT NOT NULL,
 	perm_paciente			BOOLEAN NOT NULL,
 	perm_medico				BOOLEAN NOT NULL,
 	perm_secretaria 		BOOLEAN NOT NULL,
 	perm_administrador		BOOLEAN NOT NULL,
-	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
-	PRIMARY KEY(id_usuario)
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE tb_pessoas (
@@ -5877,25 +5871,15 @@ INSERT INTO tb_permissoes(id, nome) VALUES
 	(3, 'Médico'),
 	(4, 'Secretária');
 
-INSERT INTO tb_usuarios(id, login, senha, ativo) VALUES 
-	(1, 'leandro', 'heck',  false),
-	(2, 'daniel', 'buchholz', false),
-	(3, 'cristiano', 'kunas', false),
-	(4, 'ana', 'user', false),
-	(5, 'paulo', 'user', false),
-	(6, 'douglas', 'hoffmann', false),
-	(7, 'carmem', 'user', false),
-	(8, 'jeferson', 'user', false);
-
-INSERT INTO  tb_usuarios_permissoes(id_usuario, perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
-	(1, true, true, true, true),
-	(2, true, true, true, false),
-	(3, true, true, false, true),
-	(4, true, false, true, true),
-	(5, false, true, true, true),
-	(6, false, false, true, true),
-	(7, true, true, false, false),
-	(8, true, false, false, false);
+INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
+	(1, 'leandro', 'heck',  false, true, true, true, true),
+	(2, 'daniel', 'buchholz', false, true, true, true, false),
+	(3, 'cristiano', 'kunas', false, true, true, false, true),
+	(4, 'ana', 'user', false, true, false, true, true),
+	(5, 'paulo', 'user', false, false, true, true, true),
+	(6, 'douglas', 'hoffmann', false, false, true, true, true),
+	(7, 'carmem', 'user', false, false, true, true, true),
+	(8, 'jeferson', 'user', false, false, true, true, true);
 
 INSERT INTO tb_pessoas(id_usuario, nome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
 	(1, 'Leandro', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
