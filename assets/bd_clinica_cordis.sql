@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS bd_clinica_cordis_teste;
-CREATE DATABASE bd_clinica_cordis_teste;
-USE bd_clinica_cordis_teste;
+DROP DATABASE IF EXISTS bd_clinica_cordis;
+CREATE DATABASE bd_clinica_cordis;
+USE bd_clinica_cordis;
 
 CREATE TABLE tb_paises (
 	id 						INT NOT NULL AUTO_INCREMENT,	
