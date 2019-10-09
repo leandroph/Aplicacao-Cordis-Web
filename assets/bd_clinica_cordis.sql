@@ -38,11 +38,6 @@ CREATE TABLE tb_enderecos (
 	FOREIGN KEY (id_cidade) REFERENCES tb_cidades (id) 
 );
 
-CREATE TABLE tb_permissoes (
-    id			        	INT NOT NULL AUTO_INCREMENT,
-    nome                	VARCHAR(30) NOT NULL ,
-	PRIMARY KEY (id)
-);
 
 CREATE TABLE tb_usuarios(
 	id 				        INT NOT NULL AUTO_INCREMENT,
@@ -5864,12 +5859,6 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 	(6, 'Rua Francisco Timm', 'Timbaúva', '20', '97984-452', 'Ap 202', 4216), 
 	(7, 'Rua Carlos Albert', 'Centro', '104', '97984-452', 'Ap 202', 4216), 
 	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
-
-INSERT INTO tb_permissoes(id, nome) VALUES 
-	(1, 'Administrativo'),
-	(2, 'Paciente'),
-	(3, 'Médico'),
-	(4, 'Secretária');
 
 INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
 	(1, 'leandro', 'heck',  true, true, true, true, true),
