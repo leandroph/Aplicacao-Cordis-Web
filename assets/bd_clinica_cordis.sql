@@ -5872,14 +5872,14 @@ INSERT INTO tb_permissoes(id, nome) VALUES
 	(4, 'Secretária');
 
 INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
-	(1, 'leandro', 'heck',  false, true, true, true, true),
-	(2, 'daniel', 'buchholz', false, true, true, true, false),
-	(3, 'cristiano', 'kunas', false, true, true, false, true),
-	(4, 'ana', 'user', false, true, false, true, true),
-	(5, 'paulo', 'user', false, false, true, true, true),
-	(6, 'douglas', 'hoffmann', false, false, true, true, true),
-	(7, 'carmem', 'user', false, false, true, true, true),
-	(8, 'jeferson', 'user', false, false, true, true, true);
+	(1, 'leandro', 'heck',  true, true, true, true, true),
+	(2, 'daniel', 'buchholz', true, true, true, true, false),
+	(3, 'cristiano', 'kunas', true, true, true, false, true),
+	(4, 'ana', 'user', true, true, false, true, true),
+	(5, 'paulo', 'user', true, false, true, true, true),
+	(6, 'douglas', 'hoffmann', true, false, true, true, true),
+	(7, 'carmem', 'user', true, false, true, true, true),
+	(8, 'jeferson', 'user', true, false, true, true, true);
 
 INSERT INTO tb_pessoas(id_usuario, nome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
 	(1, 'Leandro', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
