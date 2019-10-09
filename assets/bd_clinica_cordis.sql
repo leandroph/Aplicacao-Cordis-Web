@@ -53,7 +53,8 @@ CREATE TABLE tb_usuarios(
 
 CREATE TABLE tb_pessoas (
 	id_usuario 			    INT NOT NULL,	
-	nome					VARCHAR(60) NOT NULL ,
+	nome					VARCHAR(30) NOT NULL ,
+	sobrenome				VARCHAR(60) NOT NULL ,
     cpf						CHAR(14) NOT NULL ,
 	rg                      CHAR(10) NOT NULL,
     sexo					CHAR(1) NOT NULL ,
@@ -5870,15 +5871,15 @@ INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm
 	(7, 'carmem', 'user', true, false, true, true, true),
 	(8, 'jeferson', 'user', true, false, true, true, true);
 
-INSERT INTO tb_pessoas(id_usuario, nome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
-	(1, 'Leandro', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
-	(2, 'Daniel', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5),
-	(3, 'Cristiano', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8),
-	(4, 'Ana', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6),
-	(5, 'Paulo', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7),
-	(6, 'Douglas', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1),
-	(7, 'Carmem', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2),
-	(8, 'Jeferson', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3);
+INSERT INTO tb_pessoas(id_usuario, nome, sobrenome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
+	(1, 'Leandro', 'Heck', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
+	(2, 'Daniel', 'Buchholz', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5),
+	(3, 'Cristiano', 'Kunas', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8),
+	(4, 'Ana', 'teste', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6),
+	(5, 'Paulo', 'teste2', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7),
+	(6, 'Douglas', 'Hoffmann', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1),
+	(7, 'Carmem', 'teste3', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2),
+	(8, 'Jeferson', 'teste4', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3);
 
 INSERT INTO tb_contatos(id_usuario, telefone, tipo) VALUES 
 	(1, '55999261479', 'pessoal'),
