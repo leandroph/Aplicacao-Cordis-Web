@@ -46,36 +46,36 @@ class Pessoa
 		return $this->nome;
     }
     
-    public function setSobreNome($sobrenome){
+    public function setSobrenome($sobrenome){
 		$this->sobrenome = $sobrenome;
 	}
 	
 	/**
      * Get the value of nome
      */ 
-	public function getSobreNome(){
+	public function getSobrenome(){
 		return $this->sobrenome;
     }
     
-    public function setCpf($cpf){
+    public function setCPF($cpf){
 		$this->cpf = $cpf;
 	}
 	
 	/**
      * Get the value of nome
      */ 
-	public function getCpf(){
+	public function getCPF(){
 		return $this->cpf;
     }
 
-    public function setRg($rg){
+    public function setRG($rg){
 		$this->rg = $rg;
 	}
 	
 	/**
      * Get the value of nome
      */ 
-	public function getRg(){
+	public function getRG(){
 		return $this->rg;
     }
 
