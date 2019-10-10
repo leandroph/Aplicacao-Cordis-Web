@@ -57,11 +57,12 @@
           // verifica se a variavel session['invalido'] existe, se existir mostra o erro
 
           if (isset($_SESSION["invalido"])) {
-
-            echo "<h6>Incorreto</h6>";
+            echo '<div class="alert alert-danger text-center">';
+            echo 'Usuario ou Senha Incorretos';
+            echo '</div>';
 
             $dados_invalidos = $_SESSION["invalido"];
-            echo "<span>$dados_invalidos</span>";
+            // echo "<span>$dados_invalidos</span>";
           }
           ?>
         </div>

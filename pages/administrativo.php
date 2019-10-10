@@ -1,6 +1,15 @@
-<?php session_start();
+<?php
+session_start();
 
-    $id_usuario_logado = $_SESSION["id_usuario"];
+$id_usuario_logado = $_SESSION["id_usuario"];
+
+include('../php/negocio/class/Pessoa.php');
+include('../php/persistencia/PessoaDAO.php');
+
+//Conexão com Banco de dados
+$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
+$pessoaDAO = new PessoaDAO($conexao);
+$pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
 ?>
 
 <!DOCTYPE html>
@@ -68,11 +77,11 @@ desired effect
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="#" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>ADM</b></span>
+                <span class="logo-mini"><b>COR</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Administrativo</b> </span>
+                <span class="logo-lg"><b>Clínica Cordis</b> </span>
             </a>
 
             <!-- Header Navbar -->
@@ -92,7 +101,7 @@ desired effect
                                 <!-- The user image in the navbar-->
                                 <img src="../dist/img/user.png" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">User</span>
+                                <span class="hidden-xs"><?php echo $pessoa->getNome(); ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -100,7 +109,7 @@ desired effect
                                     <img src="../dist/img/user.png" class="img-circle" alt="User Image">
 
                                     <p>
-                                        User - Funtion
+                                        <?php echo $pessoa->getNome() . ' ' . $pessoa->getSobrenome();  ?>
                                         <!-- <small>Member since Nov. 2012</small> -->
                                     </p>
                                 </li>
@@ -131,11 +140,17 @@ desired effect
                         <img src="../dist/img/user.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>User</p>
+                        <p><?php echo $pessoa->getNome(); ?></p>
                         <!-- Status -->
-                        <a href="#"><i class="fa fa-circle text-danger"></i>Offline</a>
+                        <a href="#"><i class="fa fa-circle text-green"></i>Online</a>
                     </div>
                 </div>
+
+
+
+                <?php               ?>
+
+
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
