@@ -137,6 +137,7 @@ desired effect
         <ul class="sidebar-menu" data-widget="tree">
           <!-- <li class="header">Acesso ADMIN</li> -->
           <!-- Optionally, you can add icons to the links -->
+          <li class="header">MAIN NAVIGATION</li>
           <li class="active">
             <a href="pages/calendar.html">
               <i class="fa fa-home"></i> <span>Painel</span>
