@@ -1,6 +1,15 @@
-<?php session_start();
+<?php
+session_start();
 
-// $id_usuario_logado = $_SESSION["id_usuario"];
+$id_usuario_logado = $_SESSION["id_usuario"];
+
+include('../php/negocio/class/Pessoa.php');
+include('../php/persistencia/PessoaDAO.php');
+
+//Conexão com Banco de dados
+$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
+$pessoaDAO = new PessoaDAO($conexao);
+$pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +79,11 @@ desired effect
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="#" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>ADM</b></span>
+                <span class="logo-mini"><b>COR</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Administrativo</b> </span>
+                <span class="logo-lg"><b>Clínica Cordis</b> </span>
             </a>
 
             <!-- Header Navbar -->
@@ -94,7 +103,7 @@ desired effect
                                 <!-- The user image in the navbar-->
                                 <img src="../dist/img/user.png" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">User</span>
+                                <span class="hidden-xs"><?php echo $pessoa->getNome(); ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -102,20 +111,24 @@ desired effect
                                     <img src="../dist/img/user.png" class="img-circle" alt="User Image">
 
                                     <p>
-                                        User - Funtion
+                                        <?php echo $pessoa->getNome() . ' ' . $pessoa->getSobrenome();  ?>
                                         <!-- <small>Member since Nov. 2012</small> -->
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        <a href="profile.php" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat">Sair</a>
                                     </div>
                                 </li>
                             </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -133,18 +146,25 @@ desired effect
                         <img src="../dist/img/user.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>User</p>
+                        <p><?php echo $pessoa->getNome(); ?></p>
                         <!-- Status -->
-                        <a href="#"><i class="fa fa-circle text-danger"></i>Offline</a>
+                        <a href="#"><i class="fa fa-circle text-green"></i>Online</a>
                     </div>
                 </div>
+
+
+
+                <?php               ?>
+
+
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <!-- <li class="header">Acesso ADMIN</li> -->
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="">
-                        <a href="administrativo.php">
+                    <li class="header">ADMINISTRADOR</li>
+                    <li class="active">
+                        <a href="#">
                             <i class="fa fa-home"></i> <span>Painel</span>
                             <span class="pull-right-container">
                             </span>
@@ -185,48 +205,73 @@ desired effect
                             </span>
                         </a>
                     </li>
-                    <!-- <li class="header">Acesso Client</li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-stethoscope"></i> <span>Consultas</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-calendar"></i> <span>Agenda</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-flask"></i> <span>Exames</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-line-chart"></i> <span>Relatorios</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#">Paciente</a></li>
-              <li><a href="#">Médico</a></li>
-              <li><a href="#">Secretária</a></li>
-              <li><a href="#">Consulta</a></li>
-              <li><a href="#">Exame</a></li>
-              <li><a href="#">Convenio</a></li>
-              <li><a href="#">Prontuários</a></li>
-            </ul>
-          </li>
-        </ul> -->
-                    <!-- /.sidebar-menu -->
+                    <li class="header">MÉDICO</li>
+                    <li class="">
+                        <a href="pages/calendar.html">
+                            <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="pages/calendar.html">
+                            <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="pages/calendar.html">
+                            <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="header">SECRETARIA</li>
+                    <li class="">
+                        <a href="agenda_secretaria.php">
+                            <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="secretaria_agenda.php">
+                            <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="pages/calendar.html">
+                            <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="pages/calendar.html">
+                            <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="header">PACIENTE</li>
+                    <li class="">
+                        <a href="agenda_secretaria.php">
+                            <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="secretaria_agenda.php">
+                            <i class="fa fa-file-o"></i> <span>Prontuario</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
             </section>
-            <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
@@ -249,7 +294,7 @@ desired effect
                             <div class="box-body box-profile ">
                                 <img class="profile-user-img img-responsive img-circle" src="../dist/img/user.png" alt="User profile picture">
 
-                                <h3 class="profile-username text-center">USUARIO</h3>
+                                <h3 class="profile-username text-center"><?php echo $pessoa->getNome(); ?></h3>
 
                                 <p class="text-muted text-center">TIPO_USUARIO</p>
 
@@ -272,22 +317,22 @@ desired effect
                             <div class="box-body">
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item">
-                                        <b>Nome:</b> <a class="pull-right">Daniel Buchholz</a>
+                                        <b>Nome:</b> <a class="pull-right"><?php echo $pessoa->getNome() . ' ' . $pessoa->getSobrenome(); ?></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>CPF:</b> <a class="pull-right">456.464.894-05</a>
+                                        <b>CPF:</b> <a class="pull-right"><?php echo $pessoa->getCPF(); ?></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>RG:</b> <a class="pull-right">131646549870 </a>
+                                        <b>RG:</b> <a class="pull-right"><?php echo $pessoa->getRG(); ?></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Gênero:</b> <a class="pull-right">131646549870 </a>
+                                        <b>Gênero:</b> <a class="pull-right"><?php echo $pessoa->getSexo(); ?></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Data de Nascimento:</b> <a class="pull-right">131646549870 </a>
+                                        <b>Data de Nascimento:</b> <a class="pull-right"><?php echo $pessoa->getNascimento(); ?></a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>E-mail:</b> <a class="pull-right">131646549870 </a>
+                                        <b>E-mail:</b> <a class="pull-right"><?php echo $pessoa->getEmail(); ?> </a>
                                     </li>
                                     <li class="list-group-item">
                                         <b>CRM:</b> <a class="pull-right">131646549870 </a>
