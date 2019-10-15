@@ -66,6 +66,18 @@ CREATE TABLE tb_pessoas (
 	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id)
 );
 
+CREATE TABLE tb_preferenciais (
+	id_usuario				INT NOT NULL,
+	pref_skin				VARCHAR(15) NOT NULL,
+	filtro_paciente			BOOLEAN NOT NULL,
+	filtro_medico			BOOLEAN NOT NULL,
+	filtro_secretaria		BOOLEAN NOT NULL,
+	filtro_administrador	BOOLEAN NOT NULL,
+	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
+	PRIMARY KEY (id_usuario)
+
+);
+
 CREATE TABLE tb_pacientes (
 	id_usuario 				INT NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
@@ -5870,6 +5882,16 @@ INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm
 	(6, 'douglas', 'hoffmann', true, false, true, true, true),
 	(7, 'carmem', 'user', true, false, true, true, true),
 	(8, 'jeferson', 'user', true, false, true, true, true);
+
+INSERT INTO tb_preferenciais(id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtro_administrador) VALUES
+	(1, 'skin-blue', false, false, false, false),
+	(2, 'skin-blue', false, false, false, false),
+	(3, 'skin-blue', false, false, false, false),
+	(4, 'skin-blue', false, false, false, false),
+	(5, 'skin-blue', false, false, false, false),
+	(6, 'skin-blue', false, false, false, false),
+	(7, 'skin-blue', false, false, false, false),
+	(8, 'skin-blue', false, false, false, false);
 
 INSERT INTO tb_pessoas(id_usuario, nome, sobrenome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
 	(1, 'Leandro', 'Heck', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
