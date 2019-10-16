@@ -6,9 +6,9 @@ class Preferencia
     private $filtro_paciente;
     private $filtro_medico;
     private $filtro_secretaria;
-    private $filtor_administrador;
+    private $filtro_administrador;
 
-    @return self
+   
     
     public function setId_Usuario($id_usuario)
     {
@@ -42,7 +42,7 @@ class Preferencia
 
     public function setFiltro_Medico($filtro_medico)
     {
-        $this->filtro_medico = $filtor_medico;
+        $this->filtro_medico = $filtro_medico;
     }
 
     public function getFiltro_Medico()
@@ -60,9 +60,9 @@ class Preferencia
         return $this->filtro_secretaria;
     }
 
-    public function setFiltro_Administrador($filtor_administrador)
+    public function setFiltro_Administrador($filtro_administrador)
     {
-        $this->filtro_administrador = $filtor_administrador;
+        $this->filtro_administrador = $filtro_administrador;
     }
 
     public function getFiltro_Administrador()

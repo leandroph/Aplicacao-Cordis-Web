@@ -73,7 +73,7 @@ class PessoaDAO {
     }
     
     public function getPessoas() {
-        $sql = $this->pdo->prepare('select * from pessoas');
+        $sql = $this->pdo->prepare('select * from tb_pessoas');
         $sql->execute();
         
         $lista = array();

@@ -5,11 +5,22 @@ $id_usuario_logado = $_SESSION["id_usuario"];
 
 include('../php/negocio/class/Pessoa.php');
 include('../php/persistencia/PessoaDAO.php');
+include('../php/negocio/class/Usuario.php');
+include('../php/persistencia/UsuarioDAO.php');
+include('../php/negocio/class/Preferencia.php');
+include('../php/persistencia/PreferenciaDAO.php');
 
 //Conexão com Banco de dados
 $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
 $pessoaDAO = new PessoaDAO($conexao);
 $pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
+
+$usuarioDAO = new UsuarioDAO($conexao);
+$usuario = $usuarioDAO->getUsuario($id_usuario_logado);
+
+$preferenciaDAO = new PreferenciaDAO($conexao);
+$preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
+
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +135,7 @@ desired effect
                                         <a href="profile.php" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                        <a href="../php/negocio/logout.php" class="btn btn-default btn-flat">Sair</a>
                                     </div>
                                 </li>
                             </ul>
@@ -155,125 +166,127 @@ desired effect
                     </div>
                 </div>
 
-
-
-                <?php               ?>
-
-
-
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <!-- <li class="header">Acesso ADMIN</li> -->
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="header">ADMINISTRADOR</li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="fa fa-home"></i> <span>Painel</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="cadastro_medico.php">
-                            <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-flask"></i> <span>Cadastro Exames</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-medkit"></i> <span>Cadastro Convenio</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="header">MÉDICO</li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-calendar"></i> <span>Agenda</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-bell-o"></i> <span>Notificações</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="header">SECRETARIA</li>
-                    <li class="">
-                        <a href="agenda_secretaria.php">
-                            <i class="fa fa-calendar"></i> <span>Agenda</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="secretaria_agenda.php">
-                            <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-bell-o"></i> <span>Notificações</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="header">PACIENTE</li>
-                    <li class="">
-                        <a href="agenda_secretaria.php">
-                            <i class="fa fa-calendar"></i> <span>Agenda</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="secretaria_agenda.php">
-                            <i class="fa fa-file-o"></i> <span>Prontuario</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
+                    <?php if ($usuario->getPerm_Administrador() == 1) { ?>
+                        <li class="header">ADMINISTRADOR</li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-home"></i> <span>Painel</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="cadastro_medico.php">
+                                <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-flask"></i> <span>Cadastro Exames</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-medkit"></i> <span>Cadastro Convenio</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                    <?php }; ?>
+                    <?php if ($usuario->getPerm_Medico() == 1) { ?>
+                        <li class="header">MÉDICO</li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-calendar"></i> <span>Agenda</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                    <?php }; ?>
+                    <?php if ($usuario->getPerm_Secretaria() == 1) { ?>
+                        <li class="header">SECRETARIA</li>
+                        <li class="">
+                            <a href="agenda_secretaria.php">
+                                <i class="fa fa-calendar"></i> <span>Agenda</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="secretaria_agenda.php">
+                                <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="pages/calendar.html">
+                                <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                    <?php }; ?>
+                    <?php if ($usuario->getPerm_Paciente() == 1) { ?>
+                        <li class="header">PACIENTE</li>
+                        <li class="">
+                            <a href="agenda_secretaria.php">
+                                <i class="fa fa-calendar"></i> <span>Agenda</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="secretaria_agenda.php">
+                                <i class="fa fa-file-o"></i> <span>Prontuario</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                    <?php }; ?>
             </section>
         </aside>
 
@@ -586,11 +599,416 @@ desired effect
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
+    <!-- <script src="../dist/js/demo.js"></script> -->
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+    <script>
+        /**
+         * AdminLTE Demo Menu
+         * ------------------
+         * You should not use this file in production.
+         * This file is for demo purposes only.
+         */
+        $(function() {
+            'use strict'
+
+            /**
+             * Get access to plugins
+             */
+
+            $('[data-toggle="control-sidebar"]').controlSidebar()
+            $('[data-toggle="push-menu"]').pushMenu()
+            var $pushMenu = $('[data-toggle="push-menu"]').data('lte.pushmenu')
+            var $controlSidebar = $('[data-toggle="control-sidebar"]').data('lte.controlsidebar')
+            var $layout = $('body').data('lte.layout')
+            $(window).on('load', function() {
+                // Reinitialize variables on load
+                $pushMenu = $('[data-toggle="push-menu"]').data('lte.pushmenu')
+                $controlSidebar = $('[data-toggle="control-sidebar"]').data('lte.controlsidebar')
+                $layout = $('body').data('lte.layout')
+            })
+
+            /**
+             * List of all the available skins
+             *
+             * @type Array
+             */
+            var mySkins = [
+                'skin-blue',
+                'skin-black',
+                'skin-red',
+                'skin-yellow',
+                'skin-purple',
+                'skin-green',
+                'skin-blue-light',
+                'skin-black-light',
+                'skin-red-light',
+                'skin-yellow-light',
+                'skin-purple-light',
+                'skin-green-light'
+            ]
+
+            /**
+             * Get a prestored setting
+             *
+             * @param String name Name of of the setting
+             * @returns String The value of the setting | null
+             */
+            function get(name) {
+                if (typeof(Storage) !== 'undefined') {
+                    return localStorage.getItem(name)
+                } else {
+                    window.alert('Please use a modern browser to properly view this template!')
+                }
+            }
+
+            /**
+             * Store a new settings in the browser
+             *
+             * @param String name Name of the setting
+             * @param String val Value of the setting
+             * @returns void
+             */
+            function store(name, val) {
+                if (typeof(Storage) !== 'undefined') {
+                    localStorage.setItem(name, val)
+                } else {
+                    window.alert('Please use a modern browser to properly view this template!')
+                }
+            }
+
+            /**
+             * Toggles layout classes
+             *
+             * @param String cls the layout class to toggle
+             * @returns void
+             */
+            function changeLayout(cls) {
+                $('body').toggleClass(cls)
+                $layout.fixSidebar()
+                if ($('body').hasClass('fixed') && cls == 'fixed') {
+                    $pushMenu.expandOnHover()
+                    $layout.activate()
+                }
+                $controlSidebar.fix()
+            }
+
+            /**
+             * Replaces the old skin with the new skin
+             * @param String cls the new skin class
+             * @returns Boolean false to prevent link's default action
+             */
+            function changeSkin(cls) {
+                $.each(mySkins, function(i) {
+                    $('body').removeClass(mySkins[i])
+                })
+
+                $('body').addClass(cls)
+                store('skin', cls)
+                return false
+            }
+
+            /**
+             * Retrieve default settings and apply them to the template
+             *
+             * @returns void
+             */
+            function setup() {
+                var tmp = get('skin')
+                if (tmp && $.inArray(tmp, mySkins))
+                    changeSkin(tmp)
+
+                // Add the change skin listener
+                $('[data-skin]').on('click', function(e) {
+                    if ($(this).hasClass('knob'))
+                        return
+                    e.preventDefault()
+                    changeSkin($(this).data('skin'))
+                })
+
+                // Add the layout manager
+                $('[data-layout]').on('click', function() {
+                    changeLayout($(this).data('layout'))
+                })
+
+                $('[data-controlsidebar]').on('click', function() {
+                    changeLayout($(this).data('controlsidebar'))
+                    var slide = !$controlSidebar.options.slide
+
+                    $controlSidebar.options.slide = slide
+                    if (!slide)
+                        $('.control-sidebar').removeClass('control-sidebar-open')
+                })
+
+                $('[data-sidebarskin="toggle"]').on('click', function() {
+                    var $sidebar = $('.control-sidebar')
+                    if ($sidebar.hasClass('control-sidebar-dark')) {
+                        $sidebar.removeClass('control-sidebar-dark')
+                        $sidebar.addClass('control-sidebar-light')
+                    } else {
+                        $sidebar.removeClass('control-sidebar-light')
+                        $sidebar.addClass('control-sidebar-dark')
+                    }
+                })
+
+                $('[data-enable="expandOnHover"]').on('click', function() {
+                    $(this).attr('disabled', true)
+                    $pushMenu.expandOnHover()
+                    if (!$('body').hasClass('sidebar-collapse'))
+                        $('[data-layout="sidebar-collapse"]').click()
+                })
+
+                //  Reset options
+                if ($('body').hasClass('fixed')) {
+                    $('[data-layout="fixed"]').attr('checked', 'checked')
+                }
+                if ($('body').hasClass('layout-boxed')) {
+                    $('[data-layout="layout-boxed"]').attr('checked', 'checked')
+                }
+                if ($('body').hasClass('sidebar-collapse')) {
+                    $('[data-layout="sidebar-collapse"]').attr('checked', 'checked')
+                }
+
+            }
+
+            // Create the new tab
+            var $tabPane = $('<div />', {
+                'id': 'control-sidebar-theme-demo-options-tab',
+                'class': 'tab-pane active'
+            })
+
+            // Create the tab button
+            var $tabButton = $('<li />', {
+                    'class': 'active'
+                })
+                .html('<a href=\'#control-sidebar-theme-demo-options-tab\' data-toggle=\'tab\'>' +
+                    '<i class="fa fa-wrench"></i>' +
+                    '</a>')
+
+            // Add the tab button to the right sidebar tabs
+            $('[href="#control-sidebar-home-tab"]')
+                .parent()
+                .before($tabButton)
+
+            // Create the menu
+            var $demoSettings = $('<div />')
+
+            // Layout options
+            $demoSettings.append(
+                '<h4 class="control-sidebar-heading">' +
+                'Preferencias do Usuario' +
+                '</h4>' +
+                '<h4 class="control-sidebar-heading">' +
+                'Página' +
+                '</h4>'
+                // Fixed layout
+                +
+                <?php if ($usuario->getPerm_Administrador() == 1) { ?> '<div class="form-group">' +
+                    '<label class="control-sidebar-subheading">' +
+                    '<input <?php echo ($preferencia->getFiltro_Administrador() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltro(ADM)" type="checkbox"class="pull-right" /> ' +
+                    'Área Administrador' +
+                    '</label>' +
+                    '</div>' +
+                <?php } ?> <?php if ($usuario->getPerm_Medico() == 1) { ?> '<div class="form-group">' +
+                    '<label class="control-sidebar-subheading">' +
+                    '<input <?php echo ($preferencia->getFiltro_Medico() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltro(MED)" type="checkbox" class="pull-right"/> ' +
+                    'Área Médico' +
+                    '</label>' +
+                    '</div>' +
+                <?php } ?> <?php if ($usuario->getPerm_Secretaria() == 1) { ?> '<div class="form-group">' +
+                    '<label class="control-sidebar-subheading">' +
+                    '<input <?php echo ($preferencia->getFiltro_Secretaria() == 1 ? 'checked' : ' '); ?> type="checkbox" class="pull-right"/> ' +
+                    'Área Secretaria' +
+                    '</label>' +
+                    '</div>' +
+                <?php } ?> <?php if ($usuario->getPerm_Paciente() == 1) { ?> '<div class="form-group">' +
+                    '<label class="control-sidebar-subheading">' +
+                    '<input <?php echo ($preferencia->getFiltro_Paciente() == 1 ? 'checked' : ' '); ?> type="checkbox" class="pull-right"/> ' +
+                    'Área Paciente' +
+                    '</label>' +
+                    '</div>'
+                <?php } ?>
+            )
+            var $skinsList = $('<ul />', {
+                'class': 'list-unstyled clearfix'
+            })
+
+            // Dark sidebar skins
+            var $skinBlue =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Azul e Preto</p>')
+            $skinsList.append($skinBlue)
+            var $skinBlack =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Branco e Preto</p>')
+            $skinsList.append($skinBlack)
+            var $skinPurple =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Roxo e Preto</p>')
+            $skinsList.append($skinPurple)
+            var $skinGreen =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Verde e Preto</p>')
+            $skinsList.append($skinGreen)
+            var $skinRed =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Vermelho e Preto</p>')
+            $skinsList.append($skinRed)
+            var $skinYellow =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Amarelo e Preto</p>')
+            $skinsList.append($skinYellow)
+
+            // Light sidebar skins
+            var $skinBlueLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Azul e Branco</p>')
+            $skinsList.append($skinBlueLight)
+            var $skinBlackLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Branco e Branco</p>')
+            $skinsList.append($skinBlackLight)
+            var $skinPurpleLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Roxo e Branco</p>')
+            $skinsList.append($skinPurpleLight)
+            var $skinGreenLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Verde e Branco</p>')
+            $skinsList.append($skinGreenLight)
+            var $skinRedLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Vermelho e Branco</p>')
+            $skinsList.append($skinRedLight)
+            var $skinYellowLight =
+                $('<li />', {
+                    style: 'float:left; width: 33.33333%; padding: 5px;'
+                })
+                .append('<a href="javascript:void(0)" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>' +
+                    '<div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>' +
+                    '</a>' +
+                    '<p class="text-center no-margin" style="font-size: 12px">Amarelo e Branco</p>')
+
+            $skinsList.append($skinYellowLight)
+
+            $demoSettings.append('<h4 class="control-sidebar-heading">Aparencia</h4>')
+            $demoSettings.append($skinsList)
+
+            $tabPane.append($demoSettings)
+            $('#control-sidebar-home-tab').after($tabPane)
+
+            setup()
+
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+        function mudaFiltro(tipo) {
+            var checkBox = document.getElementById("myCheck");
+            if (checkBox.checked == true) {
+                if (tipo = "ADM") {
+                    <?php $preferencia->setFiltro_Administrador("1");
+                    $preferenciaDAO->alterar($preferencia); ?>
+                } else if (tipo = "SEC") {
+                    <?php $preferencia->setFiltro_Secretaria("1"); 
+                    $preferenciaDAO->alterar($preferencia); ?>
+                } else if (tipo = "MED") {
+                    <?php $preferencia->setFiltro_Medico("1"); 
+                    $preferenciaDAO->alterar($preferencia); ?>
+                } else {
+                    <?php $preferencia->setFiltro_Paciente("1"); 
+                    $preferenciaDAO->alterar($preferencia); ?>
+                }
+
+            } else {
+                if (tipo = "ADM") {
+                    <?php $preferencia->setFiltro_Administrador("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+                } else if (tipo = "SEC") {
+                    <?php $preferencia->setFiltro_Secretaria("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+                } else if (tipo = "MED") {
+                    <?php $preferencia->setFiltro_Medico("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+                } else {
+                    <?php $preferencia->setFiltro_Paciente("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+                }
+            }
+        }
+    </script>
+
+
 </body>
 
 </html>

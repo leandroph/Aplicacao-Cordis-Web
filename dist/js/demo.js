@@ -198,7 +198,7 @@ $(function() {
         +
         '<div class="form-group">' +
         '<label class="control-sidebar-subheading">' +
-        '<input type="checkbox"data-layout="fixed"class="pull-right"/> ' +
+        '<input checked type="checddddkbox"data-layout="fixed"class="pull-right" /> ' +
         'Área Administrador' +
         '</label>' +
         '</div>' +

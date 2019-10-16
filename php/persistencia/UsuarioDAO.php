@@ -45,7 +45,7 @@ class UsuarioDAO
         }
     }
 
-    public function getPessoa($id)
+    public function getUsuario($id)
     {
         $sql = $this->pdo->prepare('select * from tb_usuarios where id = :id');
         $sql->bindValue(':id', $id);
@@ -61,10 +61,10 @@ class UsuarioDAO
                 $usuario->setLogin($dados->login);
                 $usuario->setSenha($dados->senha);
                 $usuario->setAtivo($dados->ativo);
-                $usuario->setPerm_Administrador($dados->perm_paciente);
+                $usuario->setPerm_Administrador($dados->perm_administrador);
                 $usuario->setPerm_Medico($dados->perm_medico);
-                $usuario->setPerm_Paciente($dados->perm_secretaria);
-                $usuario->setPerm_Secretaria($dados->perm_administrador);
+                $usuario->setPerm_Paciente($dados->perm_paciente);
+                $usuario->setPerm_Secretaria($dados->perm_secretaria);
 
                 return $usuario;
             }
@@ -75,9 +75,9 @@ class UsuarioDAO
         }
     }
 
-    public function getPessoas()
+    public function getUsuarios()
     {
-        $sql = $this->pdo->prepare('select * from pessoas');
+        $sql = $this->pdo->prepare('select * from tb_usuarios');
         $sql->execute();
 
         $lista = array();
@@ -91,10 +91,10 @@ class UsuarioDAO
                 $usuario->setLogin($dados->login);
                 $usuario->setSenha($dados->senha);
                 $usuario->setAtivo($dados->ativo);
-                $usuario->setPerm_Administrador($dados->perm_paciente);
+                $usuario->setPerm_Administrador($dados->perm_administrador);
                 $usuario->setPerm_Medico($dados->perm_medico);
-                $usuario->setPerm_Paciente($dados->perm_secretaria);
-                $usuario->setPerm_Secretaria($dados->perm_administrador);
+                $usuario->setPerm_Paciente($dados->perm_paciente);
+                $usuario->setPerm_Secretaria($dados->perm_secretaria);
 
                 $lista[] = $usuario;
             }
