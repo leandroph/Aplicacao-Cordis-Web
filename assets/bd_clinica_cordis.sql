@@ -5874,14 +5874,14 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
 
 INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
-	(1, 'leandro', 'heck',  true, true, true, true, true),
+	(1, 'leandro', 'heck',  true, true, false, true, true),
 	(2, 'daniel', 'buchholz', true, true, true, true, false),
 	(3, 'cristiano', 'kunas', true, true, true, false, true),
 	(4, 'ana', 'user', true, true, false, true, true),
-	(5, 'paulo', 'user', true, false, true, true, true),
-	(6, 'douglas', 'hoffmann', true, false, true, true, true),
-	(7, 'carmem', 'user', true, false, true, true, true),
-	(8, 'jeferson', 'user', true, false, true, true, true);
+	(5, 'paulo', 'user', true, true, false, true, false),
+	(6, 'douglas', 'hoffmann', true, false, true, false, false),
+	(7, 'carmem', 'user', true, true, false, false, true),
+	(8, 'jeferson', 'user', true, false, false, false, true);
 
 INSERT INTO tb_preferencias(id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtro_administrador) VALUES
 	(1, 'skin-blue', false, false, false, false),
