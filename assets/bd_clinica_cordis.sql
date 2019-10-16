@@ -66,7 +66,7 @@ CREATE TABLE tb_pessoas (
 	FOREIGN KEY (id_endereco) REFERENCES tb_enderecos (id)
 );
 
-CREATE TABLE tb_preferenciais (
+CREATE TABLE tb_preferencias (
 	id_usuario				INT NOT NULL,
 	pref_skin				VARCHAR(15) NOT NULL,
 	filtro_paciente			BOOLEAN NOT NULL,
@@ -5883,7 +5883,7 @@ INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm
 	(7, 'carmem', 'user', true, false, true, true, true),
 	(8, 'jeferson', 'user', true, false, true, true, true);
 
-INSERT INTO tb_preferenciais(id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtro_administrador) VALUES
+INSERT INTO tb_preferencias(id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtro_administrador) VALUES
 	(1, 'skin-blue', false, false, false, false),
 	(2, 'skin-blue', false, false, false, false),
 	(3, 'skin-blue', false, false, false, false),
