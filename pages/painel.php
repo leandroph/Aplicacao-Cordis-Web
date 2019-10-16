@@ -807,13 +807,13 @@ desired effect
                 +
                 <?php if ($usuario->getPerm_Administrador() == 1) { ?> '<div class="form-group">' +
                     '<label class="control-sidebar-subheading">' +
-                    '<input <?php echo ($preferencia->getFiltro_Administrador() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltro(ADM)" type="checkbox"class="pull-right" /> ' +
+                    '<input <?php echo ($preferencia->getFiltro_Administrador() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltroADM()" id"CheckAdm" type="checkbox"class="pull-right" /> ' +
                     'Área Administrador' +
                     '</label>' +
                     '</div>' +
                 <?php } ?> <?php if ($usuario->getPerm_Medico() == 1) { ?> '<div class="form-group">' +
                     '<label class="control-sidebar-subheading">' +
-                    '<input <?php echo ($preferencia->getFiltro_Medico() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltro(MED)" type="checkbox" class="pull-right"/> ' +
+                    '<input <?php echo ($preferencia->getFiltro_Medico() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltroMED()" id"CheckMed" type="checkbox" class="pull-right"/> ' +
                     'Área Médico' +
                     '</label>' +
                     '</div>' +
@@ -973,6 +973,28 @@ desired effect
     </script>
 
     <script>
+        function mudaFiltroADM(){
+            var checkBox = document.getElementById("CheckAdm");
+            if (checkBox.checked == true) {
+                <?php $preferencia->setFiltro_Administrador("1");
+                    $preferenciaDAO->alterar($preferencia); ?>
+            } else {
+                <?php $preferencia->setFiltro_Administrador("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+            }
+        }
+
+        function mudaFiltroMED(){
+            var checkBox = document.getElementById("CheckMed");
+            if (checkBox.checked == true) {
+                <?php $preferencia->setFiltro_Medico("1"); 
+                    $preferenciaDAO->alterar($preferencia); ?>
+            } else {
+                <?php $preferencia->setFiltro_Medico("0");
+                    $preferenciaDAO->alterar($preferencia);  ?>
+            }
+        }
+
         function mudaFiltro(tipo) {
             var checkBox = document.getElementById("myCheck");
             if (checkBox.checked == true) {
