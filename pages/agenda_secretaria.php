@@ -13,43 +13,28 @@ $pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
 ?>
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clinica Cordis</title>
-    <link rel="icon" href="../dist/img/cardiogram.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="../dist/img/cardiogram.png" type="image/x-icon" />
+    <title>AdminLTE 2 | Calendar</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
-    <!-- fullCalendar -->
-    <link href='../assets/fullcalendar/css/bootstrap.min.css' rel='stylesheet'>
-    <link href='../assets/fullcalendar/css/fullcalendar.min.css' rel='stylesheet' />
-    <link href='../assets/fullcalendar/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-    <link href='../assets/fullcalendar/css/personalizado.css' rel='stylesheet' />
-    <script src='../assets/fullcalendar/js/jquery.min.js'></script>
-    <script src='../assets/fullcalendar/js/bootstrap.min.js'></script>
-    <script src='../assets/fullcalendar/js/moment.min.js'></script>
-    <script src='../assets/fullcalendar/js/fullcalendar.min.js'></script>
-    <script src='../assets/fullcalendar/locale/pt-br.js'></script>
-
     <!-- Ionicons -->
     <link rel="stylesheet" href="../assets/Ionicons/css/ionicons.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="../assets/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="../assets/fullcalendar/dist/fullcalendar.print.min.css" media="print">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,39 +45,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <style>
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
-            text-transform: capitalize;
-        }
-    </style>
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-        <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
@@ -181,7 +138,7 @@ desired effect
                     <!-- Optionally, you can add icons to the links -->
                     <li class="header">ADMINISTRADOR</li>
                     <li class="">
-                        <a href="administrativo.php">
+                        <a href="painel.php">
                             <i class="fa fa-home"></i> <span>Painel</span>
                             <span class="pull-right-container">
                             </span>
@@ -246,14 +203,14 @@ desired effect
                     </li>
                     <li class="header">SECRETARIA</li>
                     <li class="active">
-                        <a href="secretaria_agenda.php">
+                        <a href="#">
                             <i class="fa fa-calendar"></i> <span>Agenda</span>
                             <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="pages/calendar.html">
+                        <a href="secretaria_agenda.php">
                             <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente</span>
                             <span class="pull-right-container">
                             </span>
@@ -273,55 +230,24 @@ desired effect
                             </span>
                         </a>
                     </li>
-                    <!-- <li class="header">Acesso Client</li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-stethoscope"></i> <span>Consultas</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-calendar"></i> <span>Agenda</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-flask"></i> <span>Exames</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-line-chart"></i> <span>Relatorios</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#">Paciente</a></li>
-              <li><a href="#">Médico</a></li>
-              <li><a href="#">Secretária</a></li>
-              <li><a href="#">Consulta</a></li>
-              <li><a href="#">Exame</a></li>
-              <li><a href="#">Convenio</a></li>
-              <li><a href="#">Prontuários</a></li>
-            </ul>
-          </li>
-        </ul> -->
-                    <!-- /.sidebar-menu -->
+                    <li class="header">PACIENTE</li>
+                    <li class="">
+                        <a href="agenda_secretaria.php">
+                            <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="secretaria_agenda.php">
+                            <i class="fa fa-file-o"></i> <span>Prontuario</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
             </section>
-            <!-- /.sidebar -->
         </aside>
 
-        <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
-        <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -416,377 +342,25 @@ desired effect
             </section>
             <!-- /.content -->
         </div>
+        <!-- /.content-wrapper -->
 
-
-
-
-        <!-- REQUIRED JS SCRIPTS -->
-
-        <!-- jQuery 3 -->
-        <!-- <script src="assets/jquery/dist/jquery.min.js"></script> -->
-        <!-- Bootstrap 3.3.7 -->
-        <script src="../assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="../dist/js/adminlte.min.js"></script>
-
-        <!-- script de tradução -->
-
-        <script>
-            var date = new Date()
-            var d = date.getDate(),
-                m = date.getMonth(),
-                y = date.getFullYear()
-            $(document).ready(function() {
-                $('#calendar').fullCalendar({
-                    aspectRatio: 1.6,
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    defaultDate: date,
-                    navLinks: false, // can click day/week names to navigate views
-                    editable: false,
-                    eventLimit: true, // allow "more" link when too many events
-                    eventClick: function(event) {
-
-                        $('#visualizar #id').text(event.id);
-                        $('#visualizar #id').val(event.id);
-                        $('#visualizar #title').text(event.title);
-                        $('#visualizar #title').val(event.title);
-                        $('#visualizar #start').text(event.start.format('DD/MM/YYYY HH:mm:ss'));
-                        $('#visualizar #start').val(event.start.format('DD/MM/YYYY HH:mm:ss'));
-                        $('#visualizar #end').text(event.end.format('DD/MM/YYYY HH:mm:ss'));
-                        $('#visualizar #end').val(event.end.format('DD/MM/YYYY HH:mm:ss'));
-                        $('#visualizar #color').val(event.color);
-                        $('#visualizar').modal('show');
-                        return false;
-
-                    },
-
-                    selectable: true,
-                    selectHelper: true,
-                    select: function(start, end) {
-                        $('#cadastrar #start').val(moment(start).format('DD/MM/YYYY HH:mm:ss'));
-                        $('#cadastrar #end').val(moment(end).format('DD/MM/YYYY HH:mm:ss'));
-                        $('#cadastrar').modal('show');
-                    },
-
-                    events: [{
-                        id: '1',
-                        title: "<?php echo "olá"; ?>",
-                        start: '2019-09-23 09:00:00',
-                        end: '2019-09-23 11:00:00',
-                        color: '#0071c5',
-                    }, {
-                        id: '2',
-                        title: 'Teste',
-                        start: '2019-09-24 09:00:00',
-                        end: '2019-09-24 11:00:00',
-                        color: '#0071c5',
-                    }, ]
-                });
-
-                // calendar.render();
-            });
-
-            //Mascara para o campo data e hora
-            function DataHora(evento, objeto) {
-                var keypress = (window.event) ? event.keyCode : evento.which;
-                campo = eval(objeto);
-                if (campo.value == '00/00/0000 00:00:00') {
-                    campo.value = ""
-                }
-
-                caracteres = '0123456789';
-                separacao1 = '/';
-                separacao2 = ' ';
-                separacao3 = ':';
-                conjunto1 = 2;
-                conjunto2 = 5;
-                conjunto3 = 10;
-                conjunto4 = 13;
-                conjunto5 = 16;
-                if ((caracteres.search(String.fromCharCode(keypress)) != -1) && campo.value.length < (19)) {
-                    if (campo.value.length == conjunto1)
-                        campo.value = campo.value + separacao1;
-                    else if (campo.value.length == conjunto2)
-                        campo.value = campo.value + separacao1;
-                    else if (campo.value.length == conjunto3)
-                        campo.value = campo.value + separacao2;
-                    else if (campo.value.length == conjunto4)
-                        campo.value = campo.value + separacao3;
-                    else if (campo.value.length == conjunto5)
-                        campo.value = campo.value + separacao3;
-                } else {
-                    event.returnValue = false;
-                }
-            }
-        </script>
-
-        <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title text-center">Dados do Evento</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="visualizar">
-                            <dl class="dl-horizontal">
-                                <dt>ID do Evento</dt>
-                                <dd id="id"></dd>
-                                <dt>Titulo do Evento</dt>
-                                <dd id="title"></dd>
-                                <dt>Inicio do Evento</dt>
-                                <dd id="start"></dd>
-                                <dt>Fim do Evento</dt>
-                                <dd id="end"></dd>
-                            </dl>
-                            <button class="btn btn-canc-vis btn-warning">Editar</button>
-                        </div>
-                        <div class="form">
-                            <form class="form-horizontal" method="POST" action="proc_edit_evento.php">
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="title" id="title" placeholder="Titulo do Evento">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Cor</label>
-                                    <div class="col-sm-10">
-                                        <select name="color" class="form-control" id="color">
-                                            <option value="">Selecione</option>
-                                            <option style="color:#FFD700;" value="#FFD700">Amarelo</option>
-                                            <option style="color:#0071c5;" value="#0071c5">Azul Turquesa</option>
-                                            <option style="color:#FF4500;" value="#FF4500">Laranja</option>
-                                            <option style="color:#8B4513;" value="#8B4513">Marrom</option>
-                                            <option style="color:#1C1C1C;" value="#1C1C1C">Preto</option>
-                                            <option style="color:#436EEE;" value="#436EEE">Royal Blue</option>
-                                            <option style="color:#A020F0;" value="#A020F0">Roxo</option>
-                                            <option style="color:#40E0D0;" value="#40E0D0">Turquesa</option>
-                                            <option style="color:#228B22;" value="#228B22">Verde</option>
-                                            <option style="color:#8B0000;" value="#8B0000">Vermelho</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Data Inicial</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="start" id="start" onKeyPress="DataHora(event, this)">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Data Final</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="end" id="end" onKeyPress="DataHora(event, this)">
-                                    </div>
-                                </div>
-                                <input type="hidden" class="form-control" name="id" id="id">
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="button" class="btn btn-canc-edit btn-primary">Cancelar</button>
-                                        <button type="submit" class="btn btn-warning">Salvar Alterações</button>
-                                    </div>
-                                </div>
-                            </form>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title text-center">Cadastrar Evento</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" method="POST" action="proc_cad_evento.php">
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="title" placeholder="Titulo do Evento">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Cor</label>
-                                <div class="col-sm-10">
-                                    <select name="color" class="form-control" id="color">
-                                        <option value="">Selecione</option>
-                                        <option style="color:#FFD700;" value="#FFD700">Amarelo</option>
-                                        <option style="color:#0071c5;" value="#0071c5">Azul Turquesa</option>
-                                        <option style="color:#FF4500;" value="#FF4500">Laranja</option>
-                                        <option style="color:#8B4513;" value="#8B4513">Marrom</option>
-                                        <option style="color:#1C1C1C;" value="#1C1C1C">Preto</option>
-                                        <option style="color:#436EEE;" value="#436EEE">Royal Blue</option>
-                                        <option style="color:#A020F0;" value="#A020F0">Roxo</option>
-                                        <option style="color:#40E0D0;" value="#40E0D0">Turquesa</option>
-                                        <option style="color:#228B22;" value="#228B22">Verde</option>
-                                        <option style="color:#8B0000;" value="#8B0000">Vermelho</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Data Inicial</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="start" id="start" onKeyPress="DataHora(event, this)">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Data Final</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="end" id="end" onKeyPress="DataHora(event, this)">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">Cadastrar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            $('.btn-canc-vis').on("click", function() {
-                $('.form').slideToggle();
-                $('.visualizar').slideToggle();
-            });
-            $('.btn-canc-edit').on("click", function() {
-                $('.visualizar').slideToggle();
-                $('.form').slideToggle();
-            });
-        </script>
-
-
-        <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
             <div class="pull-right hidden-xs">
-                Anything you want
+                <b>Version</b> 2.4.13
             </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2019 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights reserved.
         </footer>
-        <!-- ./wrapper -->
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark" style="display: none;">
+        <aside class="control-sidebar control-sidebar-dark">
             <!-- Create the tabs -->
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-wrench"></i></a></li>
-                <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                <!-- <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li> -->
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
                 <!-- Home tab content -->
-                <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
-                    <div>
-                        <h4 class="control-sidebar-heading">Layout Options</h4>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="fixed" class="pull-right"> Fixed layout</label>
-                            <p>Activate the fixed layout. You can't use fixed and boxed layouts together</p>
-                        </div>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="layout-boxed" class="pull-right"> Boxed Layout</label>
-                            <p>Activate the boxed layout</p>
-                        </div>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="sidebar-collapse" class="pull-right"> Toggle Sidebar</label>
-                            <p>Toggle the left sidebar's state (open or collapse)</p>
-                        </div>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-enable="expandOnHover" class="pull-right"> Sidebar Expand on Hover</label>
-                            <p>Let the sidebar mini expand on hover</p>
-                        </div>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide</label>
-                            <p>Toggle between slide over content and push content effects</p>
-                        </div>
-                        <div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-sidebarskin="toggle" class="pull-right"> Toggle Right Sidebar Skin</label>
-                            <p>Toggle between dark and light skins for the right sidebar</p>
-                        </div>
-                        <h4 class="control-sidebar-heading">Skins</h4>
-                        <ul class="list-unstyled clearfix">
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Blue</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Black</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Purple</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Green</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Red</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin">Yellow</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Blue Light</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Black Light</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Purple Light</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Green Light</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Red Light</p>
-                            </li>
-                            <li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
-                                    <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
-                                    <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div>
-                                </a>
-                                <p class="text-center no-margin" style="font-size: 12px">Yellow Light</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="tab-pane" id="control-sidebar-home-tab">
                     <h3 class="control-sidebar-heading">Recent Activity</h3>
                     <ul class="control-sidebar-menu">
@@ -973,11 +547,289 @@ desired effect
     </div>
     <!-- ./wrapper -->
 
-    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="../assets/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../assets/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="../assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../assets/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- fullCalendar -->
+    <script src="../assets/moment/moment.js"></script>
+    <script src="../assets/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src='../assets/fullcalendar/dist/locale/pt-br.js'></script>
+    <!-- Page specific script -->
 
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+    <script>
+        $(function() {
+
+            /* initialize the external events
+             -----------------------------------------------------------------*/
+            function init_events(ele) {
+                ele.each(function() {
+
+                    // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                    // it doesn't need to have a start or end
+                    var eventObject = {
+                        title: $.trim($(this).text()) // use the element's text as the event title
+                    }
+
+                    // store the Event Object in the DOM element so we can get to it later
+                    $(this).data('eventObject', eventObject)
+
+                    // make the event draggable using jQuery UI
+                    $(this).draggable({
+                        zIndex: 1070,
+                        revert: true, // will cause the event to go back to its
+                        revertDuration: 0 //  original position after the drag
+                    })
+
+                })
+            }
+
+            init_events($('#external-events div.external-event'))
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            //Date for the calendar events (dummy data)
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+            $('#calendar').fullCalendar({
+                locale: 'pt-br',
+                aspectRatio: 1.6,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: date,
+                navLinks: false, // can click day/week names to navigate views
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                eventClick: function(event) {
+
+                    $('#visualizar #id').text(event.id);
+                    $('#visualizar #id').val(event.id);
+                    $('#visualizar #title').text(event.title);
+                    $('#visualizar #title').val(event.title);
+                    $('#visualizar #start').text(event.start.format('DD/MM/YYYY HH:mm:ss'));
+                    $('#visualizar #start').val(event.start.format('DD/MM/YYYY HH:mm:ss'));
+                    $('#visualizar #end').text(event.end.format('DD/MM/YYYY HH:mm:ss'));
+                    $('#visualizar #end').val(event.end.format('DD/MM/YYYY HH:mm:ss'));
+                    $('#visualizar #color').val(event.color);
+                    $('#visualizar').modal('show');
+                    return false;
+
+                },
+
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    $('#cadastrar #start').val(moment(start).format('DD/MM/YYYY HH:mm:ss'));
+                    $('#cadastrar #end').val(moment(end).format('DD/MM/YYYY HH:mm:ss'));
+                    $('#cadastrar').modal('show');
+                },
+
+                events: [{
+                    id: '1',
+                    title: 'ola',
+                    start: '2019-09-23 09:00:00',
+                    end: '2019-09-23 11:00:00',
+                    color: '#0071c5',
+                }, {
+                    id: '2',
+                    title: 'Teste',
+                    start: '2019-09-24 09:00:00',
+                    end: '2019-09-24 11:00:00',
+                    color: '#0071c5',
+                }, ]
+            });
+
+            // calendar.render();
+        });
+
+        //Mascara para o campo data e hora
+        function DataHora(evento, objeto) {
+            var keypress = (window.event) ? event.keyCode : evento.which;
+            campo = eval(objeto);
+            if (campo.value == '00/00/0000 00:00:00') {
+                campo.value = ""
+            }
+
+            caracteres = '0123456789';
+            separacao1 = '/';
+            separacao2 = ' ';
+            separacao3 = ':';
+            conjunto1 = 2;
+            conjunto2 = 5;
+            conjunto3 = 10;
+            conjunto4 = 13;
+            conjunto5 = 16;
+            if ((caracteres.search(String.fromCharCode(keypress)) != -1) && campo.value.length < (19)) {
+                if (campo.value.length == conjunto1)
+                    campo.value = campo.value + separacao1;
+                else if (campo.value.length == conjunto2)
+                    campo.value = campo.value + separacao1;
+                else if (campo.value.length == conjunto3)
+                    campo.value = campo.value + separacao2;
+                else if (campo.value.length == conjunto4)
+                    campo.value = campo.value + separacao3;
+                else if (campo.value.length == conjunto5)
+                    campo.value = campo.value + separacao3;
+            } else {
+                event.returnValue = false;
+            }
+        }
+    </script>
+
+    <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center">Dados do Evento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="visualizar">
+                        <dl class="dl-horizontal">
+                            <dt>ID do Evento</dt>
+                            <dd id="id"></dd>
+                            <dt>Titulo do Evento</dt>
+                            <dd id="title"></dd>
+                            <dt>Inicio do Evento</dt>
+                            <dd id="start"></dd>
+                            <dt>Fim do Evento</dt>
+                            <dd id="end"></dd>
+                        </dl>
+                        <button class="btn btn-canc-vis btn-warning">Editar</button>
+                    </div>
+                    <div class="form">
+                        <form class="form-horizontal" method="POST" action="proc_edit_evento.php">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="Titulo do Evento">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Cor</label>
+                                <div class="col-sm-10">
+                                    <select name="color" class="form-control" id="color">
+                                        <option value="">Selecione</option>
+                                        <option style="color:#FFD700;" value="#FFD700">Amarelo</option>
+                                        <option style="color:#0071c5;" value="#0071c5">Azul Turquesa</option>
+                                        <option style="color:#FF4500;" value="#FF4500">Laranja</option>
+                                        <option style="color:#8B4513;" value="#8B4513">Marrom</option>
+                                        <option style="color:#1C1C1C;" value="#1C1C1C">Preto</option>
+                                        <option style="color:#436EEE;" value="#436EEE">Royal Blue</option>
+                                        <option style="color:#A020F0;" value="#A020F0">Roxo</option>
+                                        <option style="color:#40E0D0;" value="#40E0D0">Turquesa</option>
+                                        <option style="color:#228B22;" value="#228B22">Verde</option>
+                                        <option style="color:#8B0000;" value="#8B0000">Vermelho</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Data Inicial</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="start" id="start" onKeyPress="DataHora(event, this)">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Data Final</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="end" id="end" onKeyPress="DataHora(event, this)">
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" name="id" id="id">
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-canc-edit btn-primary">Cancelar</button>
+                                    <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center">Cadastrar Evento</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" method="POST" action="proc_cad_evento.php">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="title" placeholder="Titulo do Evento">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Cor</label>
+                            <div class="col-sm-10">
+                                <select name="color" class="form-control" id="color">
+                                    <option value="">Selecione</option>
+                                    <option style="color:#FFD700;" value="#FFD700">Amarelo</option>
+                                    <option style="color:#0071c5;" value="#0071c5">Azul Turquesa</option>
+                                    <option style="color:#FF4500;" value="#FF4500">Laranja</option>
+                                    <option style="color:#8B4513;" value="#8B4513">Marrom</option>
+                                    <option style="color:#1C1C1C;" value="#1C1C1C">Preto</option>
+                                    <option style="color:#436EEE;" value="#436EEE">Royal Blue</option>
+                                    <option style="color:#A020F0;" value="#A020F0">Roxo</option>
+                                    <option style="color:#40E0D0;" value="#40E0D0">Turquesa</option>
+                                    <option style="color:#228B22;" value="#228B22">Verde</option>
+                                    <option style="color:#8B0000;" value="#8B0000">Vermelho</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Data Inicial</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="start" id="start" onKeyPress="DataHora(event, this)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Data Final</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="end" id="end" onKeyPress="DataHora(event, this)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.btn-canc-vis').on("click", function() {
+            $('.form').slideToggle();
+            $('.visualizar').slideToggle();
+        });
+        $('.btn-canc-edit').on("click", function() {
+            $('.visualizar').slideToggle();
+            $('.form').slideToggle();
+        });
+    </script>
 </body>
 
 </html>
