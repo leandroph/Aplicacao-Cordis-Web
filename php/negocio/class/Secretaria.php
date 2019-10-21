@@ -2,14 +2,9 @@
 class Secretaria
 {
     /**Declaração de propriedade */
-	private $id;
-	private $nome;
-    private $cpf;
-    private $rg;
-    private $sexo;
-    private $nascimento;
-    private $corAgenda;
-    private $ativo
+	private $id_usuario;
+     private $cor_agenda
+     private $ativo;
 
 	/**Geters and Seters */
 
@@ -18,15 +13,15 @@ class Secretaria
      *
      * @return  self
      */
-	public function setId($id){
-		$this->id = $id;
+	public function setId_Usuario($id_usuario){
+		$this->id_usuario = $id_usuario;
 	}
 	
 	/**
      * Get the value of id
      */ 
-	public function getId(){
-		return $this->id;
+	public function getId_Usuario(){
+		return $this->id_usuario;
 	}
 
     /**
@@ -34,15 +29,15 @@ class Secretaria
      *
      * @return  self
      */
-	public function setNome($nome){
-		$this->nome = $nome;
+	public function setCor_Agenda($cor_agenda){
+		$this->cor_agenda = $cor_agenda;
 	}
 	
 	/**
      * Get the value of nome
      */ 
-	public function getNome(){
-		return $this->nome;
+	public function getCor_Agenda(){
+		return $this->cor_agenda;
 	}
 
     /**
@@ -50,95 +45,14 @@ class Secretaria
      *
      * @return  self
      */
-	public function setCpf($cpf){
-		$this->cpf = $cpf;
+	public function setAtivo($ativo){
+		$this->ativo = $ativo;
 	}
 	
 	/**
      * Get the value of cpf
      */ 
-	public function getCpf(){
-		return $this->cpf;
-    }
-
-    /**
-     * Set the value of RG
-     *
-     * @return  self
-     */
-    public function setRg($rg){
-		$this->rg = $rg;
-	}
-	
-	/**
-     * Get the value of RG
-     */ 
-	public function getRg(){
-		return $this->rg;
-    }
-
-    /**
-     * Set the value of sexo
-     *
-     * @return  self
-     */
-    public function setSexo($sexo){
-		$this->sexo = $sexo;
-	}
-	
-	/**
-     * Get the value of sexo
-     */ 
-	public function getSexo(){
-		return $this->sexo;
-    }
-
-    /**
-     * Set the value of nascimento
-     *
-     * @return  self
-     */
-    public function setNascimento($nascimento){
-		$this->nascimento = $nascimento;
-	}
-	
-	/**
-     * Get the value of nascimento
-     */ 
-	public function getNascimento(){
-		return $this->nascimento;
-    }
-
-    /**
-     * Set the value of cor agenda
-     *
-     * @return  self
-     */
-    public function setCorAgenda($corAgenda){
-		$this->corAgenda = $corAgenda;
-	}
-	
-	/**
-     * Get the value of cor agenda
-     */ 
-	public function getCorAgenda(){
-		return $this->corAgenda;
-    }
-
-    /**
-     * Set the value of ativo
-     *
-     * @return  self
-     */
-    public function setAtivo($ativo){
-		$this->ativo = $ativo;
-	}
-	
-	/**
-     * Get the value of ativo
-     */ 
 	public function getAtivo(){
 		return $this->ativo;
-	}
-
+    }
 }

@@ -2,12 +2,7 @@
 class Medico
 {
     /**Declaração de propriedade */
-	private $id;
-	private $nome;
-    private $cpf;
-    private $rg;
-    private $sexo;
-    private $nascimento;
+	  private $id_usuario;
     private $corAgenda;
     private $crm;
     private $especialidade;
@@ -21,97 +16,18 @@ class Medico
      *
      * @return  self
      */ 
-	public function setId($id){
-		$this->id = $id;
-	}
-	
-	 /**
-     * Get the value of ID
-     */ 
-	public function getId(){
-		return $this->id;
-	}
-    
-    /**
-     * Set the value of Name
-     *
-     * @return  self
-     */ 
-	public function setNome($nome){
-		$this->nome = $nome;
-	}
-	
-	 /**
-     * Get the value of Name
-     */ 
-	public function getNome(){
-		return $this->nome;
-	}
-    
-    /**
-     * Set the value of CPF
-     *
-     * @return  self
-     */ 
-	public function setCpf($cpf){
-		$this->cpf = $cpf;
-	}
-	
-	 /**
-     * Get the value of CPF
-     */ 
-	public function getCpf(){
-		return $this->cpf;
+    public function setId_Usuario($id_usuario){
+      $this->id_usuario = $id_usuario;
+    }
+ 
+ /**
+ * Get the value of id
+ */ 
+    public function getId_Usuario(){
+      return $this->id_usuario;
     }
     
-    /**
-     * Set the value of RG
-     *
-     * @return  self
-     */ 
-    public function setRg($rg){
-		$this->rg = $rg;
-	}
-	
-	 /**
-     * Get the value of RG
-     */ 
-	public function getRg(){
-		return $this->rg;
-    }
     
-    /**
-     * Set the value of Sexo
-     *
-     * @return  self
-     */ 
-    public function setSexo($sexo){
-		$this->sexo = $sexo;
-	}
-	
-	 /**
-     * Get the value of Sexo
-     */ 
-	public function getSexo(){
-		return $this->sexo;
-    }
-    
-    /**
-     * Set the value of Nascimento
-     *
-     * @return  self
-     */ 
-    public function setNascimento($nascimento){
-		$this->nascimento = $nascimento;
-	}
-
-	 /**
-     * Get the value of Nascimento
-     */ 
-	public function getNascimento(){
-		return $this->nascimento;
-    }
-
     /**
      * Set the value of Cor Agenda
      *

@@ -1,5 +1,5 @@
 <?php
-class Paciente
+class Administrador
 {
     /**Declaração de propriedade */
 	private $id_usuario;

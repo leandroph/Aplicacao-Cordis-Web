@@ -106,8 +106,7 @@ CREATE TABLE tb_medicos (
 CREATE TABLE tb_secretarias (
 	id_usuario              INT NOT NULL,
 	cor_agenda				VARCHAR(10) NOT NULL ,
-	ativo					BOOLEAN NOT NULL ,
-	id_pessoa               INT NOT NULL,          
+	ativo					BOOLEAN NOT NULL ,          
 	FOREIGN KEY (id_usuario) REFERENCES tb_usuarios (id),
 	PRIMARY KEY(id_usuario)
 );
@@ -199,7 +198,7 @@ CREATE TABLE tb_agendamentos (
 	id_not_email			INT NOT NULL,
 	id_not_sms				INT NOT NULL,
 	id_convenio				INT NOT NULL,
-	id_exame				INT NOT NULL,
+	id_exame				INT NOT NULL, --verificar possivel nova tabela, para inserir mais de um exame
 	id_secretaria			INT NOT NULL,
 	id_paciente				INT NOT NULL,
 	id_medico				INT NOT NULL,
