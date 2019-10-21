@@ -198,7 +198,7 @@ CREATE TABLE tb_agendamentos (
 	id_not_email			INT NOT NULL,
 	id_not_sms				INT NOT NULL,
 	id_convenio				INT NOT NULL,
-	id_exame				INT NOT NULL, --verificar possivel nova tabela, para inserir mais de um exame
+	id_exame				INT NOT NULL, -- verificar possivel nova tabela, para inserir mais de um exame
 	id_secretaria			INT NOT NULL,
 	id_paciente				INT NOT NULL,
 	id_medico				INT NOT NULL,
