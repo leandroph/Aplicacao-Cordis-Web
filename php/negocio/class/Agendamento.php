@@ -2,13 +2,21 @@
 class Agendamento
 {
     /**Declaração de propriedade */
-    private $id;
-    private $dataHoraInicio;
-    private $dataHoraFim;
-    private $valor;
-    private $observacao;
-    private $status;
-    private $pago;
+    private id,
+	private data_hora_inicio,
+	private data_hora_fim,
+	private valor,
+	private observacao,
+	private senha,
+	private cod_status,
+	private pago,
+	private id_not_email,
+	private id_not_sms,
+	private id_convenio,
+	private id_exames_agendamento,
+	private id_secretaria,
+	private id_paciente,
+	private id_medico,
 	
 	/**Geters and Seters */
 	
@@ -112,12 +120,24 @@ class Agendamento
         return $this;
     }
 
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
+
+        return $this;
+    }
+
     /**
      * Get the value of status
      */ 
-    public function getStatus()
+    public function getCod_Status()
     {
-        return $this->status;
+        return $this->cod_status;
     }
 
     /**
@@ -125,9 +145,9 @@ class Agendamento
      *
      * @return  self
      */ 
-    public function setStatus($status)
+    public function setCod_Status($cod_status)
     {
-        $this->status = $status;
+        $this->cod_status = $cod_status;
 
         return $this;
     }
@@ -150,5 +170,89 @@ class Agendamento
         $this->pago = $pago;
 
         return $this;
+    }
+
+    public function getIdNotEmail()
+    {
+        return $this->id_not_email;
+    }
+
+    public function setIdNotEmail($id_not_email)
+    {
+        $this->id_not_email = $id_not_email;
+
+        return $this;
+    }
+
+    public function getIdNotSms()
+    {
+        return $this->id_not_sms;
+    }
+
+    public function setIdNotSms($id_not_sms)
+    {
+        $this->id_not_sms = $id_not_sms;
+        
+        return $this;
+    }
+
+    public function getId_Convenio()
+    {
+        return $this->id_convenio;
+    }
+
+    public function setId_Convenio($id_convenio)
+    {
+        $this->id_convenio = $id_convenio;
+        
+        return $this;
+    }
+
+    public function getId_Exames_Agendamento()
+    {
+        return $this->id_exames_agendamento;
+    }
+
+    public function setId_Exames_Agendamento($id_exames_agendamento)
+    {
+        $this->id_exames_agendamento = $id_exames_agendamento;
+        
+        return $this;
+    }
+
+    public function getId_Secretaria()
+    {
+        return $this->id_secretaria;
+    }
+
+    public function setId_Secretaria($id_secretaria)
+    {
+        $this->id_secretaria = $id_secretaria;
+
+        return $this;
+    }
+
+    public function getId_Paciente()
+    {
+        return $this->id_paciente;
+    }
+
+    public function setId_Paciente($id_paciente)
+    {
+        $this->id_paciente = $id_paciente;
+
+        return $this;
+    }
+
+    public function getId_Medico() 
+    {
+        return $this->id_medico;
+    }
+
+    public function setId_Medico($id_medico)
+    {
+        $this->id_medico = $id_medico;
+
+        return $id_medico;
     }
 }
