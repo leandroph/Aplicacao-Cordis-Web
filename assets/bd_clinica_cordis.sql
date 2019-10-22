@@ -186,6 +186,13 @@ CREATE TABLE tb_notificacoes_email (
 	FOREIGN KEY (id_notificacao) REFERENCES tb_notificacoes (id)
 );
 
+CREATE TABLE tb_exames_agendamento (
+	id 						INT NOT NULL AUTO_INCREMENT,
+	id_exames 				INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_exames) REFERENCES tb_exames(id)
+);
+
 CREATE TABLE tb_agendamentos (
   	id						INT NOT NULL AUTO_INCREMENT,
 	data_hora_inicio		DATETIME NOT NULL ,
@@ -198,7 +205,7 @@ CREATE TABLE tb_agendamentos (
 	id_not_email			INT NOT NULL,
 	id_not_sms				INT NOT NULL,
 	id_convenio				INT NOT NULL,
-	id_exame				INT NOT NULL, -- verificar possivel nova tabela, para inserir mais de um exame
+	id_exames_agendamento	INT NOT NULL, -- verificar possivel nova tabela, para inserir mais de um exame
 	id_secretaria			INT NOT NULL,
 	id_paciente				INT NOT NULL,
 	id_medico				INT NOT NULL,
@@ -206,7 +213,7 @@ CREATE TABLE tb_agendamentos (
 	FOREIGN KEY (id_not_email) REFERENCES tb_notificacoes_email (id_notificacao) ,
 	FOREIGN KEY (id_not_sms) REFERENCES tb_notificacoes_sms (id_notificacao) ,
 	FOREIGN KEY (id_convenio) REFERENCES tb_convenios (id) ,
-	FOREIGN KEY (id_exame) REFERENCES tb_exames (id) ,
+	FOREIGN KEY (id_exames_agendamento) REFERENCES tb_exames (id) ,
 	FOREIGN KEY (id_secretaria) REFERENCES tb_secretarias (id_usuario) ,
 	FOREIGN KEY (id_paciente) REFERENCES tb_pacientes (id_usuario),
 	FOREIGN KEY (id_medico) REFERENCES tb_medicos (id_usuario)

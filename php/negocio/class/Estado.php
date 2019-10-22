@@ -5,6 +5,7 @@ class Estado
 	private $id;
 	private $nome;
 	private $uf;
+	private $id_pais;
 
 	/**Geters and Seters */
 
@@ -55,5 +56,14 @@ class Estado
 	public function getUf(){
 		return $this->uf;
 	}
+
+	public function setId_Pais($id_pais){
+		$this->id_pais = $id_pais;
+	}
+	
+	public function getId_Pais(){
+		return $this->id_pais;
+	}
+
 
 }
