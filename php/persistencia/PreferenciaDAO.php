@@ -44,12 +44,12 @@ class PreferenciaDAO
 
     public function alterar(Preferencia $preferencia) {
         $sql = $this->pdo->prepare('update tb_preferencias set id_usuario = :id_usuario, pref_skin = :pref_skin, filtro_paciente = :filtro_paciente, filtro_medico = :filtro_medico, filtro_secretaria = :filtro_secretaria, filtro_administrador = :filtro_administrador where id_usuario = :id_usuario');
-        $sql->bindValue(':id_usuario', $preferencia->getNome());
-        $sql->bindValue(':pref_skin', $preferencia->getlogin());
-        $sql->bindValue(':filtro_paciente', md5($preferencia->getSenha()));
-        $sql->bindValue(':filtro_medico', $preferencia->getId());
-        $sql->bindValue(':filtro_secretaria', $preferencia->getId());
-        $sql->bindValue(':filtro_administrador', $preferencia->getId());
+        $sql->bindValue(':id_usuario', $preferencia->getId_Usuario());
+        $sql->bindValue(':pref_skin', $preferencia->getPref_Skin());
+        $sql->bindValue(':filtro_paciente', $preferencia->getFiltro_Paciente());
+        $sql->bindValue(':filtro_medico', $preferencia->getFiltro_Medico());
+        $sql->bindValue(':filtro_secretaria', $preferencia->getFiltro_Secretaria());
+        $sql->bindValue(':filtro_administrador', $preferencia->getFiltro_Administrador());
         
         if ($sql->execute()) {
             // Query succeeded.

@@ -201,25 +201,25 @@
             +
             <?php if ($usuario->getPerm_Administrador() == 1) { ?> '<div class="form-group">' +
                 '<label class="control-sidebar-subheading">' +
-                '<input <?php echo ($preferencia->getFiltro_Administrador() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltroADM()" id"CheckAdm" type="checkbox"class="pull-right" /> ' +
+                '<input <?php echo ($preferencia->getFiltro_Administrador() == 1 ? '' : 'checked'); ?> onclick="mudaFiltroADM()" id"CheckAdm" type="checkbox"class="pull-right" /> ' +
                 'Área Administrador' +
                 '</label>' +
                 '</div>' +
             <?php } ?> <?php if ($usuario->getPerm_Medico() == 1) { ?> '<div class="form-group">' +
                 '<label class="control-sidebar-subheading">' +
-                '<input <?php echo ($preferencia->getFiltro_Medico() == 1 ? 'checked' : ' '); ?> onclick="mudaFiltroMED()" id"CheckMed" type="checkbox" class="pull-right"/> ' +
+                '<input <?php echo ($preferencia->getFiltro_Medico() == 1 ? '' : 'checked'); ?> onclick="mudaFiltroMED()" id"CheckMed" type="checkbox" class="pull-right"/> ' +
                 'Área Médico' +
                 '</label>' +
                 '</div>' +
             <?php } ?> <?php if ($usuario->getPerm_Secretaria() == 1) { ?> '<div class="form-group">' +
                 '<label class="control-sidebar-subheading">' +
-                '<input <?php echo ($preferencia->getFiltro_Secretaria() == 1 ? 'checked' : ' '); ?> type="checkbox" class="pull-right"/> ' +
+                '<input <?php echo ($preferencia->getFiltro_Secretaria() == 1 ? '' : 'checked'); ?> type="checkbox" class="pull-right"/> ' +
                 'Área Secretaria' +
                 '</label>' +
                 '</div>' +
             <?php } ?> <?php if ($usuario->getPerm_Paciente() == 1) { ?> '<div class="form-group">' +
                 '<label class="control-sidebar-subheading">' +
-                '<input <?php echo ($preferencia->getFiltro_Paciente() == 1 ? 'checked' : ' '); ?> type="checkbox" class="pull-right"/> ' +
+                '<input <?php echo ($preferencia->getFiltro_Paciente() == 1 ? '' : 'checked'); ?> type="checkbox" class="pull-right"/> ' +
                 'Área Paciente' +
                 '</label>' +
                 '</div>'

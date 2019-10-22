@@ -5874,7 +5874,7 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 
 INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
 	(1, 'leandro', 'heck',  true, true, false, true, true),
-	(2, 'daniel', 'buchholz', true, true, true, true, false),
+	(2, 'daniel', 'buchholz', true, true, true, true, true),
 	(3, 'cristiano', 'kunas', true, true, true, false, true),
 	(4, 'ana', 'user', true, true, false, true, true),
 	(5, 'paulo', 'user', true, true, false, true, false),

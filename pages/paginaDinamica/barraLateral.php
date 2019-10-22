@@ -81,8 +81,8 @@
                     <!-- Optionally, you can add icons to the links -->
                     <?php if ($usuario->getPerm_Administrador() == 1) { ?>
                         <li class="header">ADMINISTRADOR</li>
-                        <li class="active">
-                            <a href="#">
+                        <li class="<?php echo ($pag == 'painel' ? 'active' : ''); ?>">
+                            <a href="painel.php?pag=painel">
                                 <i class="fa fa-home"></i> <span>Painel</span>
                                 <span class="pull-right-container">
                                 </span>
@@ -150,8 +150,8 @@
                     <?php }; ?>
                     <?php if ($usuario->getPerm_Secretaria() == 1) { ?>
                         <li class="header">SECRETARIA</li>
-                        <li class="">
-                            <a href="agenda_secretaria.php">
+                        <li class="<?php echo ($pag == 'agenda' ? 'active' : ''); ?>">
+                            <a href="agenda_secretaria.php?pag=agenda">
                                 <i class="fa fa-calendar"></i> <span>Agenda</span>
                                 <span class="pull-right-container">
                                 </span>

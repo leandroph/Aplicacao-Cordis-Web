@@ -24,7 +24,7 @@ if (isset($_POST['login']) && isset($_POST['senha'])) {
         session_start();
 
         $_SESSION["id_usuario"] = $dados["id"];
-        header("location: ../../pages/painel.php");
+        header("location: ../../pages/painel.php?pag=painel");
         
     } else {
         $_SESSION["invalido"] = "negado";
