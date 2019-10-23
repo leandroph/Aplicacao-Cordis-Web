@@ -2,75 +2,68 @@
 class Contato
 {
     /**Declaração de propriedade */
-	private $id;
-	private $email;
-    private $telefone1;
-    private $telefone2;
+     private $id_usuario;
+     private $telefone;
+     private $tipo;
 	
-	/** Geters and Seters*/
 
-	/**
-     * Set the value of id
-     *
-     * @return  self
-     */
-	public function setId($id){
-		$this->id = $id;
-	}
-    
-    /**
-     * Get the value of id
-     */ 
-	public function getId(){
-		return $this->id;
-	}
+     /**
+      * Get the value of id_usuario
+      */ 
+     public function getId_usuario()
+     {
+          return $this->id_usuario;
+     }
 
-	/**
-     * Set the value of email
-     *
-     * @return  self
-     */
-	public function setEmail($email){
-		$this->email = $email;
-	}
-    
-    /**
-     * Get the value of email
-     */ 
-	public function getEmail(){
-		return $this->email;
-	}
+     /**
+      * Set the value of id_usuario
+      *
+      * @return  self
+      */ 
+     public function setId_usuario($id_usuario)
+     {
+          $this->id_usuario = $id_usuario;
 
-	/**
-     * Set the value of phone1
-     *
-     * @return  self
-     */
-	public function setTelefone1($telefone1){
-		$this->telefone1 = $telefone1;
-	}
+          return $this;
+     }
 
-    /**
-     * Get the value of phone1
-     */ 
-	public function getTelefone1(){
-		return $this->telefone1;
-    }
-	
-	/**
-     * Set the value of phone2
-     *
-     * @return  self
-     */
-    public function setTelefone2($telefone2){
-		$this->telefone2 = $telefone2;
-	}
-    
-    /**
-     * Get the value of phone2
-     */ 
-	public function getTelefone2(){
-		return $this->telefone2;
-    }
+     /**
+      * Get the value of telefone
+      */ 
+     public function getTelefone()
+     {
+          return $this->telefone;
+     }
 
+     /**
+      * Set the value of telefone
+      *
+      * @return  self
+      */ 
+     public function setTelefone($telefone)
+     {
+          $this->telefone = $telefone;
+
+          return $this;
+     }
+
+     /**
+      * Get the value of tipo
+      */ 
+     public function getTipo()
+     {
+          return $this->tipo;
+     }
+
+     /**
+      * Set the value of tipo
+      *
+      * @return  self
+      */ 
+     public function setTipo($tipo)
+     {
+          $this->tipo = $tipo;
+
+          return $this;
+     }
 }

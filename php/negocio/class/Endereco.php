@@ -7,7 +7,8 @@ class Endereco
     private $bairro;
     private $numero;
     private $cep;
-    private $complemento;
+	private $complemento;
+	private $id_cidade;
 	
 	/**Geters and Seters */
 
@@ -106,4 +107,24 @@ class Endereco
 		return $this->complemento;
 	}
 
+
+	/**
+	 * Get the value of id_cidade
+	 */ 
+	public function getId_cidade()
+	{
+		return $this->id_cidade;
+	}
+
+	/**
+	 * Set the value of id_cidade
+	 *
+	 * @return  self
+	 */ 
+	public function setId_cidade($id_cidade)
+	{
+		$this->id_cidade = $id_cidade;
+
+		return $this;
+	}
 }
