@@ -1,6 +1,27 @@
 <?php session_start();
 
 $id_usuario_logado = $_SESSION["id_usuario"];
+
+include('../php/negocio/class/Pessoa.php');
+include('../php/persistencia/PessoaDAO.php');
+include('../php/negocio/class/Usuario.php');
+include('../php/persistencia/UsuarioDAO.php');
+include('../php/negocio/class/Preferencia.php');
+include('../php/persistencia/PreferenciaDAO.php');
+
+//Conexão com Banco de dados
+$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
+$pessoaDAO = new PessoaDAO($conexao);
+$pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
+
+$usuarioDAO = new UsuarioDAO($conexao);
+$usuario = $usuarioDAO->getUsuario($id_usuario_logado);
+
+$preferenciaDAO = new PreferenciaDAO($conexao);
+$preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
+
+$pag = $_GET['pag'];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +49,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
     <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -64,168 +89,7 @@ desired effect
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-        <!-- Main Header -->
-        <header class="main-header">
-
-            <!-- Logo -->
-            <a href="index2.html" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>ADM</b></span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Administrativo</b> </span>
-            </a>
-
-            <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="../dist/img/user.png" class="user-image" alt="User Image">
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">User</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="../dist/img/user.png" class="img-circle" alt="User Image">
-
-                                    <p>
-                                        User - Funtion
-                                        <!-- <small>Member since Nov. 2012</small> -->
-                                    </p>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="profile.php" class="btn btn-default btn-flat">Perfil</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sair</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
-
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="../dist/img/user.png" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>User</p>
-                        <!-- Status -->
-                        <a href="#"><i class="fa fa-circle text-danger"></i>Offline</a>
-                    </div>
-                </div>
-
-                <!-- Sidebar Menu -->
-                <ul class="sidebar-menu" data-widget="tree">
-                    <!-- <li class="header">Acesso ADMIN</li> -->
-                    <!-- Optionally, you can add icons to the links -->
-                    <li class="">
-                        <a href="administrativo.php">
-                            <i class="fa fa-home"></i> <span>Painel</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="#">
-                            <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-flask"></i> <span>Cadastro Exames</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-medkit"></i> <span>Cadastro Convenio</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="pages/calendar.html">
-                            <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica</span>
-                            <span class="pull-right-container">
-                            </span>
-                        </a>
-                    </li>
-                    <!-- <li class="header">Acesso Client</li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-stethoscope"></i> <span>Consultas</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-calendar"></i> <span>Agenda</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-flask"></i> <span>Exames</span>
-              <span class="pull-right-container">
-              </span>
-            </a>
-          </li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-line-chart"></i> <span>Relatorios</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#">Paciente</a></li>
-              <li><a href="#">Médico</a></li>
-              <li><a href="#">Secretária</a></li>
-              <li><a href="#">Consulta</a></li>
-              <li><a href="#">Exame</a></li>
-              <li><a href="#">Convenio</a></li>
-              <li><a href="#">Prontuários</a></li>
-            </ul>
-          </li>
-        </ul> -->
-                    <!-- /.sidebar-menu -->
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+        <?php include('paginaDinamica/barraLateral.php'); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -250,8 +114,17 @@ desired effect
 
                 <div class="row">
                     <div class="col-lg-12">
+
                         <div class="box box-warning">
                             <div class="box-header">
+                                <div class="text-center">
+                                    <div class="col-lg-3">
+                                        <input class="form-control" type="text" placeholder="Default input">
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <button type="button" class="btn btn-block btn-info">Info</button>
+                                    </div>
+                                </div>
                                 <!-- <h3 class="box-title"></h3> -->
                             </div>
                             <!-- /.box-header -->
@@ -690,14 +563,14 @@ desired effect
                         </div>
                         <!-- /.box -->
                     </div>
-                    <!-- ./col -->
+                    <!-- /.col -->
                 </div>
                 <!-- /.row -->
             </section>
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-
+        
+        
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
@@ -709,18 +582,232 @@ desired effect
         </footer>
         <!-- ./wrapper -->
 
-        <!-- REQUIRED JS SCRIPTS -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark" style="display: none;">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-        <!-- jQuery 3 -->
-        <script src="../assets/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap 3.3.7 -->
-        <script src="../assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="../dist/js/adminlte.min.js"></script>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-        <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                                    <p>New phone +1(800)555-1234</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                                    <p>nora@example.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                                    <p>Execution time 5 seconds</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Custom Template Design
+                                    <span class="label label-danger pull-right">70%</span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Update Resume
+                                    <span class="label label-success pull-right">95%</span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Laravel Integration
+                                    <span class="label label-warning pull-right">50%</span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">
+                                    Back End Framework
+                                    <span class="label label-primary pull-right">68%</span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Allow mail redirect
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+
+                            <p>
+                                Other sets of options are available
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Expose author name in posts
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+
+                            <p>
+                                Allow the user to show his name in blog posts
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Show me as online
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Turn off notifications
+                                <input type="checkbox" class="pull-right">
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Delete chat history
+                                <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 3 -->
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- <script src="../../dist/js/demo.js"></script> -->
+    <!-- page script -->
+    <script>
+        $(function() {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+
+    <?php include('paginaDinamica/opcaoLayout.php'); ?>
 </body>
 
 </html>
