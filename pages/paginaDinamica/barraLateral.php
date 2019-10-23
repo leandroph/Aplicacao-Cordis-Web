@@ -79,17 +79,17 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <!-- <li class="header">Acesso ADMIN</li> -->
                     <!-- Optionally, you can add icons to the links -->
+                    <li class="<?php echo ($pag == 'painel' ? 'active' : ''); ?>">
+                        <a href="painel.php?pag=painel">
+                            <i class="fa fa-home"></i> <span>Painel</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
                     <?php if ($usuario->getPerm_Administrador() == 1) { ?>
                         <li class="header">ADMINISTRADOR</li>
-                        <li class="<?php echo ($pag == 'painel' ? 'active' : ''); ?>">
-                            <a href="painel.php?pag=painel">
-                                <i class="fa fa-home"></i> <span>Painel</span>
-                                <span class="pull-right-container">
-                                </span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="cadastro_medico.php">
+                        <li class="<?php echo ($pag == 'cad_med' ? 'active' : ''); ?>">
+                            <a href="cadastro_medico.php?pag=cad_med">
                                 <i class="fa fa-user-md"></i> <span>Cadastro Médico</span>
                                 <span class="pull-right-container">
                                 </span>
