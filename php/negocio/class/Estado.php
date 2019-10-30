@@ -9,58 +9,82 @@ class Estado
 
 	/**Geters and Seters */
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
+	/**
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
-	
+
 	/**
-     * Get the value of id
-     */ 
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */
+	/**
+	 * setNome
+	 *
+	 * @param  mixed $nome
+	 *
+	 * @return void
+	 */
 	public function setNome($nome){
 		$this->nome = $nome;
 	}
-	
+
 	/**
-     * Get the value of nome
-     */ 
+	 * getNome
+	 *
+	 * @return void
+	 */
 	public function getNome(){
 		return $this->nome;
 	}
 
-    /**
-     * Set the value of uf
-     *
-     * @return  self
-     */
+	/**
+	 * setUf
+	 *
+	 * @param  mixed $uf
+	 *
+	 * @return void
+	 */
 	public function setUf($uf){
 		$this->uf = $uf;
 	}
-	
+
 	/**
-     * Get the value of uf
-     */ 
+	 * getUf
+	 *
+	 * @return void
+	 */
 	public function getUf(){
 		return $this->uf;
 	}
 
+	/**
+	 * setId_Pais
+	 *
+	 * @param  mixed $id_pais
+	 *
+	 * @return void
+	 */
 	public function setId_Pais($id_pais){
 		$this->id_pais = $id_pais;
 	}
 	
+	/**
+	 * getId_Pais
+	 *
+	 * @return void
+	 */
 	public function getId_Pais(){
 		return $this->id_pais;
 	}

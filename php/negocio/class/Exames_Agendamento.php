@@ -6,35 +6,43 @@ class Exames_Agendamento
     private $id_exame;
 	
 	/**Geters and Seters */
-    
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
+
+	/**
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
 
-	 /**
-     * Get the value of id
-     */ 
+	/**
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
-    /**
-     * Set the value of Nome
-     *
-     * @return  self
-     */ 
+	/**
+	 * setId_Exame
+	 *
+	 * @param  mixed $id_exame
+	 *
+	 * @return void
+	 */
 	public function setId_Exame($id_exame){
 		$this->id_exame = $id_exame;
 	}
-	
-	 /**
-     * Get the value of Nome
-     */ 
+
+	/**
+	 * getId_Exame
+	 *
+	 * @return void
+	 */
 	public function getId_Exame(){
 		return $this->id_exame;
 	}

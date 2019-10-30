@@ -1,7 +1,6 @@
 <?php
 class Agendamento
 {
-    /**Declaração de propriedade */
     private id,
 	private data_hora_inicio,
 	private data_hora_fim,
@@ -21,19 +20,25 @@ class Agendamento
     
     /**Geters and Seters */
 	
+    
     /**
-     * Get the value of id
-     */ 
+     * getId
+     *
+     * @return void
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    
     /**
-     * Set the value of id
+     * setId
      *
-     * @return  self
-     */ 
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -41,19 +46,25 @@ class Agendamento
         return $this;
     }
 
+    
     /**
-     * Get the value of dataHoraInicio
-     */ 
+     * getDataHoraInicio
+     *
+     * @return void
+     */
     public function getDataHoraInicio()
     {
         return $this->dataHoraInicio;
     }
 
+     
     /**
-     * Set the value of dataHoraInicio
+     * setDataHoraInicio
      *
-     * @return  self
-     */ 
+     * @param  mixed $dataHoraInicio
+     *
+     * @return void
+     */
     public function setDataHoraInicio($dataHoraInicio)
     {
         $this->dataHoraInicio = $dataHoraInicio;
@@ -61,19 +72,24 @@ class Agendamento
         return $this;
     }
 
+    
     /**
-     * Get the value of dataHoraFim
-     */ 
+     * getDataHoraFim
+     *
+     * @return void
+     */
     public function getDataHoraFim()
     {
         return $this->dataHoraFim;
     }
 
     /**
-     * Set the value of dataHoraFim
+     * setDataHoraFim
      *
-     * @return  self
-     */ 
+     * @param  mixed $dataHoraFim
+     *
+     * @return void
+     */
     public function setDataHoraFim($dataHoraFim)
     {
         $this->dataHoraFim = $dataHoraFim;
@@ -82,18 +98,22 @@ class Agendamento
     }
 
     /**
-     * Get the value of valor
-     */ 
+     * getValor
+     *
+     * @return void
+     */
     public function getValor()
     {
         return $this->valor;
     }
-
+ 
     /**
-     * Set the value of valor
+     * setValor
      *
-     * @return  self
-     */ 
+     * @param  mixed $valor
+     *
+     * @return void
+     */
     public function setValor($valor)
     {
         $this->valor = $valor;
@@ -102,18 +122,22 @@ class Agendamento
     }
 
     /**
-     * Get the value of observacao
-     */ 
+     * getObservacao
+     *
+     * @return void
+     */
     public function getObservacao()
     {
         return $this->observacao;
     }
-
+ 
     /**
-     * Set the value of observacao
+     * setObservacao
      *
-     * @return  self
-     */ 
+     * @param  mixed $observacao
+     *
+     * @return void
+     */
     public function setObservacao($observacao)
     {
         $this->observacao = $observacao;
@@ -121,11 +145,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getSenha
+     *
+     * @return void
+     */
     public function getSenha()
     {
         return $this->senha;
     }
 
+    /**
+     * setSenha
+     *
+     * @param  mixed $senha
+     *
+     * @return void
+     */
     public function setSenha($senha)
     {
         $this->senha = $senha;
@@ -134,38 +170,46 @@ class Agendamento
     }
 
     /**
-     * Get the value of status
-     */ 
+     * getCod_Status
+     *
+     * @return void
+     */
     public function getCod_Status()
     {
         return $this->cod_status;
     }
-
+ 
     /**
-     * Set the value of status
+     * setCod_Status
      *
-     * @return  self
-     */ 
+     * @param  mixed $cod_status
+     *
+     * @return void
+     */
     public function setCod_Status($cod_status)
     {
         $this->cod_status = $cod_status;
 
         return $this;
     }
-
+ 
     /**
-     * Get the value of pago
-     */ 
+     * getPago
+     *
+     * @return void
+     */
     public function getPago()
     {
         return $this->pago;
     }
 
     /**
-     * Set the value of pago
+     * setPago
      *
-     * @return  self
-     */ 
+     * @param  mixed $pago
+     *
+     * @return void
+     */
     public function setPago($pago)
     {
         $this->pago = $pago;
@@ -173,11 +217,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getIdNotEmail
+     *
+     * @return void
+     */
     public function getIdNotEmail()
     {
         return $this->id_not_email;
     }
 
+    /**
+     * setIdNotEmail
+     *
+     * @param  mixed $id_not_email
+     *
+     * @return void
+     */
     public function setIdNotEmail($id_not_email)
     {
         $this->id_not_email = $id_not_email;
@@ -185,11 +241,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getIdNotSms
+     *
+     * @return void
+     */
     public function getIdNotSms()
     {
         return $this->id_not_sms;
     }
 
+    /**
+     * setIdNotSms
+     *
+     * @param  mixed $id_not_sms
+     *
+     * @return void
+     */
     public function setIdNotSms($id_not_sms)
     {
         $this->id_not_sms = $id_not_sms;
@@ -197,11 +265,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getId_Convenio
+     *
+     * @return void
+     */
     public function getId_Convenio()
     {
         return $this->id_convenio;
     }
 
+    /**
+     * setId_Convenio
+     *
+     * @param  mixed $id_convenio
+     *
+     * @return void
+     */
     public function setId_Convenio($id_convenio)
     {
         $this->id_convenio = $id_convenio;
@@ -209,11 +289,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getId_Exames_Agendamento
+     *
+     * @return void
+     */
     public function getId_Exames_Agendamento()
     {
         return $this->id_exames_agendamento;
     }
 
+    /**
+     * setId_Exames_Agendamento
+     *
+     * @param  mixed $id_exames_agendamento
+     *
+     * @return void
+     */
     public function setId_Exames_Agendamento($id_exames_agendamento)
     {
         $this->id_exames_agendamento = $id_exames_agendamento;
@@ -221,11 +313,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getId_Secretaria
+     *
+     * @return void
+     */
     public function getId_Secretaria()
     {
         return $this->id_secretaria;
     }
 
+    /**
+     * setId_Secretaria
+     *
+     * @param  mixed $id_secretaria
+     *
+     * @return void
+     */
     public function setId_Secretaria($id_secretaria)
     {
         $this->id_secretaria = $id_secretaria;
@@ -233,11 +337,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getId_Paciente
+     *
+     * @return void
+     */
     public function getId_Paciente()
     {
         return $this->id_paciente;
     }
 
+    /**
+     * setId_Paciente
+     *
+     * @param  mixed $id_paciente
+     *
+     * @return void
+     */
     public function setId_Paciente($id_paciente)
     {
         $this->id_paciente = $id_paciente;
@@ -245,11 +361,23 @@ class Agendamento
         return $this;
     }
 
+    /**
+     * getId_Medico
+     *
+     * @return void
+     */
     public function getId_Medico() 
     {
         return $this->id_medico;
     }
 
+    /**
+     * setId_Medico
+     *
+     * @param  mixed $id_medico
+     *
+     * @return void
+     */
     public function setId_Medico($id_medico)
     {
         $this->id_medico = $id_medico;

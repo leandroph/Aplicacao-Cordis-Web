@@ -6,20 +6,23 @@ class Contato
      private $telefone;
      private $tipo;
 	
-
      /**
-      * Get the value of id_usuario
-      */ 
+      * getId_usuario
+      *
+      * @return void
+      */
      public function getId_usuario()
      {
           return $this->id_usuario;
      }
 
      /**
-      * Set the value of id_usuario
+      * setId_usuario
       *
-      * @return  self
-      */ 
+      * @param  mixed $id_usuario
+      *
+      * @return void
+      */
      public function setId_usuario($id_usuario)
      {
           $this->id_usuario = $id_usuario;
@@ -28,18 +31,22 @@ class Contato
      }
 
      /**
-      * Get the value of telefone
-      */ 
+      * getTelefone
+      *
+      * @return void
+      */
      public function getTelefone()
      {
           return $this->telefone;
      }
 
      /**
-      * Set the value of telefone
+      * setTelefone
       *
-      * @return  self
-      */ 
+      * @param  mixed $telefone
+      *
+      * @return void
+      */
      public function setTelefone($telefone)
      {
           $this->telefone = $telefone;
@@ -48,18 +55,22 @@ class Contato
      }
 
      /**
-      * Get the value of tipo
-      */ 
+      * getTipo
+      *
+      * @return void
+      */
      public function getTipo()
      {
           return $this->tipo;
      }
 
      /**
-      * Set the value of tipo
+      * setTipo
       *
-      * @return  self
-      */ 
+      * @param  mixed $tipo
+      *
+      * @return void
+      */
      public function setTipo($tipo)
      {
           $this->tipo = $tipo;

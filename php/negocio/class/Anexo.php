@@ -9,18 +9,22 @@ class Anexo
     /**Geters and Seters */
     
     /**
-     * Get the value of id
-     */ 
+     * getId
+     *
+     * @return void
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
+     * setId
      *
-     * @return  self
-     */ 
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -28,19 +32,24 @@ class Anexo
         return $this;
     }
 
+
     /**
-     * Get the value of nome
-     */ 
+     * getNome
+     *
+     * @return void
+     */
     public function getNome()
     {
         return $this->nome;
     }
 
     /**
-     * Set the value of nome
+     * setNome
      *
-     * @return  self
-     */ 
+     * @param  mixed $nome
+     *
+     * @return void
+     */
     public function setNome($nome)
     {
         $this->nome = $nome;
@@ -49,18 +58,22 @@ class Anexo
     }
 
     /**
-     * Get the value of caminho
-     */ 
+     * getCaminho
+     *
+     * @return void
+     */
     public function getCaminho()
     {
         return $this->caminho;
     }
 
     /**
-     * Set the value of caminho
+     * setCaminho
      *
-     * @return  self
-     */ 
+     * @param  mixed $caminho
+     *
+     * @return void
+     */
     public function setCaminho($caminho)
     {
         $this->caminho = $caminho;

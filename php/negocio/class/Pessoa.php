@@ -15,9 +15,11 @@ class Pessoa
      /**Geters and Seters */
 
      /**
-      * Set the value of id
+      * setId_Usuario
       *
-      * @return  self
+      * @param  mixed $id_usuario
+      *
+      * @return void
       */
      public function setId_Usuario($id_usuario)
      {
@@ -25,7 +27,9 @@ class Pessoa
      }
 
      /**
-      * Get the value of id
+      * getId_Usuario
+      *
+      * @return void
       */
      public function getId_Usuario()
      {
@@ -33,9 +37,11 @@ class Pessoa
      }
 
      /**
-      * Set the value of nome
+      * setNome
       *
-      * @return  self
+      * @param  mixed $nome
+      *
+      * @return void
       */
      public function setNome($nome)
      {
@@ -43,98 +49,163 @@ class Pessoa
      }
 
      /**
-      * Get the value of nome
+      * getNome
+      *
+      * @return void
       */
      public function getNome()
      {
           return $this->nome;
      }
 
+     /**
+      * setSobrenome
+      *
+      * @param  mixed $sobrenome
+      *
+      * @return void
+      */
      public function setSobrenome($sobrenome)
      {
           $this->sobrenome = $sobrenome;
      }
 
      /**
-      * Get the value of nome
+      * getSobrenome
+      *
+      * @return void
       */
      public function getSobrenome()
      {
           return $this->sobrenome;
      }
 
+     /**
+      * setCPF
+      *
+      * @param  mixed $cpf
+      *
+      * @return void
+      */
      public function setCPF($cpf)
      {
           $this->cpf = $cpf;
      }
 
      /**
-      * Get the value of nome
+      * getCPF
+      *
+      * @return void
       */
      public function getCPF()
      {
           return $this->cpf;
      }
 
+     /**
+      * setRG
+      *
+      * @param  mixed $rg
+      *
+      * @return void
+      */
      public function setRG($rg)
      {
           $this->rg = $rg;
      }
 
      /**
-      * Get the value of nome
+      * getRG
+      *
+      * @return void
       */
      public function getRG()
      {
           return $this->rg;
      }
 
+     /**
+      * setSexo
+      *
+      * @param  mixed $sexo
+      *
+      * @return void
+      */
      public function setSexo($sexo)
      {
           $this->sexo = $sexo;
      }
 
      /**
-      * Get the value of nome
+      * getSexo
+      *
+      * @return void
       */
      public function getSexo()
      {
           return $this->sexo;
      }
 
+     /**
+      * setNascimento
+      *
+      * @param  mixed $nascimento
+      *
+      * @return void
+      */
      public function setNascimento($nascimento)
      {
           $this->nascimento = $nascimento;
      }
 
      /**
-      * Get the value of nome
+      * getNascimento
+      *
+      * @return void
       */
      public function getNascimento()
      {
           return $this->nascimento;
      }
 
+     /**
+      * setEmail
+      *
+      * @param  mixed $email
+      *
+      * @return void
+      */
      public function setEmail($email)
      {
           $this->email = $email;
      }
 
      /**
-      * Get the value of nome
+      * getEmail
+      *
+      * @return void
       */
      public function getEmail()
      {
           return $this->email;
      }
 
+     /**
+      * setId_Endereco
+      *
+      * @param  mixed $id_endereco
+      *
+      * @return void
+      */
      public function setId_Endereco($id_endereco)
      {
           $this->id_endereco = $id_endereco;
      }
 
      /**
-      * Get the value of nome
+      * getId_Endereco
+      *
+      * @return void
       */
      public function getId_Endereco()
      {
