@@ -4,11 +4,25 @@ class EstadoDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $estado
+     *
+     * @return void
+     */
     public function inserir(Estado $estado) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_estados (id, nome, uf, id_pais) VALUES (:id, :nome, :uf, :id_pais)');
@@ -26,6 +40,13 @@ class EstadoDAO {
     }
     
     // retorna apenas uma estado
+    /**
+     * getEstado
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getEstado($id)
     {
         $sql = $this->pdo->prepare('select * from tb_estados where id = :id');
@@ -53,6 +74,11 @@ class EstadoDAO {
     }
     
     // retorna uma lista de estados
+    /**
+     * getEstado
+     *
+     * @return void
+     */
     public function getEstado()
     {
         $sql = $this->pdo->prepare('select * from tb_estados');
@@ -82,6 +108,13 @@ class EstadoDAO {
         return $lista;
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $estado
+     *
+     * @return void
+     */
     public function alterar(Estado $estado)
     {
         $sql = $this->pdo->prepare('update tb_estados set id= :id, nome = :nome, uf = :uf, id_pais = :id_pais');
@@ -99,6 +132,13 @@ class EstadoDAO {
         }
     }
     
+    /**
+     * excluir
+     *
+     * @param  mixed $estado
+     *
+     * @return void
+     */
     public function excluir(Estado $ estado)
     {
         $sql = $this->pdo->prepare('delete from tb_estados where id = :id');

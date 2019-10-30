@@ -5,12 +5,26 @@ class PreferenciaDAO
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $preferencia
+     *
+     * @return void
+     */
     public function inserir(Preferencia $preferencia)
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_preferencias (id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtor_administrador) VALUES (:id_usuario, :pref_skin, :filtro_paciente, :filtro_medico, :filtro_secretaria, :filtor_administrador)');
@@ -29,6 +43,13 @@ class PreferenciaDAO
         }
     }
 
+    /**
+     * excluir
+     *
+     * @param  mixed $preferencia
+     *
+     * @return void
+     */
     public function excluir(Preferencia $preferencia)
     {
         $sql = $this->pdf->prepare('delet from tb_preferencias where id_usuario = :id');
@@ -42,6 +63,13 @@ class PreferenciaDAO
         }
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $preferencia
+     *
+     * @return void
+     */
     public function alterar(Preferencia $preferencia) {
         $sql = $this->pdo->prepare('update tb_preferencias set id_usuario = :id_usuario, pref_skin = :pref_skin, filtro_paciente = :filtro_paciente, filtro_medico = :filtro_medico, filtro_secretaria = :filtro_secretaria, filtro_administrador = :filtro_administrador where id_usuario = :id_usuario');
         $sql->bindValue(':id_usuario', $preferencia->getId_Usuario());
@@ -60,6 +88,13 @@ class PreferenciaDAO
         }
     }
 
+    /**
+     * getPreferencia
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getPreferencia($id)
     {
         $sql = $this->pdo->prepare('select * from tb_preferencias where id_usuario = :id');
@@ -88,6 +123,11 @@ class PreferenciaDAO
         }
     }
 
+    /**
+     * getPreferencias
+     *
+     * @return void
+     */
     public function getPreferencias()
     {
         $sql = $this->pdf->prepare('select * from tb_preferencias');

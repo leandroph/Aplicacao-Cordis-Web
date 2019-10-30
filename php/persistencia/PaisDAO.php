@@ -4,11 +4,25 @@ class PaisDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $pais
+     *
+     * @return void
+     */
     public function inserir(Pais $pais) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_paises (id, nome, sigla) VALUES (:id, :nome, :sigla)');
@@ -27,6 +41,13 @@ class PaisDAO {
     
     
     // retorna apenas uma pais
+    /**
+     * getPais
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getPais($id)
     {
         $sql = $this->pdo->prepare('select * from tb_paises where id = :id');
@@ -53,6 +74,11 @@ class PaisDAO {
     }
     
     // retorna uma lista de paises
+    /**
+     * getPaises
+     *
+     * @return void
+     */
     public function getPaises()
     {
         $sql = $this->pdo->prepare('select * from tb_paises');
@@ -80,6 +106,13 @@ class PaisDAO {
         return $lista;
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $pais
+     *
+     * @return void
+     */
     public function alterar(Pais $pais)
     {
         $sql = $this->pdo->prepare('update tb_paises set id= :id, nome = :nome, sigla = :sigla');
@@ -97,6 +130,13 @@ class PaisDAO {
 
     }
     
+    /**
+     * excluir
+     *
+     * @param  mixed $pais
+     *
+     * @return void
+     */
     public function excluir(Pais $pais)
     {
         $sql = $this->pdo->prepare('delete from tb_paises where id = :id');

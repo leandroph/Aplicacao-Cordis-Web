@@ -5,12 +5,26 @@ class UsuarioDAO
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $usuario
+     *
+     * @return void
+     */
     public function inserir(Usuario $usuario)
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_usuarios (id, login, senha, ativo, perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES (:id, :login, :ativo, :perm_paciente, :perm_medico, :perm_secretaria, :perm_administrador)');
@@ -32,6 +46,13 @@ class UsuarioDAO
     }
 
 
+    /**
+     * excluir
+     *
+     * @param  mixed $usuario
+     *
+     * @return void
+     */
     public function excluir(Usuario $usuario)
     {
         $sql = $this->pdo->prepare('delete from tb_usuarios where id = :id');
@@ -45,6 +66,13 @@ class UsuarioDAO
         }
     }
 
+    /**
+     * getUsuario
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getUsuario($id)
     {
         $sql = $this->pdo->prepare('select * from tb_usuarios where id = :id');
@@ -75,6 +103,11 @@ class UsuarioDAO
         }
     }
 
+    /**
+     * getUsuarios
+     *
+     * @return void
+     */
     public function getUsuarios()
     {
         $sql = $this->pdo->prepare('select * from tb_usuarios');

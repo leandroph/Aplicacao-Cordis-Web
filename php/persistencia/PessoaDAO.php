@@ -4,11 +4,25 @@ class PessoaDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $pessoa
+     *
+     * @return void
+     */
     public function inserir(Pessoa $pessoa) {
         $sql = $this->pdo->prepare('INSERT INTO tb_pessoas (id_usuario, nome, sobrenome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES (:id_usuario, :nome, :sobrenome, :cpf, :rg, :sexo, :nascimento, :email, :id_endereco)');
         $sql->bindValue(':id_usuario', $pessoa->getId_Usuario());
@@ -30,6 +44,13 @@ class PessoaDAO {
     }
 
 
+    /**
+     * excluir
+     *
+     * @param  mixed $pessoa
+     *
+     * @return void
+     */
     public function excluir(Pessoa $pessoa) {
         $sql = $this->pdo->prepare('delete from tb_pessoa where id_usuario = :id');
         $sql->bindValue(':id', $pessoa->getId_Usuario());
@@ -42,6 +63,13 @@ class PessoaDAO {
         }
     }
 
+    /**
+     * getPessoa
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getPessoa($id) {
         $sql = $this->pdo->prepare('select * from tb_pessoas where id_usuario = :id');
         $sql->bindValue(':id', $id);
@@ -72,6 +100,11 @@ class PessoaDAO {
         }
     }
     
+    /**
+     * getPessoas
+     *
+     * @return void
+     */
     public function getPessoas() {
         $sql = $this->pdo->prepare('select * from tb_pessoas');
         $sql->execute();
@@ -105,5 +138,3 @@ class PessoaDAO {
     }
 
 }
-
-?>

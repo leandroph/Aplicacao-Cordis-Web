@@ -4,11 +4,25 @@ class ClienteDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $pessoa
+     *
+     * @return void
+     */
     public function inserir(Pessoa $pessoa) {
         $sql = $this->pdo->prepare('INSERT INTO cliente (id_pessoa) VALUES (:id_pessoa)');
         $sql->bindValue(':id_pessoa', $pessoa->getId());
@@ -22,6 +36,13 @@ class ClienteDAO {
     }
 
 
+    /**
+     * excluir
+     *
+     * @param  mixed $pessoa
+     *
+     * @return void
+     */
     public function excluir(Pessoa $pessoa) {
         $sql = $this->pdo->prepare('delete from cliente where id_pessoa = :id_pessoa');
         $sql->bindValue(':id_pessoa', $pessoa->getId());
@@ -34,6 +55,13 @@ class ClienteDAO {
         }
     }
 
+    /**
+     * getCliente
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getCliente($id) {
         $sql = $this->pdo->prepare('select * from cliente where id_pessoa = :id_pessoa');
         $sql->bindValue(':id_pessoa', $id);
@@ -57,6 +85,11 @@ class ClienteDAO {
         }
     }
     
+    /**
+     * getClientes
+     *
+     * @return void
+     */
     public function getClientes() {
         $sql = $this->pdo->prepare('select * from cliente');
         $sql->execute();

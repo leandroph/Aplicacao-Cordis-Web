@@ -4,11 +4,25 @@ class MedicoDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $medico
+     *
+     * @return void
+     */
     public function inserir(Medico $medico) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_medicos (id_usuario, cor_agenda, crm, especialidade, ativo) VALUES (:id_usuario, :cor_agenda, :crm, :especialidade, :ativo)');
@@ -27,6 +41,13 @@ class MedicoDAO {
     }
    
     // retorna apenas um medico
+    /**
+     * getMedico
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getMedico($id)
     {
         $sql = $this->pdo->prepare('select * from tb_medicos where id_usuario = :id_usuario');
@@ -55,6 +76,11 @@ class MedicoDAO {
     }
 
     // retorna uma lista de medicos
+    /**
+     * getMedicos
+     *
+     * @return void
+     */
     public function getMedicos()
     {
         $sql = $this->pdo->prepare('select * from tb_medicos');
@@ -84,6 +110,13 @@ class MedicoDAO {
         return $lista;
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $medico
+     *
+     * @return void
+     */
     public function alterar(Medico $medico)
     {
         $sql = $this->pdo->prepare('update tb_medicos set id_usuario = :id_usuario, cor_agenda = :cor_agenda, crm = :crm, especialidade = :especialidade, ativo = :ativo');
@@ -103,6 +136,13 @@ class MedicoDAO {
 
     }
     
+    /**
+     * delete
+     *
+     * @param  mixed $medico
+     *
+     * @return void
+     */
     public function delete(Medico $medico)
     {
         $sql = $this->pdo->prepare('delete from tb_medicos where id_usuario = :id_usuario');

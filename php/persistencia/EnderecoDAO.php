@@ -4,11 +4,25 @@ class EnderecoDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $endereco
+     *
+     * @return void
+     */
     public function inserir(Endereco $endereco) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_enderecos (id, logradouro, bairro, numero, cep, complemento, id_cidade) VALUES (:id, :logradouro, :bairro, :numero, :cep, :complemento, :id_cidade)');
@@ -30,6 +44,13 @@ class EnderecoDAO {
     $id;
 	
     // retorna apenas um endereço
+    /**
+     * getEndereco
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getEndereco($id)
     {
         $sql = $this->pdo->prepare('select * from tb_enderecos where id = :id');
@@ -60,6 +81,11 @@ class EnderecoDAO {
     }
 
     // retorna uma lista de endereços
+    /**
+     * getEnderecos
+     *
+     * @return void
+     */
     public function getEnderecos()
     {
         $sql = $this->pdo->prepare('select * from tb_enderecos');
@@ -91,6 +117,13 @@ class EnderecoDAO {
         return $lista;
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $endereco
+     *
+     * @return void
+     */
     public function alterar(Endereco $endereco)
     {
         $sql = $this->pdo->prepare('update tb_enderecos set id = :id, logradouro = :logradouro, bairro = :bairro, numero = :numero, cep = :cep, complemento = :complemento, id_cidade = :id_cidade');
@@ -111,6 +144,13 @@ class EnderecoDAO {
         }
     }
     
+    /**
+     * excluir
+     *
+     * @param  mixed $endereco
+     *
+     * @return void
+     */
     public function excluir(Endereco $endereco)
     {
         $sql = $this->pdo->prepare('delete from tb_enderecos where id = :id');

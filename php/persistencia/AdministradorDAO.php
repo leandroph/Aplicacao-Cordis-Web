@@ -4,11 +4,25 @@ class AdministradorDAO {
 
 private $pdo;
 
+/**
+ * __construct
+ *
+ * @param  mixed $pdo
+ *
+ * @return void
+ */
 public function __construct($pdo) {
     $this->pdo = $pdo;
     $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 }
 
+/**
+ * inserir
+ *
+ * @param  mixed $administrador
+ *
+ * @return void
+ */
 public function inserir(Administrador $administrador) {
     $sql = $this->pdo->prepare('INSERT INTO tb_administradores (id_usuario) VALUES (:id_usuario)');
     $sql->bindValues(':id_usuario', $pessoa->getId_Usuario());
@@ -19,6 +33,13 @@ public function inserir(Administrador $administrador) {
     }
 }
 
+/**
+ * excluir
+ *
+ * @param  mixed $administrador
+ *
+ * @return void
+ */
 public function excluir(Administrador $administrador) {
     $sql = $this->pdo->prepare('delete from tb_administrador where id_usuario = :id');
     $sql->bindValue(':id', $administrador->getId_Usuario());
@@ -31,6 +52,13 @@ public function excluir(Administrador $administrador) {
     }
 }
 
+/**
+ * getAdministrador
+ *
+ * @param  mixed $id
+ *
+ * @return void
+ */
 public function getAdministrador($id) {
     $sql = $this->prepare('select * from tb_administradores where id_usuario = :id');
     $sql->bindValues(':id', $id);
@@ -52,6 +80,11 @@ public function getAdministrador($id) {
 
 }
 
+/**
+ * getAdministradores
+ *
+ * @return void
+ */
 public function getAdministradores() {
     $sql = $this->prepare('select * from tb_administradores');
     $sql->execute();
@@ -72,6 +105,7 @@ public function getAdministradores() {
     }
     
     return $lista;
+}
 }
 
 ?>

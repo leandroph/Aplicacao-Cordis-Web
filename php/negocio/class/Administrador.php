@@ -3,10 +3,7 @@ class Administrador
 {
     
 	private $id_usuario;
-	
-	
 
-	
 	/**
 	 * getId_usuario
 	 *

@@ -4,11 +4,25 @@ class AgendamentoDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $agendamento
+     *
+     * @return void
+     */
     public function inserir(Agendamento $agendamento) {
         $sql = $this->pdo->prepare('INSERT INTO tb_agendamentos (id, data_hora_inicio, data_hora_fim, valor, observacao, senha, cod_status, pago, id_not_email, id_not_sms, id_convenio, id_exames_agendament, id_secretaria, id_paciente, id_medico) VALUES (:id, :data_hora_inicio, :data_hora_fim, :valor, :observacao, :senha, :cod_status, :pago, :id_not_email, :id_not_sms, :id_convenio, :id_exames_agendament, :id_secretaria, :id_paciente, :id_medico)');
         $sql->bindValues(':id', $agendamento->getId());
@@ -34,6 +48,13 @@ class AgendamentoDAO {
         }
     }
     
+    /**
+     * excluir
+     *
+     * @param  mixed $agendamento
+     *
+     * @return void
+     */
     public function excluir(Agendamento $agendamento) {
         $sql = $this->pdo->prepare('delete from tb_administrador where id_usuario = :id');
         $sql->bindValue(':id', $agendamento->getId());
@@ -47,6 +68,13 @@ class AgendamentoDAO {
         }
     }
     
+    /**
+     * getAgendamento
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getAgendamento($id) {
         $sql = $this->prepare('select * from tb_agendamento where id = :id');
         $sql->bindValues(':id', $id);
@@ -83,6 +111,11 @@ class AgendamentoDAO {
     
     }
     
+    /**
+     * getAgendamento
+     *
+     * @return void
+     */
     public function getAgendamento() {
         $sql = $this->prepare('select * from tb_agendamentos');
         $sql->execute();

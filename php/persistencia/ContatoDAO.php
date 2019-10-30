@@ -4,11 +4,25 @@ class ContatoDAO {
 
     private $pdo;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $pdo
+     *
+     * @return void
+     */
     public function __construct($pdo) {
         $this->pdo = $pdo;
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $contato
+     *
+     * @return void
+     */
     public function inserir(Contato $contato) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_contatos (id_usuario, telefone, tipo) VALUES (:id_usuario, :telefone, :tipo)');
@@ -26,6 +40,13 @@ class ContatoDAO {
     }
     
     // retorna apenas um contato
+    /**
+     * getContato
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getContato($id)
     {
         $sql = $this->pdo->prepare('select * from tb_contatos where id = :id');
@@ -52,6 +73,11 @@ class ContatoDAO {
     }
 
     // retorna uma lista de contatos
+    /**
+     * getContatos
+     *
+     * @return void
+     */
     public function getContatos()
     {
         $sql = $this->pdo->prepare('select * from tb_contatos');
@@ -79,6 +105,13 @@ class ContatoDAO {
         return $lista;
     }
 
+    /**
+     * alterar
+     *
+     * @param  mixed $contato
+     *
+     * @return void
+     */
     public function alterar(Contato $contato)
     {
         $sql = $this->pdo->prepare('update tb_contatos set id_usuario = :id_usuario, telefone = :telefone, tipo = :tipo');
@@ -96,6 +129,13 @@ class ContatoDAO {
 
     }
     
+    /**
+     * excluir
+     *
+     * @param  mixed $cidade
+     *
+     * @return void
+     */
     public function excluir(Contato $contato)
     {
         $sql = $this->pdo->prepare('delete from tb_contatos where id = :id');
