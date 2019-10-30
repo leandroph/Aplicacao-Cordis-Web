@@ -4,49 +4,66 @@ class Cidade
     /**Declaração de propriedade */
 	private $id;
 	private $nome;
-	private $id_estado
+	private $id_estado;
 	
 	/**Geters and Seters */
-
+ 
 	/**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
-	
+
 	/**
-     * Get the value of nome
-     */ 
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
 	/**
-     * Set the value of nome
-     *
-     * @return  self
-     */ 
+	 * setNome
+	 *
+	 * @param  mixed $nome
+	 *
+	 * @return void
+	 */
 	public function setNome($nome){
 		$this->nome = $nome;
 	}
-	
+ 
 	/**
-     * Get the value of nome
-     */ 
+	 * getNome
+	 *
+	 * @return void
+	 */
 	public function getNome(){
 		return $this->nome;
 	}
 
+	/**
+	 * setId_Estado
+	 *
+	 * @param  mixed $id_estado
+	 *
+	 * @return void
+	 */
 	public function setId_Estado($id_estado){
 		$this->id_estado = $id_estado;
 	}
 	
 	/**
-     * Get the value of nome
-     */ 
+	 * getId_Estado
+	 *
+	 * @return void
+	 */
 	public function getId_Estado(){
 		return $this->id_estado;
 	}

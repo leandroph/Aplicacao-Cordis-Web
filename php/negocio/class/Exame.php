@@ -10,82 +10,102 @@ class Exame
 	
 	/**Geters and Seters */
     
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
+	/**
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
 
-	 /**
-     * Get the value of id
-     */ 
+	/**
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
-    /**
-     * Set the value of Nome
-     *
-     * @return  self
-     */ 
+	/**
+	 * setNome
+	 *
+	 * @param  mixed $nome
+	 *
+	 * @return void
+	 */
 	public function setNome($nome){
 		$this->nome = $nome;
 	}
-	
-	 /**
-     * Get the value of Nome
-     */ 
+
+	/**
+	 * getNome
+	 *
+	 * @return void
+	 */
 	public function getNome(){
 		return $this->nome;
 	}
 
     /**
-     * Set the value of Valor
+     * setValor
      *
-     * @return  self
-     */ 
+     * @param  mixed $valor
+     *
+     * @return void
+     */
     public function setValor($valor){
 		$this->valor = $valor;
 	}
-	
-	 /**
-     * Get the value of Valor
-     */ 
+
+	/**
+	 * getValor
+	 *
+	 * @return void
+	 */
 	public function getValor(){
 		return $this->valor;
 	}
 
     /**
-     * Set the value of Especial
+     * setEspecial
      *
-     * @return  self
-     */ 
+     * @param  mixed $especial
+     *
+     * @return void
+     */
     public function setEspecial($especial){
 		$this->especial = $especial;
 	}
-	
+
 	/**
-     * Get the value of Especial
-     */ 
+	 * getEspecial
+	 *
+	 * @return void
+	 */
 	public function getEspecial(){
 		return $this->especial;
 	}
 
-    /**
-     * Set the value of Ativo
-     *
-     * @return  self
-     */ 
+	/**
+	 * setAtivo
+	 *
+	 * @param  mixed $ativo
+	 *
+	 * @return void
+	 */
 	public function setAtivo($ativo){
 		$this->ativo = $ativo;
 	}
-	
-	 /**
-     * Get the value of Ativo
-     */ 
+
+	/**
+	 * getAtivo
+	 *
+	 * @return void
+	 */
 	public function getAtivo(){
 		return $this->ativo;
     }

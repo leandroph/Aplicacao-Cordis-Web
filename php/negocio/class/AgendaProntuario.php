@@ -9,38 +9,46 @@ class AgendaProntuario
 	/**Geters and Seters */
 
     /**
-     * Get the value of id
-     */ 
+     * getId
+     *
+     * @return void
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
+     * setId
      *
-     * @return  self
-     */ 
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
 
         return $this;
     }
-
+ 
     /**
-     * Get the value of idProntuario
-     */ 
+     * getIdProntuario
+     *
+     * @return void
+     */
     public function getIdProntuario()
     {
         return $this->idProntuario;
     }
 
     /**
-     * Set the value of idProntuario
+     * setIdProntuario
      *
-     * @return  self
-     */ 
+     * @param  mixed $idProntuario
+     *
+     * @return void
+     */
     public function setIdProntuario($idProntuario)
     {
         $this->idProntuario = $idProntuario;
@@ -49,18 +57,22 @@ class AgendaProntuario
     }
 
     /**
-     * Get the value of idAgendamento
-     */ 
+     * getIdAgendamento
+     *
+     * @return void
+     */
     public function getIdAgendamento()
     {
         return $this->idAgendamento;
     }
 
     /**
-     * Set the value of idAgendamento
+     * setIdAgendamento
      *
-     * @return  self
-     */ 
+     * @param  mixed $idAgendamento
+     *
+     * @return void
+     */
     public function setIdAgendamento($idAgendamento)
     {
         $this->idAgendamento = $idAgendamento;

@@ -1,24 +1,29 @@
 <?php
 class Administrador
 {
-    /**Declaração de propriedade */
+    
 	private $id_usuario;
 	
 	
 
+	
 	/**
-	 * Get the value of id_usuario
-	 */ 
+	 * getId_usuario
+	 *
+	 * @return void
+	 */
 	public function getId_usuario()
 	{
 		return $this->id_usuario;
 	}
 
 	/**
-	 * Set the value of id_usuario
+	 * setId_usuario
 	 *
-	 * @return  self
-	 */ 
+	 * @param  mixed $id_usuario
+	 *
+	 * @return void
+	 */
 	public function setId_usuario($id_usuario)
 	{
 		$this->id_usuario = $id_usuario;

@@ -10,82 +10,102 @@ class Convenio
 	
 	/**Geters and Seters */
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
+	/**
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
-	
+
 	/**
-     * Get the value of id
-     */ 
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */
+	/**
+	 * setNome
+	 *
+	 * @param  mixed $nome
+	 *
+	 * @return void
+	 */
 	public function setNome($nome){
 		$this->nome = $nome;
 	}
-	
+
 	/**
-     * Get the value of nome
-     */ 
+	 * getNome
+	 *
+	 * @return void
+	 */
 	public function getNome(){
 		return $this->nome;
 	}
 
-    /**
-     * Set the value of ativo
-     *
-     * @return  self
-     */
+	/**
+	 * setAtivo
+	 *
+	 * @param  mixed $ativo
+	 *
+	 * @return void
+	 */
 	public function setAtivo($ativo){
 		$this->ativo = $ativo;
 	}
-	
+
 	/**
-     * Get the value of ativo
-     */ 
+	 * getAtivo
+	 *
+	 * @return void
+	 */
 	public function getAtivo(){
 		return $this->ativo;
     }
 
     /**
-     * Set the value of nome empresa
+     * setNomeEmpresa
      *
-     * @return  self
+     * @param  mixed $nomeEmpresa
+     *
+     * @return void
      */
     public function setNomeEmpresa($nomeEmpresa){
 		$this->nomeEmpresa = $nomeEmpresa;
 	}
-	
+
 	/**
-     * Get the value of nome empresa
-     */ 
+	 * getNomeEmpresa
+	 *
+	 * @return void
+	 */
 	public function getNomeEmpresa(){
 		return $this->nomeEmpresa;
     }
 
     /**
-     * Set the value of Cnpj empresa
+     * setCnpjEmpresa
      *
-     * @return  self
+     * @param  mixed $cnpjEmpresa
+     *
+     * @return void
      */
     public function setCnpjEmpresa($cnpjEmpresa){
 		$this->cnpjEmpresa = $cnpjEmpresa;
 	}
-	
+
 	/**
-     * Get the value of Cnpj empresa
-     */ 
+	 * getCnpjEmpresa
+	 *
+	 * @return void
+	 */
 	public function getCnpjEmpresa(){
 		return $this->cnpjEmpresa;
 	}
