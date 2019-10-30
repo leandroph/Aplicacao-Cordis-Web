@@ -18,7 +18,8 @@ class Agendamento
 	private id_paciente,
 	private id_medico,
 	
-	/**Geters and Seters */
+    
+    /**Geters and Seters */
 	
     /**
      * Get the value of id
