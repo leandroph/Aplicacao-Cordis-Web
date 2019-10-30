@@ -14,7 +14,7 @@ class ContatoDAO {
         $sql = $this->pdo->prepare('INSERT INTO tb_contatos (id_usuario, telefone, tipo) VALUES (:id_usuario, :telefone, :tipo)');
         $sql->bindValue(':id_usuario', $contato->getId_usuario());
         $sql->bindValue(':telefone', $contato->getTelefone());
-        $sql->bindValue(':tipo', $cidade->getTipo());
+        $sql->bindValue(':tipo', $contato->getTipo());
         if ($sql->execute()) {
             // Query succeeded.
             return true;
@@ -96,7 +96,7 @@ class ContatoDAO {
 
     }
     
-    public function excluir(Cidade $cidade)
+    public function excluir(Contato $contato)
     {
         $sql = $this->pdo->prepare('delete from tb_contatos where id = :id');
         $sql->bindValue(':id', $contato->getId_usuario());
