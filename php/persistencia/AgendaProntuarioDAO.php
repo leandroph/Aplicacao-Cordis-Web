@@ -16,6 +16,13 @@ class AgendaProntuarioDAO {
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
+    /**
+     * inserir
+     *
+     * @param  mixed $agendaprontuario
+     *
+     * @return void
+     */
     public function inserir(AgendaProntuario $agendaprontuario) {
         $sql = $this->pdo->prepare('INSERT INTO tb_agends_pronts (id, id_prontuario, id_agendamento) VALUES (:id, :id_agendamento, :id_agendamento)');
         $sql->bindValues(':id', $agendaprontuario->getId());]
@@ -28,6 +35,13 @@ class AgendaProntuarioDAO {
         }
     }
 
+    /**
+     * excluir
+     *
+     * @param  mixed $agendaprontuario
+     *
+     * @return void
+     */
     public function excluir(AgendaProntuario $agendaprontuario) {
         $sql = $this->pdo->prepare('delete from tb_agends_pronts where id = :id');
         $sql->bindValue(':id', $agendaprontuario->getIds());
@@ -40,6 +54,13 @@ class AgendaProntuarioDAO {
         }
     }
 
+    /**
+     * getAgendaProntuario
+     *
+     * @param  mixed $id
+     *
+     * @return void
+     */
     public function getAgendaProntuario($id) {
         $sql = $this->prepare('select * from tb_agends_pronts where id = :id');
         $sql->bindValues(':id', $id);
@@ -64,6 +85,11 @@ class AgendaProntuarioDAO {
     
     }
     
+    /**
+     * getAgendaProntuarios
+     *
+     * @return void
+     */
     public function getAgendaProntuarios() {
         $sql = $this->prepare('select * from tb_agends_pronts');
         $sql->execute();
