@@ -3,55 +3,67 @@ class Secretaria
 {
     /**Declaração de propriedade */
 	private $id_usuario;
-     private $cor_agenda
+     private $cor_agenda;
      private $ativo;
 
-	/**Geters and Seters */
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
+     /**Geters and Seters */
+     
+	/**
+	 * setId_Usuario
+	 *
+	 * @param  mixed $id_usuario
+	 *
+	 * @return void
+	 */
 	public function setId_Usuario($id_usuario){
 		$this->id_usuario = $id_usuario;
 	}
-	
+
 	/**
-     * Get the value of id
-     */ 
+	 * getId_Usuario
+	 *
+	 * @return void
+	 */
 	public function getId_Usuario(){
 		return $this->id_usuario;
 	}
 
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */
+	/**
+	 * setCor_Agenda
+	 *
+	 * @param  mixed $cor_agenda
+	 *
+	 * @return void
+	 */
 	public function setCor_Agenda($cor_agenda){
 		$this->cor_agenda = $cor_agenda;
 	}
-	
+
 	/**
-     * Get the value of nome
-     */ 
+	 * getCor_Agenda
+	 *
+	 * @return void
+	 */
 	public function getCor_Agenda(){
 		return $this->cor_agenda;
 	}
 
-    /**
-     * Set the value of cpf
-     *
-     * @return  self
-     */
+	/**
+	 * setAtivo
+	 *
+	 * @param  mixed $ativo
+	 *
+	 * @return void
+	 */
 	public function setAtivo($ativo){
 		$this->ativo = $ativo;
 	}
-	
+
 	/**
-     * Get the value of cpf
-     */ 
+	 * getAtivo
+	 *
+	 * @return void
+	 */
 	public function getAtivo(){
 		return $this->ativo;
     }

@@ -1,59 +1,76 @@
 <?php
 class Prontuario
 {
-    /**Declaração de propriedade */
-	private $id;
-	private $nome;
-    private $ativo;
-	
-	/**Geters and Seters */
+     /**Declaração de propriedade */
+     private $id;
+     private $nome;
+     private $ativo;
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-	public function setId($id){
-		$this->id = $id;
-	}
-	
-	/**
-     * Get the value of id
-     */ 
-	public function getId(){
-		return $this->id;
-	}
+     /**Geters and Seters */
 
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */
-	public function setNome($nome){
-		$this->nome = $nome;
-	}
-	
-	/**
-     * Get the value of nome
-     */ 
-	public function getNome(){
-		return $this->nome;
-	}
+     /**
+      * setId
+      *
+      * @param  mixed $id
+      *
+      * @return void
+      */
+     public function setId($id)
+     {
+          $this->id = $id;
+     }
 
-    /**
-     * Set the value of ativo
-     *
-     * @return  self
-     */
-	public function setAtivo($ativo){
-		$this->ativo = $ativo;
-	}
-	
-	/**
-     * Get the value of ativo
-     */ 
-	public function getAtivo(){
-		return $this->ativo;
-    }
-    
+     /**
+      * getId
+      *
+      * @return void
+      */
+     public function getId()
+     {
+          return $this->id;
+     }
+
+     /**
+      * setNome
+      *
+      * @param  mixed $nome
+      *
+      * @return void
+      */
+     public function setNome($nome)
+     {
+          $this->nome = $nome;
+     }
+
+     /**
+      * getNome
+      *
+      * @return void
+      */
+     public function getNome()
+     {
+          return $this->nome;
+     }
+
+     /**
+      * setAtivo
+      *
+      * @param  mixed $ativo
+      *
+      * @return void
+      */
+     public function setAtivo($ativo)
+     {
+          $this->ativo = $ativo;
+     }
+
+     /**
+      * getAtivo
+      *
+      * @return void
+      */
+     public function getAtivo()
+     {
+          return $this->ativo;
+     }
 }

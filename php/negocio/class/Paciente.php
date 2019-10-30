@@ -2,23 +2,29 @@
 class Paciente
 {
     /**Declaração de propriedade */
-	private $id_usuario;
-	
-	/**Geters and Seters */
+    private $id_usuario;
+
+    /**Geters and Seters */
 
     /**
-     * Set the value of id
+     * setId_Usuario
      *
-     * @return  self
+     * @param  mixed $id_usuario
+     *
+     * @return void
      */
-    public function setId_Usuario($id_usuario){
-     $this->id_usuario = $id_usuario;
-     }
+    public function setId_Usuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
+    }
 
-/**
-* Get the value of id
-*/ 
-     public function getId_Usuario(){
-     return $this->id_usuario;
-     }
+    /**
+     * getId_Usuario
+     *
+     * @return void
+     */
+    public function getId_Usuario()
+    {
+        return $this->id_usuario;
+    }
 }

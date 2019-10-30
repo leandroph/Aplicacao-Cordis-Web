@@ -12,115 +12,143 @@ class Endereco
 	
 	/**Geters and Seters */
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
+	/**
+	 * setId
+	 *
+	 * @param  mixed $id
+	 *
+	 * @return void
+	 */
 	public function setId($id){
 		$this->id = $id;
 	}
 	
 	/**
-	 * Get the value of id
-	 */ 
+	 * getId
+	 *
+	 * @return void
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
-    /**
-     * Set the value of Logradouro
-     *
-     * @return  self
-     */ 
+	/**
+	 * setLogradouro
+	 *
+	 * @param  mixed $logradouro
+	 *
+	 * @return void
+	 */
 	public function setLogradouro($logradouro){
 		$this->logradouro = $logradouro;
 	}
-	
+
 	/**
-	 * Get the value of Logradouro
-	 */ 
+	 * getLogradouro
+	 *
+	 * @return void
+	 */
 	public function getLogradouro(){
 		return $this->logradouro;
 	}
-
-    /**
-     * Set the value of Bairro
-     *
-     * @return  self
-     */ 
+ 
+	/**
+	 * setBairro
+	 *
+	 * @param  mixed $bairro
+	 *
+	 * @return void
+	 */
 	public function setBairro($bairro){
 		$this->bairro = $bairro;
 	}
-	
+
 	/**
-	 * Get the value of Bairro
-	 */ 
+	 * getBairro
+	 *
+	 * @return void
+	 */
 	public function getBairro(){
 		return $this->bairro;
     }
-    
+
     /**
-     * Set the value of Número
+     * setNumero
      *
-     * @return  self
-     */ 
+     * @param  mixed $numero
+     *
+     * @return void
+     */
     public function setNumero($numero){
 		$this->numero = $numero;
 	}
-	
+ 
 	/**
-	 * Get the value of Número
-	 */ 
+	 * getNumero
+	 *
+	 * @return void
+	 */
 	public function getNumero(){
 		return $this->numero;
 	}
-    
+
     /**
-     * Set the value of CEP
+     * setCep
      *
-     * @return  self
-     */ 
+     * @param  mixed $cep
+     *
+     * @return void
+     */
     public function setCep($cep){
 		$this->cep = $cep;
 	}
-	
+
 	/**
-	 * Get the value of CEP
-	 */ 
+	 * getCep
+	 *
+	 * @return void
+	 */
 	public function getCep(){
 		return $this->cep;
     }
+
     /**
-     * Set the value of Complemento
+     * setComplemento
      *
-     * @return  self
-     */ 
+     * @param  mixed $complemento
+     *
+     * @return void
+     */
     public function setComplemento($complemento){
 		$this->complemento = $complemento;
 	}
-	
+
 	/**
-	 * Get the value of Complemento
-	 */ 
+	 * getComplemento
+	 *
+	 * @return void
+	 */
 	public function getComplemento(){
 		return $this->complemento;
 	}
 
-
 	/**
-	 * Get the value of id_cidade
-	 */ 
+	 * getId_cidade
+	 *
+	 * @return void
+	 */
 	public function getId_cidade()
 	{
 		return $this->id_cidade;
 	}
-
+ 
 	/**
-	 * Set the value of id_cidade
+	 * setId_cidade
 	 *
-	 * @return  self
-	 */ 
+	 * @param  mixed $id_cidade
+	 *
+	 * @return void
+	 */
 	public function setId_cidade($id_cidade)
 	{
 		$this->id_cidade = $id_cidade;

@@ -12,139 +12,170 @@ class Notificacao
     private $emailCopia;
 	
 	/**Geters and Seters */
-    
-    /**
-     * Get the value of emailRemetente
-     */ 
+
+	/**
+	 * getEmailRemetente
+	 *
+	 * @return void
+	 */
 	public function getEmailRemetente(){
 		return $this->emailRemetente;
 	}
 
-    /**
-     * Set the value of emailRemetente
-     *
-     * @return  self
-     */
+	/**
+	 * setEmailRemetente
+	 *
+	 * @param  mixed $emailRemetente
+	 *
+	 * @return void
+	 */
 	public function setEmailRemetente($emailRemetente){
 		$this->emailRemetente = $emailRemetente;
 		return $this;
     }
     
-
     /**
-     * Get the value of servidor
-     */ 
+     * getServidor
+     *
+     * @return void
+     */
     public function getServidor(){
         return $this->servidor;
     }
 
     /**
-     * Set the value of servidor
+     * setServidor
      *
-     * @return  self
-     */ 
+     * @param  mixed $servidor
+     *
+     * @return void
+     */
     public function setServidor($servidor){
         $this->servidor = $servidor;
         return $this;
     }
 
     /**
-     * Get the value of porta
-     */ 
+     * getPorta
+     *
+     * @return void
+     */
     public function getPorta(){
         return $this->porta;
     }
 
     /**
-     * Set the value of porta
+     * setPorta
      *
-     * @return  self
-     */ 
+     * @param  mixed $porta
+     *
+     * @return void
+     */
     public function setPorta($porta){
         $this->porta = $porta;
         return $this;
     }
-
+ 
     /**
-     * Get the value of usuario
-     */ 
+     * getUsuario
+     *
+     * @return void
+     */
     public function getUsuario(){
         return $this->usuario;
     }
 
     /**
-     * Set the value of usuario
+     * setUsuario
      *
-     * @return  self
-     */ 
+     * @param  mixed $usuario
+     *
+     * @return void
+     */
     public function setUsuario($usuario){
         $this->usuario = $usuario;
         return $this;
     }
 
     /**
-     * Get the value of senha
-     */ 
+     * getSenha
+     *
+     * @return void
+     */
     public function getSenha(){
         return $this->senha;
     }
 
     /**
-     * Set the value of senha
+     * setSenha
      *
-     * @return  self
-     */ 
+     * @param  mixed $senha
+     *
+     * @return void
+     */
     public function setSenha($senha){
         $this->senha = $senha;
         return $this;
     }
 
     /**
-     * Get the value of criptografia
-     */ 
+     * getCriptografia
+     *
+     * @return void
+     */
     public function getCriptografia(){
         return $this->criptografia;
     }
 
     /**
-     * Set the value of criptografia
+     * setCriptografia
      *
-     * @return  self
-     */ 
+     * @param  mixed $criptografia
+     *
+     * @return void
+     */
     public function setCriptografia($criptografia){
         $this->criptografia = $criptografia;
         return $this;
     }
 
     /**
-     * Get the value of emailOculto
-     */ 
+     * getEmailOculto
+     *
+     * @return void
+     */
     public function getEmailOculto(){
         return $this->emailOculto;
     }
 
     /**
-     * Set the value of emailOculto
+     * setEmailOculto
      *
-     * @return  self
-     */ 
+     * @param  mixed $emailOculto
+     *
+     * @return void
+     */
     public function setEmailOculto($emailOculto){
         $this->emailOculto = $emailOculto;
         return $this;
     }
 
     /**
-     * Get the value of emailCopia
-     */ 
+     * getEmailCopia
+     *
+     * @return void
+     */
     public function getEmailCopia(){
         return $this->emailCopia;
     }
 
     /**
-     * Set the value of emailCopia
+     * setEmailCopia
      *
-     * @return  self
-     */ 
+     * @param  mixed $emailCopia
+     *
+     * @return void
+     */
     public function setEmailCopia($emailCopia){
         $this->emailCopia = $emailCopia;
         return $this;

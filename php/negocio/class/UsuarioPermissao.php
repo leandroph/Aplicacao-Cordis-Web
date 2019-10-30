@@ -1,59 +1,76 @@
 <?php
 class UsuarioPermissao
 {
-    /**Declaração de propriedade */
-	private $id;
-	private $id_usuario;
-    private $id_permissao;
-	
-	/**Geters and Seters */
+     /**Declaração de propriedade */
+     private $id;
+     private $id_usuario;
+     private $id_permissao;
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */
-	public function setId($id){
-		$this->id = $id;
-	}
-	
-	/**
-     * Get the value of id
-     */ 
-	public function getId(){
-		return $this->id;
-	}
+     /**Geters and Seters */
 
-    /**
-     * Set the value of id usuario
-     *
-     * @return  self
-     */
-	public function setIdUsuario($id_usuario){
-		$this->id_usuario = $id_usuario;
-	}
-	
-	/**
-     * Get the value of id usuario
-     */ 
-	public function getIdUsuario(){
-		return $this->id_usuario;
-	}
+     /**
+      * setId
+      *
+      * @param  mixed $id
+      *
+      * @return void
+      */
+     public function setId($id)
+     {
+          $this->id = $id;
+     }
 
-    /**
-     * Set the value of id permissao
-     *
-     * @return  self
-     */
-	public function setIdPermissao($id_permissao){
-		$this->id_permissao = $id_permissao;
-	}
-	
-	/**
-     * Get the value of id permissao
-     */ 
-	public function getIdPermissao(){
-		return $this->id_permissao;
-    }
+     /**
+      * getId
+      *
+      * @return void
+      */
+     public function getId()
+     {
+          return $this->id;
+     }
 
+     /**
+      * setIdUsuario
+      *
+      * @param  mixed $id_usuario
+      *
+      * @return void
+      */
+     public function setIdUsuario($id_usuario)
+     {
+          $this->id_usuario = $id_usuario;
+     }
+
+     /**
+      * getIdUsuario
+      *
+      * @return void
+      */
+     public function getIdUsuario()
+     {
+          return $this->id_usuario;
+     }
+
+     /**
+      * setIdPermissao
+      *
+      * @param  mixed $id_permissao
+      *
+      * @return void
+      */
+     public function setIdPermissao($id_permissao)
+     {
+          $this->id_permissao = $id_permissao;
+     }
+
+     /**
+      * getIdPermissao
+      *
+      * @return void
+      */
+     public function getIdPermissao()
+     {
+          return $this->id_permissao;
+     }
 }

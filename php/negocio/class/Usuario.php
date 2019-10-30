@@ -14,9 +14,11 @@ class Usuario
      /**Geters and Seters */
 
      /**
-      * Set the value of id
+      * setId
       *
-      * @return  self
+      * @param  mixed $id
+      *
+      * @return void
       */
      public function setId($id)
      {
@@ -24,7 +26,9 @@ class Usuario
      }
 
      /**
-      * Get the value of id
+      * getId
+      *
+      * @return void
       */
      public function getId()
      {
@@ -32,9 +36,11 @@ class Usuario
      }
 
      /**
-      * Set the value of login
+      * setLogin
       *
-      * @return  self
+      * @param  mixed $login
+      *
+      * @return void
       */
      public function setLogin($login)
      {
@@ -42,7 +48,9 @@ class Usuario
      }
 
      /**
-      * Get the value of login
+      * getLogin
+      *
+      * @return void
       */
      public function getLogin()
      {
@@ -50,9 +58,11 @@ class Usuario
      }
 
      /**
-      * Set the value of senha
+      * setSenha
       *
-      * @return  self
+      * @param  mixed $senha
+      *
+      * @return void
       */
      public function setSenha($senha)
      {
@@ -60,7 +70,9 @@ class Usuario
      }
 
      /**
-      * Get the value of senha
+      * getSenha
+      *
+      * @return void
       */
      public function getSenha()
      {
@@ -68,9 +80,11 @@ class Usuario
      }
 
      /**
-      * Set the value of ativo
+      * setAtivo
       *
-      * @return  self
+      * @param  mixed $ativo
+      *
+      * @return void
       */
      public function setAtivo($ativo)
      {
@@ -78,7 +92,9 @@ class Usuario
      }
 
      /**
-      * Get the value of ativo
+      * getAtivo
+      *
+      * @return void
       */
      public function getAtivo()
      {
@@ -86,9 +102,11 @@ class Usuario
      }
 
      /**
-      * Set the value of ativo
+      * setPerm_Paciente
       *
-      * @return  self
+      * @param  mixed $perm_paciente
+      *
+      * @return void
       */
      public function setPerm_Paciente($perm_paciente)
      {
@@ -96,7 +114,9 @@ class Usuario
      }
 
      /**
-      * Get the value of ativo
+      * getPerm_Paciente
+      *
+      * @return void
       */
      public function getPerm_Paciente()
      {
@@ -104,9 +124,11 @@ class Usuario
      }
 
      /**
-      * Set the value of ativo
+      * setPerm_Medico
       *
-      * @return  self
+      * @param  mixed $perm_medico
+      *
+      * @return void
       */
      public function setPerm_Medico($perm_medico)
      {
@@ -114,7 +136,9 @@ class Usuario
      }
 
      /**
-      * Get the value of ativo
+      * getPerm_Medico
+      *
+      * @return void
       */
      public function getPerm_Medico()
      {
@@ -122,9 +146,11 @@ class Usuario
      }
 
      /**
-      * Set the value of ativo
+      * setPerm_Administrador
       *
-      * @return  self
+      * @param  mixed $perm_administrador
+      *
+      * @return void
       */
      public function setPerm_Administrador($perm_administrador)
      {
@@ -132,18 +158,21 @@ class Usuario
      }
 
      /**
-      * Get the value of ativo
+      * getPerm_Administrador
+      *
+      * @return void
       */
      public function getPerm_Administrador()
      {
           return $this->perm_administrador;
      }
 
-
      /**
-      * Set the value of ativo
+      * setPerm_Secretaria
       *
-      * @return  self
+      * @param  mixed $perm_secretaria
+      *
+      * @return void
       */
      public function setPerm_Secretaria($perm_secretaria)
      {
@@ -151,7 +180,9 @@ class Usuario
      }
 
      /**
-      * Get the value of ativo
+      * getPerm_Secretaria
+      *
+      * @return void
       */
      public function getPerm_Secretaria()
      {
