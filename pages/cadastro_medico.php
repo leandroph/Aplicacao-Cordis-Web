@@ -1,5 +1,8 @@
 <?php session_start();
 
+/**
+ * Recupera id do usuário logado no sistema
+ */
 $id_usuario_logado = $_SESSION["id_usuario"];
 
 include('../php/negocio/class/Pessoa.php');
