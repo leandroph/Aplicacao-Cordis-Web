@@ -115,6 +115,23 @@ class ClienteDAO {
         return $lista;
     }
 
+    public function alterar(Cliente $cliente){
+        $sql = $this->pdo->prepare('update tb_anexos set id = :id, nome = :nome, caminho = :caminho, id_agendamento = :id_agendamento');
+        $sql->bindValue(':id', $anexo->getId());
+        $sql->bindValue(':nome', $anexo->getNome());
+        $sql->bindValue(':caminho', $anexo->getCaminho());
+        $sql->bindValue(':id+usuario', $anexo->getId_Usuario());
+        
+        if ($sql->execute()) {
+            // Query succeeded.
+            return true;
+        } else {
+            // Query failed.
+            echo $sql->errorCode();
+        }
+
+    }
+
 }
 
 ?>

@@ -115,9 +115,9 @@ class SecretariaDAO {
     public function alterar(Secretaria $secretaria)
     {
         $sql = $this->pdo->prepare('update tb_secretarias set id_usuario = :id_usuario, cor_agenda = :cor_agenda, ativo = :ativo');
-        $sql->bindValue(':id_usuario', $preferencia->getId_Usuario());
-        $sql->bindValue(':cor_agenda', $preferencia->getCor_Agenda());
-        $sql->bindValue(':ativo', $preferencia->getAtivo());
+        $sql->bindValue(':id_usuario', $secretaria->getId_Usuario());
+        $sql->bindValue(':cor_agenda', $secretaria->getCor_Agenda());
+        $sql->bindValue(':ativo', $secretaria->getAtivo());
         
         if ($sql->execute()) {
             // Query succeeded.

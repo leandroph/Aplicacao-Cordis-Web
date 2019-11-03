@@ -9,7 +9,7 @@ class Administrador
 	 *
 	 * @return void
 	 */
-	public function getId_usuario()
+	public function getId_Usuario()
 	{
 		return $this->id_usuario;
 	}
@@ -21,7 +21,7 @@ class Administrador
 	 *
 	 * @return void
 	 */
-	public function setId_usuario($id_usuario)
+	public function setId_Usuario($id_usuario)
 	{
 		$this->id_usuario = $id_usuario;
 

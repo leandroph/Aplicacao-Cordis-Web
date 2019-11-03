@@ -106,6 +106,21 @@ public function getAdministradores() {
     
     return $lista;
 }
+
+public function alterar(Administrador $administrador){
+    $sql = $this->pdo->prepare('update tb_administradores set id_usuario = :id_usuario');
+    $sql->bindValue(':id_usuario', $anexo->getId_Usuario());
+    
+    if ($sql->execute()) {
+        // Query succeeded.
+        return true;
+    } else {
+        // Query failed.
+        echo $sql->errorCode();
+    }
+
+}
+
 }
 
 ?>

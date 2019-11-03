@@ -113,7 +113,22 @@ class AgendaProntuarioDAO {
         
         return $lista;
     }
-    
+
+    public function alterar(AgendaProntuario $anexo){
+        $sql = $this->pdo->prepare('update tb_agends_pronts set id = :id, id_prontuario = :id_prontuario, id_agendamento = :ig_agendamento');
+        $sql->bindValues(':id', $agendaprontuario->getId());]
+        $sql->bindValues(':id_prontuario', $agendaprontuario->getIdProntuario());
+        $sql->bindValues(':id_agendamento', $agendaprontuario->getIdAgendamento());
+        
+        if ($sql->execute()) {
+            // Query succeeded.
+            return true;
+        } else {
+            // Query failed.
+            echo $sql->errorCode();
+        }
+
+    }    
 
 }
 
