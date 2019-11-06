@@ -26,10 +26,10 @@ class EstadoDAO {
     public function inserir(Estado $estado) 
     {
         $sql = $this->pdo->prepare('INSERT INTO tb_estados (id, nome, uf, id_pais) VALUES (:id, :nome, :uf, :id_pais)');
-        $sql->bindValue(':id', $pais->getId());
-        $sql->bindValue(':nome', $pais->getNome());
-        $sql->bindValue(':sigla', $pais->getUf());
-        $sql->bindValue(':id_pais', $pais->getId_Pais());
+        $sql->bindValue(':id', $estado->getId());
+        $sql->bindValue(':nome', $estado->getNome());
+        $sql->bindValue(':sigla', $estado->getUf());
+        $sql->bindValue(':id_pais', $estado->getId_Pais());
         if ($sql->execute()) {
             // Query succeeded.
             return true;
@@ -79,7 +79,7 @@ class EstadoDAO {
      *
      * @return void
      */
-    public function getEstado()
+    public function getEstados()
     {
         $sql = $this->pdo->prepare('select * from tb_estados');
         $sql->execute();
@@ -139,7 +139,7 @@ class EstadoDAO {
      *
      * @return void
      */
-    public function excluir(Estado $ estado)
+    public function excluir(Estado $estado)
     {
         $sql = $this->pdo->prepare('delete from tb_estados where id = :id');
         $sql->bindValue(':id', $estado->getId());
