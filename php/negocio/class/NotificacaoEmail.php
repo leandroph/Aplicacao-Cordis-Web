@@ -2,6 +2,7 @@
 class Notificacao
 {
     /**Declaração de propriedade */
+    private $idNotificacao;
 	private $emailRemetente;
     private $servidor;
     private $porta;
@@ -12,6 +13,27 @@ class Notificacao
     private $emailCopia;
 	
 	/**Geters and Seters */
+
+/**
+	 * getIdNotificacao
+	 *
+	 * @return void
+	 */
+	public function getIdNotificacao(){
+		return $this->idNotificacao;
+	}
+
+	/**
+	 * setIdNotificacao
+	 *
+	 * @param  mixed $idNotificacao
+	 *
+	 * @return void
+	 */
+	public function setIdNotificacao($idNotificacao){
+		$this->idNotificacao = $idNotificacao;
+		return $this;
+    }
 
 	/**
 	 * getEmailRemetente

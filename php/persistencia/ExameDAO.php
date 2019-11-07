@@ -117,7 +117,7 @@ class ExameDAO {
      */
     public function alterar(Exame $exame)
     {
-        $sql = $this->pdo->prepare('update tb_examess set id= :id, nome = :nome, valor= :valor, especial = :especial, ativo = :ativo');
+        $sql = $this->pdo->prepare('update tb_exames set id= :id, nome = :nome, valor= :valor, especial = :especial, ativo = :ativo');
         $sql->bindValue(':id', $exame->getId());
         $sql->bindValue(':nome', $exame->getNome());
         $sql->bindValue(':valor', $exame->getValor());
