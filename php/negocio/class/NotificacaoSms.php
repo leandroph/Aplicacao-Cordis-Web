@@ -1,30 +1,47 @@
 <?php
-class Notificacao
+class NotificacaoSms
 {
 	/**Declaração de propriedade */
-	private $apiKey;
-
-	/**Geters and Seters */
+	private $id_notificacao;
+	private $api_key;
 
 	/**
-	 * setApiKey
-	 *
-	 * @param  mixed $apiKey
-	 *
-	 * @return void
-	 */
-	public function setApiKey($apiKey)
+	 * Get the value of api_key
+	 */ 
+	public function getApi_Key()
 	{
-		$this->apiKey = $apiKey;
+		return $this->api_key;
 	}
 
 	/**
-	 * getApiKey
+	 * Set the value of api_key
 	 *
-	 * @return void
-	 */
-	public function getApiKey()
+	 * @return  self
+	 */ 
+	public function setApi_Key($api_key)
 	{
-		return $this->apiKey;
+		$this->api_key = $api_key;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of id_notificacao
+	 */ 
+	public function getId_Notificacao()
+	{
+		return $this->id_notificacao;
+	}
+
+	/**
+	 * Set the value of id_notificacao
+	 *
+	 * @return  self
+	 */ 
+	public function setId_Notificacao($id_notificacao)
+	{
+		$this->id_notificacao = $id_notificacao;
+
+		return $this;
 	}
 }
