@@ -60,6 +60,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -110,9 +113,51 @@ desired effect
                 <div class="box box-primary">
                     <div class="box-header text-left">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-success">Cadastrar Médico</button>
-                            <button type="button" class="btn btn-warning btn-flat">Alterar Médico</button>
+
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cadastro">Cadastrar Médico</button>
+                            <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#alterar">Alterar Médico</button>
                             <button type="button" class="btn btn-danger ">Excluir Médico</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="cadastro" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Adicionar</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="alterar" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Modal Alterar</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -121,18 +166,18 @@ desired effect
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th style='width: 3%;'>#</th>
                                     <th>Nome</th>
                                     <th>Especialidade</th>
                                     <th>CRM</th>
                                     <th>Contato</th>
-                                    <th>E-mail</th> 
+                                    <th>E-mail</th>
                                     <!-- <th>CSS grade</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="bg">
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="radio"></td>
                                     <td>Daniel Buchholz</td>
                                     <td>Clinico Geral</td>
                                     <td>123165468498</td>
@@ -148,7 +193,7 @@ desired effect
                                     <th>Especialidade</th>
                                     <th>CRM</th>
                                     <th>Contato</th>
-                                    <th>E-mail</th> 
+                                    <th>E-mail</th>
                                     <!-- <th>Engine version</th>
                                     <th>CSS grade</th> -->
                                 </tr>
@@ -388,14 +433,14 @@ desired effect
     <!-- page script -->
     <script>
         $(function() {
-            $('#example1').DataTable()
-            $('#example2').DataTable({
+            $('#example1').DataTable({
+                'responsive': true,
                 'paging': true,
-                'lengthChange': false,
-                'searching': false,
+                'searching': true,
                 'ordering': true,
                 'info': true,
-                'autoWidth': false
+                'autoWidth': false,
+                'select': true
             })
         })
     </script>
