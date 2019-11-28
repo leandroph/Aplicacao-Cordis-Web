@@ -12,6 +12,8 @@ include('../php/negocio/class/Usuario.php');
 include('../php/persistencia/UsuarioDAO.php');
 include('../php/negocio/class/Preferencia.php');
 include('../php/persistencia/PreferenciaDAO.php');
+include('../php/persistencia/MedicoDAO.php');
+include('../php/negocio/class/Medico.php');
 
 //Conexão com Banco de dados
 $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
@@ -23,6 +25,9 @@ $usuario = $usuarioDAO->getUsuario($id_usuario_logado);
 
 $preferenciaDAO = new PreferenciaDAO($conexao);
 $preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
+
+$medicoDAO = new MedicoDAO($conexao);
+$medicoListaCadastro = $medicoDAO->getMedicos();
 
 $pag = $_GET['pag'];
 
@@ -92,8 +97,8 @@ $pag = $_GET['pag'];
                             <div class="box-header">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Cadastrar Médico</button>
-                                    <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#alterar">Alterar Médico</button>
-                                    <button type="button" class="btn btn-danger" onclick="atualizar()" >Excluir Médico</button>
+                                    <!-- <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#alterar">Alterar Médico</button>
+                                    <button type="button" class="btn btn-danger" onclick="atualizar()">Excluir Médico</button> -->
                                 </div>
                             </div>
                             <!-- /.box-header -->
@@ -101,29 +106,50 @@ $pag = $_GET['pag'];
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
+                                            <th style="width: 10px;">#</th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>CRM</th>
+                                            <th style="width: 120px;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr id="frase">
-                                            <!-- <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                            <td>X</td> -->
-                                        </tr>
+
+
+                                        <?php
+                                        $count = 0;
+
+                                        if ($medicoListaCadastro != null) {
+                                            foreach ($medicoListaCadastro as $medicoLista) {
+                                                $pessoaLista = $pessoaDAO->getPessoa($medicoLista->getId_Usuario());
+                                                $count = $count + 1;
+                                                echo "<tr>";
+                                                echo "<td>" . $count . "</td>";
+                                                echo "<td>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
+                                                echo "<td>" . $pessoaLista->getEmail() . "</td>";
+                                                echo "<td>" . $medicoLista->getCRM() . "</td>";
+                                                echo "<td><a class='btn btn-info' role='button' data-toggle='modal' data-target='#my_modal' data-id='" . $pessoaLista->getId_Usuario() . "' data-nome='" . $pessoaLista->getNome() . "'>Editar</a>
+                                                    <a class='btn btn-danger' href='deleta.php?id=" . $pessoaLista->getId_Usuario() . "'>Deletar</a><br/></td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<p>Nenhum usuário cadastrado</p>";
+                                        }
+                                        ?>
+                                        <!-- <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td> -->
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>CSS grade</th>
+                                            <th style="width: 10px;">#</th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>CRM</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -368,27 +394,95 @@ $pag = $_GET['pag'];
 
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
 
-    <div class="modal fade" id="modal-default">
+    <div class="modal" id="my_modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Default Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Editar Cadastro</h4>
                 </div>
                 <div class="modal-body">
-                    <p>One fine body&hellip;</p>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>Nome</b></span>
+                                    <input type="text" class="form-control" name="nome" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>Sobrenome</b></span>
+                                    <input type="text" class="form-control" name="nome" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><b>Nome</b></span>
+                            <input type="text" class="form-control" name="nome" placeholder="">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><b>Sobrenome</b></span>
+                            <input type="text" class="form-control" name="nome" placeholder="">
+                        </div>
+                        <span class="input-group-addon"><b>CPF</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>RG</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Sexo</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Nascimento</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Email</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+
+                        <span class="input-group-addon"><b>Logradouro</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Bairro</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Número</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>CEP</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Complemento</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Cidade</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Estado</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Nome</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+
+                        <span class="input-group-addon"><b>CRM</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Especialidade</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <span class="input-group-addon"><b>Agenda</b></span>
+                        <input type="text" class="form-control" name="nome" placeholder="">
+                    </div>
+                    <!-- <input type="text" class="form-control" name="nome" value="" /> -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Salvar Alterações</button>
                 </div>
             </div>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
+
+    <script type="text/javascript">
+        $('#my_modal').on('show.bs.modal', function(e) {
+            var bookId = $(e.relatedTarget).data('nome');
+            $(e.currentTarget).find('input[name="nome"]').val(bookId);
+
+            this.$("#audi").click(function() {
+    $("#myModal #selection option[value='file']").attr('selected', 'selected');
+});
+        });
+    </script>
+
 
     <script>
         $(function() {
@@ -399,9 +493,9 @@ $pag = $_GET['pag'];
     <script>
         // Função responsável por atualizar as frases
         function atualizar() {
-                // Exibindo frase
-                // $('#frase').html('<i>' + frase.texto + '</i><br />' + frase.autor);
-                $('#frase').html('<td>' +  "<?php echo $pessoa->getSobrenome(); ?>" + '</td>');
+            // Exibindo frase
+            // $('#frase').html('<i>' + frase.texto + '</i><br />' + frase.autor);
+            $('#frase').html('<td>' + "<?php echo $pessoa->getSobrenome(); ?>" + '</td>');
         }
 
         // Definindo intervalo que a função será chamada
