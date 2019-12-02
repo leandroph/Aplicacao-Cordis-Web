@@ -16,6 +16,12 @@ include('../php/persistencia/MedicoDAO.php');
 include('../php/negocio/class/Medico.php');
 include('../php/persistencia/EnderecoDAO.php');
 include('../php/negocio/class/Endereco.php');
+include('../php/persistencia/PaisDAO.php');
+include('../php/negocio/class/Pais.php');
+include('../php/persistencia/EstadoDAO.php');
+include('../php/negocio/class/Estado.php');
+include('../php/persistencia/CidadeDAO.php');
+include('../php/negocio/class/Cidade.php');
 
 //Conexão com Banco de dados
 $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -32,6 +38,15 @@ $medicoDAO = new MedicoDAO($conexao);
 $medicoListaCadastro = $medicoDAO->getMedicos();
 
 $enderecoDAO = new EnderecoDAO($conexao);
+
+$paisDAO = new PaisDAO($conexao);
+$paisLista = $paisDAO->getPaises();
+
+$estadoDAO = new EstadoDAO($conexao);
+$estadoLista = $estadoDAO->getEstados();
+
+$cidadeDAO = new CidadeDAO($conexao);
+$cidadeLista = $cidadeDAO->getCidades();
 
 $pag = $_GET['pag'];
 
@@ -488,6 +503,7 @@ $pag = $_GET['pag'];
                                             <span class="input-group-addon"><b>Logradouro</b></span>
                                             <input type="text" class="form-control" name="logradouro" placeholder="">
                                         </div>
+
                                     </div>
                                     <div class="col-xs-6">
                                         <div class="input-group">
@@ -520,34 +536,62 @@ $pag = $_GET['pag'];
                                 <br>
                                 <div class="row">
                                     <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Cidade</b></span>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option>Santa Rosa</option>
-                                                    <option>Cândido Godói</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Estado</b></span>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option>Santa Catarina</option>
-                                                    <option>Rio Grande do Sul</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
+                                        <div class="input-group" id="pais">
                                             <span class="input-group-addon"><b>País</b></span>
                                             <div class="form-group">
-                                                <select class="form-control">
-                                                    <option>Brasil</option>
-                                                    <option>Argentina</option>
+                                                <select name="id_pais" id="id_pais" class="form-control">
+                                                    <option>Escolher Pais</option>
+                                                    <?php
+
+                                                    if ($paisLista != null) {
+                                                        foreach ($paisLista as $paises) {
+                                                            echo '<option value="' . $paises->getId() . '">' . $paises->getNome() . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "<p>Nenhum usuário cadastrado</p>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <!-- <button id="btnPais" type="button" class="btn btn-info fa fa-refresh"></button> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group" id="estado">
+                                            <span class="input-group-addon"><b>Estado</b></span>
+                                            <div class="form-group">
+                                                <select name="id_estado" id="id_estado" class="form-control">
+                                                    <option>Escolher Estado</option>
+                                                    <?php
+
+                                                    if ($estadoLista != null) {
+                                                        foreach ($estadoLista as $estados) {
+                                                            echo '<option value="' . $estados->getId() . '">' . $estados->getNome() . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "<p>Nenhum usuário cadastrado</p>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group" id="cidade">
+                                            <span class="input-group-addon"><b>Cidade</b></span>
+                                            <div class="form-group">
+                                                <select name="id_cidade" id="id_cidade" class="form-control">
+                                                    <option>Escolher Cidade</option>
+                                                    <?php
+
+                                                    if ($cidadeLista != null) {
+                                                        foreach ($cidadeLista as $cidade) {
+                                                            echo '<option value="' . $cidade->getId() . '">' . $cidade->getNome() . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "<p>Nenhum usuário cadastrado</p>";
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -647,189 +691,62 @@ $pag = $_GET['pag'];
         });
     </script>
 
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-                    <
-                    !--Carrega os Paises-- >
-                    $('#btnPais').click(function(e) {
-                                $('#btnPais').hide();
-                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                        carregando... < /span>');  
-
-                                        $.getJSON('consulta.php?opcao=pais', function(dados) {
-
-                                            if (dados.length > 0) {
-                                                var option = '<option>Selecione o País <
-                                                    /option>';
-                                                $.each(dados, function(i, obj) {
-                                                    option += '<option value="' + obj.sigla + '" >
-                                                        '+obj.nome+' < /option>';
-                                                })
-                                                $('#mensagem').html('<span class="mensagem" >
-                                                    Total de paises encontrados.: '+dados.length+' < /span>'); 
-                                                    $('#cmbPais').html(option).show();
-                                                }
-                                                else {
-                                                    Reset();
-                                                    $('#mensagem').html('<span class="mensagem" >
-                                                        Não foram encontrados paises! < /span>');
-                                                    }
-                                                })
-                                        })
-
-                                        <
-                                        !--Carrega os Estados-- >
-                                        $('#cmbPais').change(function(e) {
-                                                var pais = $('#cmbPais').val();
-                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                                        carregando... < /span>');  
-
-                                                        $.getJSON('consulta.php?opcao=estado&valor=' + pais,
-                                                            function(dados) {
-
-                                                                if (dados.length > 0) {
-                                                                    var option = '<option>Selecione o Estado <
-                                                                        /option>';
-                                                                    $.each(dados, function(i, obj) {
-                                                                        option += '<option value="' + obj.sigla + '" >
-                                                                            '+obj.nome+' < /option>';
-                                                                    })
-                                                                    $('#mensagem').html('<span class="mensagem">
-                                                                        Total de estados encontrados.: '+dados.length+' < /span>'); 
-                                                                    }
-                                                                    else {
-                                                                        Reset();
-                                                                        $('#mensagem').html('<span class="mensagem">
-                                                                            Não foram encontrados estados para esse país! < /span>');  
-                                                                        }
-                                                                        $('#cmbEstado').html(option).show();
-                                                                    })
-                                                            })
-
-                                                        <
-                                                        !--Carrega as Cidades-- >
-                                                        $('#cmbEstado').change(function(e) {
-                                                                var estado = $('#cmbEstado').val();
-                                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                                                    carregando... < /span>');  
-
-                                                                    $.getJSON('consulta.php?opcao=cidade&valor=' + estado,
-                                                                        function(dados) {
-
-                                                                            if (dados.length > 0) {
-                                                                                var option = '<option>Selecione a 
-                                                                                Cidade < /option>';
-                                                                                $.each(dados, function(i, obj) {
-                                                                                    option += '<option>' + obj.nome + '</option>';
-                                                                                })
-                                                                                $('#mensagem').html('<span
-                                                                                    class = "mensagem" > Total de cidades encontradas.:
-                                                                                    '+dados.length+' < /span>');
-                                                                                }
-                                                                                else {
-                                                                                    Reset();
-                                                                                    $('#mensagem').html('<span
-                                                                                        class = "mensagem" > Não foram encontradas cidades para esse estado! < /span>');  
-                                                                                    }
-                                                                                    $('#cmbCidade').html(option).show();
-                                                                                })
-                                                                        })
-
-                                                                    <
-                                                                    !--Resetar Selects-- >
-                                                                    function Reset() {
-                                                                        $('#cmbPais').empty().append('<option>Carregar Países</option>>');
-                                                                        $('#cmbEstado').empty().append('<option>Carregar Estados</option>>');
-                                                                        $('#cmbCidade').empty().append('<option>Carregar Cidades</option>');
-                                                                    }
-                                                                });
+    <script>
+        $(function() {
+            $('#example1').DataTable()
+        })
     </script>
 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(function() {
+            $('#id_pais').change(function() {
+                if ($(this).val()) {
+                    $('#id_estado').hide();
+                    $('.carregando').show();
+                    $.getJSON('consulta.php?search=', {
+                        id: $(this).val(),
+                        tipo: 'pais',
+                        ajax: 'true'
+                    }, function(j) {
+                        var options = '<option value="">Escolha Subcategoria</option>';
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+                        }
+                        $('#id_estado').html(options).show();
+                        $('.carregando').hide();
+                    });
+                } else {
+                    $('#id_estado').html('<option value="">– Escolha Subcategoria –</option>');
+                }
+            });
+        });
 
-                    <
-                    !--Carrega os Paises-- >
-                    $('#btnPais').click(function(e) {
-                                $('#btnPais').hide();
-                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                        carregando... < /span>');  
-
-                                        $.getJSON('consulta.php?opcao=pais', function(dados) {
-
-                                            if (dados.length > 0) {
-                                                var option = '<option>Selecione o País </option>';
-                                                $.each(dados, function(i, obj) {
-                                                    option += '<option value="' + obj.sigla + '" >'+obj.nome+' < /option>';
-                                                })
-                                                $('#mensagem').html('<span class="mensagem" >Total de paises encontrados.: '+dados.length+' < /span>'); 
-                                                    $('#cmbPais').html(option).show();
-                                                }
-                                                else {
-                                                    Reset();
-                                                    $('#mensagem').html('<span class="mensagem" >Não foram encontrados paises! < /span>');
-                                                    }
-                                                })
-                                        })
-
-                                        <
-                                        !--Carrega os Estados-- >
-                                        $('#cmbPais').change(function(e) {
-                                                var pais = $('#cmbPais').val();
-                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                                        carregando... < /span>');  
-
-                                                        $.getJSON('consulta.php?opcao=estado&valor=' + pais,
-                                                            function(dados) {
-
-                                                                if (dados.length > 0) {
-                                                                    var option = '<option>Selecione o Estado </option>';
-                                                                    $.each(dados, function(i, obj) {
-                                                                        option += '<option value="' + obj.sigla + '" >'+obj.nome+' < /option>';
-                                                                    })
-                                                                    $('#mensagem').html('<span class="mensagem">Total de estados encontrados.: '+dados.length+' < /span>'); 
-                                                                    }
-                                                                    else {
-                                                                        Reset();
-                                                                        $('#mensagem').html('<span class="mensagem">Não foram encontrados estados para esse país! < /span>');  
-                                                                        }
-                                                                        $('#cmbEstado').html(option).show();
-                                                                    })
-                                                            })
-
-                                                        <
-                                                        !--Carrega as Cidades-- >
-                                                        $('#cmbEstado').change(function(e) {
-                                                                var estado = $('#cmbEstado').val();
-                                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
-                                                                    carregando... < /span>');  
-
-                                                                    $.getJSON('consulta.php?opcao=cidade&valor=' + estado,
-                                                                        function(dados) {
-
-                                                                            if (dados.length > 0) {
-                                                                                var option = '<option>Selecione a 
-                                                                                Cidade < /option>'; $.each(dados, function(i, obj) {option += '<option>' + obj.nome + '</option>';}) $('#mensagem').html('<span class = "mensagem" > Total de cidades encontradas.: dados.length+' < /span>');
-                                                                                }
-                                                                                else {
-                                                                                    Reset();
-                                                                                    $('#mensagem').html('<span class = "mensagem" > Não foram encontradas cidades para esse estado! < /span>');  
-                                                                                    }
-                                                                                    $('#cmbCidade').html(option).show();
-                                                                                })
-                                                                        })
-
-                                                                    <
-                                                                    !--Resetar Selects-- >
-                                                                    function Reset() {
-                                                                        $('#cmbPais').empty().append('<option>Carregar Países</option>>');
-                                                                        $('#cmbEstado').empty().append('<option>Carregar Estados</option>>');
-                                                                        $('#cmbCidade').empty().append('<option>Carregar Cidades</option>');
-                                                                    }
-                                                                });
+        $(function() {
+            $('#id_estado').change(function() {
+                if ($(this).val()) {
+                    $('#id_cidade').hide();
+                    $('.carregando').show();
+                    $.getJSON('consulta.php?search=', {
+                        id: $(this).val(),
+                        tipo: 'estado',
+                        ajax: 'true'
+                    }, function(j) {
+                        var options = '<option value="">Escolha Subcategoria</option>';
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+                        }
+                        $('#id_cidade').html(options).show();
+                        $('.carregando').hide();
+                    });
+                } else {
+                    $('#id_cidade').html('<option value="">– Escolha Subcategoria –</option>');
+                }
+            });
+        });
     </script>
+
 </body>
 
 </html>

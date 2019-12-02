@@ -28,7 +28,7 @@ class PaisDAO {
         $sql = $this->pdo->prepare('INSERT INTO tb_paises (id, nome, sigla) VALUES (:id, :nome, :sigla)');
         $sql->bindValue(':id', $pais->getId());
         $sql->bindValue(':nome', $pais->getNome());
-        $sql->bindValue(':sigla', $pais->getSigla();)
+        $sql->bindValue(':sigla', $pais->getSigla());
         if ($sql->execute()) {
             // Query succeeded.
             return true;
