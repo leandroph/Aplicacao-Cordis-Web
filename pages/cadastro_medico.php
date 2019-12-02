@@ -14,9 +14,11 @@ include('../php/negocio/class/Preferencia.php');
 include('../php/persistencia/PreferenciaDAO.php');
 include('../php/persistencia/MedicoDAO.php');
 include('../php/negocio/class/Medico.php');
+include('../php/persistencia/EnderecoDAO.php');
+include('../php/negocio/class/Endereco.php');
 
 //Conexão com Banco de dados
-$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
+$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $pessoaDAO = new PessoaDAO($conexao);
 $pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
 
@@ -28,6 +30,8 @@ $preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
 
 $medicoDAO = new MedicoDAO($conexao);
 $medicoListaCadastro = $medicoDAO->getMedicos();
+
+$enderecoDAO = new EnderecoDAO($conexao);
 
 $pag = $_GET['pag'];
 
@@ -122,13 +126,20 @@ $pag = $_GET['pag'];
                                         if ($medicoListaCadastro != null) {
                                             foreach ($medicoListaCadastro as $medicoLista) {
                                                 $pessoaLista = $pessoaDAO->getPessoa($medicoLista->getId_Usuario());
+                                                $pessoaEndereco = $enderecoDAO->getEndereco($pessoaLista->getId_Usuario());
                                                 $count = $count + 1;
                                                 echo "<tr>";
-                                                echo "<td>" . $count . "</td>";
-                                                echo "<td>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
-                                                echo "<td>" . $pessoaLista->getEmail() . "</td>";
-                                                echo "<td>" . $medicoLista->getCRM() . "</td>";
-                                                echo "<td><a class='btn btn-info' role='button' data-toggle='modal' data-target='#my_modal' data-id='" . $pessoaLista->getId_Usuario() . "' data-nome='" . $pessoaLista->getNome() . "'>Editar</a>
+                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $count . "</td>";
+                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
+                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getEmail() . "</td>";
+                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $medicoLista->getCRM() . "</td>";
+                                                echo "<td><a class='btn btn-info' role='button' data-toggle='modal' data-target='#my_modal' data-id='" . $pessoaLista->getId_Usuario() . "' 
+                                                data-nome='" . $pessoaLista->getNome() . "' data-sobrenome='" . $pessoaLista->getSobrenome() . "' data-cpf='" . $pessoaLista->getCPF() . "'
+                                                data-rg='" . $pessoaLista->getRG() . "' data-sexo='" . $pessoaLista->getSexo() . "' data-nascimento='" . $pessoaLista->getNascimento() . "'
+                                                data-email='" . $pessoaLista->getEmail() . "' data-logradouro='" . $pessoaEndereco->getLogradouro() . "' data-bairro='" . $pessoaEndereco->getBairro() . "'
+                                                data-cep='" . $pessoaEndereco->getCEP() . "' data-complemento='" . $pessoaEndereco->getComplemento() . "' data-numero='" . $pessoaEndereco->getNumero() . "'
+                                                data-cidade='" . $pessoaEndereco->getId_cidade() . "' data-crm='" . $medicoLista->getCRM() . "' data-especialidade='" . $medicoLista->getEspecialidade() . "'
+                                                data-agenda='" . $medicoLista->getCorAgenda() . "'>Editar</a>
                                                     <a class='btn btn-danger' href='deleta.php?id=" . $pessoaLista->getId_Usuario() . "'>Deletar</a><br/></td>";
                                                 echo "</tr>";
                                             }
@@ -395,72 +406,188 @@ $pag = $_GET['pag'];
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
 
     <div class="modal" id="my_modal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Editar Cadastro</h4>
+                    <h4 class="modal-title text-center"><b>Editar Cadastro</b></h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="">
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><b>Nome</b></span>
-                                    <input type="text" class="form-control" name="nome" placeholder="">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Dados Pessoais</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Nome</b></span>
+                                            <input type="text" class="form-control" name="nome" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Sobrenome</b></span>
+                                            <input type="text" class="form-control" name="sobrenome" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>CPF</b></span>
+                                            <input type="text" class="form-control" name="cpf" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>RG</b></span>
+                                            <input type="text" class="form-control" name="rg" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Sexo</b></span>
+                                            <div class="form-group">
+                                                <select id="sexoPessoa" class="form-control">
+                                                    <option value="M">Masculino</option>
+                                                    <option value="F">Feminino</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Nascimento</b></span>
+                                            <input type="text" class="form-control" name="nascimento" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Email</b></span>
+                                            <input type="text" class="form-control" name="email" placeholder="">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><b>Sobrenome</b></span>
-                                    <input type="text" class="form-control" name="nome" placeholder="">
+                        </div>
+
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Endereço</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Logradouro</b></span>
+                                            <input type="text" class="form-control" name="logradouro" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Bairro</b></span>
+                                            <input type="text" class="form-control" name="bairro" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>CEP</b></span>
+                                            <input type="text" class="form-control" name="cep" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Complemento</b></span>
+                                            <input type="text" class="form-control" name="complemento" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Numero</b></span>
+                                            <input type="text" class="form-control" name="numero" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Cidade</b></span>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>Santa Rosa</option>
+                                                    <option>Cândido Godói</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Estado</b></span>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>Santa Catarina</option>
+                                                    <option>Rio Grande do Sul</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>País</b></span>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>Brasil</option>
+                                                    <option>Argentina</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon"><b>Nome</b></span>
-                            <input type="text" class="form-control" name="nome" placeholder="">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon"><b>Sobrenome</b></span>
-                            <input type="text" class="form-control" name="nome" placeholder="">
-                        </div>
-                        <span class="input-group-addon"><b>CPF</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>RG</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Sexo</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Nascimento</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Email</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
 
-                        <span class="input-group-addon"><b>Logradouro</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Bairro</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Número</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>CEP</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Complemento</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Cidade</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Estado</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Nome</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-
-                        <span class="input-group-addon"><b>CRM</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Especialidade</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
-                        <span class="input-group-addon"><b>Agenda</b></span>
-                        <input type="text" class="form-control" name="nome" placeholder="">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Dados Médicos</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>CRM</b></span>
+                                            <input type="text" class="form-control" name="crm" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Especialidade</b></span>
+                                            <input type="text" class="form-control" name="especialidade" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><b>Agenda</b></span>
+                                            <div class="form-group">
+                                                <select class="form-control">
+                                                    <option>Azul</option>
+                                                    <option>Vermelho</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- <input type="text" class="form-control" name="nome" value="" /> -->
                 </div>
@@ -474,38 +601,234 @@ $pag = $_GET['pag'];
 
     <script type="text/javascript">
         $('#my_modal').on('show.bs.modal', function(e) {
-            var bookId = $(e.relatedTarget).data('nome');
-            $(e.currentTarget).find('input[name="nome"]').val(bookId);
+            var usuaioID = $(e.relatedTarget).data('ID');
+            var pessoaNome = $(e.relatedTarget).data('nome');
+            var pessoaSobrenome = $(e.relatedTarget).data('sobrenome');
+            var pessoaCPF = $(e.relatedTarget).data('cpf');
+            var pessoaRG = $(e.relatedTarget).data('rg');
+            var pessoaEmail = $(e.relatedTarget).data('email');
+            // var pessoaSexo = $(e.relatedTarget).data('sexo');
+            var pessoaNascimento = $(e.relatedTarget).data('nascimento');
 
-            this.$("#audi").click(function() {
-    $("#myModal #selection option[value='file']").attr('selected', 'selected');
-});
+            var enderecoLogradouro = $(e.relatedTarget).data('logradouro');
+            var enderecoBairro = $(e.relatedTarget).data('bairro');
+            var enderecoCEP = $(e.relatedTarget).data('cep');
+            var enderecoNumero = $(e.relatedTarget).data('numero');
+            var enderecoCidade = $(e.relatedTarget).data('cidade');
+            var enderecoComplemento = $(e.relatedTarget).data('complemento');
+
+            var medicoCorAgenda = $(e.relatedTarget).data('corAgenda');
+            var medicoCRM = $(e.relatedTarget).data('crm');
+            var medicoEspecialidade = $(e.relatedTarget).data('especialidade');
+
+            var pessoaSexo = $(e.relatedTarget).data('sexo');
+
+            $(e.currentTarget).find('input[name="ID"]').val(usuaioID);
+            $(e.currentTarget).find('input[name="nome"]').val(pessoaNome);
+            $(e.currentTarget).find('input[name="sobrenome"]').val(pessoaSobrenome);
+            $(e.currentTarget).find('input[name="cpf"]').val(pessoaCPF);
+            $(e.currentTarget).find('input[name="rg"]').val(pessoaRG);
+            $(e.currentTarget).find('input[name="email"]').val(pessoaEmail);
+            $(e.currentTarget).find('input[name="sexo"]').val(pessoaSexo);
+            $(e.currentTarget).find('input[name="nascimento"]').val(pessoaNascimento);
+            $(e.currentTarget).find('input[name="logradouro"]').val(enderecoLogradouro);
+            $(e.currentTarget).find('input[name="bairro"]').val(enderecoBairro);
+            $(e.currentTarget).find('input[name="cep"]').val(enderecoCEP);
+            $(e.currentTarget).find('input[name="numero"]').val(enderecoNumero);
+            $(e.currentTarget).find('input[name="cidade"]').val(enderecoCidade);
+            $(e.currentTarget).find('input[name="complemento"]').val(enderecoComplemento);
+            $(e.currentTarget).find('input[name="corAgenda"]').val(medicoCorAgenda);
+            $(e.currentTarget).find('input[name="crm"]').val(medicoCRM);
+            $(e.currentTarget).find('input[name="especialidade"]').val(medicoEspecialidade);
+
+
+            $("#sexoPessoa").val(pessoaSexo);
+
         });
     </script>
 
 
-    <script>
-        $(function() {
-            $('#example1').DataTable()
-        })
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+                    <
+                    !--Carrega os Paises-- >
+                    $('#btnPais').click(function(e) {
+                                $('#btnPais').hide();
+                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                        carregando... < /span>');  
+
+                                        $.getJSON('consulta.php?opcao=pais', function(dados) {
+
+                                            if (dados.length > 0) {
+                                                var option = '<option>Selecione o País <
+                                                    /option>';
+                                                $.each(dados, function(i, obj) {
+                                                    option += '<option value="' + obj.sigla + '" >
+                                                        '+obj.nome+' < /option>';
+                                                })
+                                                $('#mensagem').html('<span class="mensagem" >
+                                                    Total de paises encontrados.: '+dados.length+' < /span>'); 
+                                                    $('#cmbPais').html(option).show();
+                                                }
+                                                else {
+                                                    Reset();
+                                                    $('#mensagem').html('<span class="mensagem" >
+                                                        Não foram encontrados paises! < /span>');
+                                                    }
+                                                })
+                                        })
+
+                                        <
+                                        !--Carrega os Estados-- >
+                                        $('#cmbPais').change(function(e) {
+                                                var pais = $('#cmbPais').val();
+                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                                        carregando... < /span>');  
+
+                                                        $.getJSON('consulta.php?opcao=estado&valor=' + pais,
+                                                            function(dados) {
+
+                                                                if (dados.length > 0) {
+                                                                    var option = '<option>Selecione o Estado <
+                                                                        /option>';
+                                                                    $.each(dados, function(i, obj) {
+                                                                        option += '<option value="' + obj.sigla + '" >
+                                                                            '+obj.nome+' < /option>';
+                                                                    })
+                                                                    $('#mensagem').html('<span class="mensagem">
+                                                                        Total de estados encontrados.: '+dados.length+' < /span>'); 
+                                                                    }
+                                                                    else {
+                                                                        Reset();
+                                                                        $('#mensagem').html('<span class="mensagem">
+                                                                            Não foram encontrados estados para esse país! < /span>');  
+                                                                        }
+                                                                        $('#cmbEstado').html(option).show();
+                                                                    })
+                                                            })
+
+                                                        <
+                                                        !--Carrega as Cidades-- >
+                                                        $('#cmbEstado').change(function(e) {
+                                                                var estado = $('#cmbEstado').val();
+                                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                                                    carregando... < /span>');  
+
+                                                                    $.getJSON('consulta.php?opcao=cidade&valor=' + estado,
+                                                                        function(dados) {
+
+                                                                            if (dados.length > 0) {
+                                                                                var option = '<option>Selecione a 
+                                                                                Cidade < /option>';
+                                                                                $.each(dados, function(i, obj) {
+                                                                                    option += '<option>' + obj.nome + '</option>';
+                                                                                })
+                                                                                $('#mensagem').html('<span
+                                                                                    class = "mensagem" > Total de cidades encontradas.:
+                                                                                    '+dados.length+' < /span>');
+                                                                                }
+                                                                                else {
+                                                                                    Reset();
+                                                                                    $('#mensagem').html('<span
+                                                                                        class = "mensagem" > Não foram encontradas cidades para esse estado! < /span>');  
+                                                                                    }
+                                                                                    $('#cmbCidade').html(option).show();
+                                                                                })
+                                                                        })
+
+                                                                    <
+                                                                    !--Resetar Selects-- >
+                                                                    function Reset() {
+                                                                        $('#cmbPais').empty().append('<option>Carregar Países</option>>');
+                                                                        $('#cmbEstado').empty().append('<option>Carregar Estados</option>>');
+                                                                        $('#cmbCidade').empty().append('<option>Carregar Cidades</option>');
+                                                                    }
+                                                                });
     </script>
 
-    <script>
-        // Função responsável por atualizar as frases
-        function atualizar() {
-            // Exibindo frase
-            // $('#frase').html('<i>' + frase.texto + '</i><br />' + frase.autor);
-            $('#frase').html('<td>' + "<?php echo $pessoa->getSobrenome(); ?>" + '</td>');
-        }
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-        // Definindo intervalo que a função será chamada
-        setInterval("atualizar()", 1000);
+                    <
+                    !--Carrega os Paises-- >
+                    $('#btnPais').click(function(e) {
+                                $('#btnPais').hide();
+                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                        carregando... < /span>');  
 
-        // Quando carregar a página
-        $(function() {
-            // Faz a primeira atualização
-            atualizar();
-        });
+                                        $.getJSON('consulta.php?opcao=pais', function(dados) {
+
+                                            if (dados.length > 0) {
+                                                var option = '<option>Selecione o País </option>';
+                                                $.each(dados, function(i, obj) {
+                                                    option += '<option value="' + obj.sigla + '" >'+obj.nome+' < /option>';
+                                                })
+                                                $('#mensagem').html('<span class="mensagem" >Total de paises encontrados.: '+dados.length+' < /span>'); 
+                                                    $('#cmbPais').html(option).show();
+                                                }
+                                                else {
+                                                    Reset();
+                                                    $('#mensagem').html('<span class="mensagem" >Não foram encontrados paises! < /span>');
+                                                    }
+                                                })
+                                        })
+
+                                        <
+                                        !--Carrega os Estados-- >
+                                        $('#cmbPais').change(function(e) {
+                                                var pais = $('#cmbPais').val();
+                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                                        carregando... < /span>');  
+
+                                                        $.getJSON('consulta.php?opcao=estado&valor=' + pais,
+                                                            function(dados) {
+
+                                                                if (dados.length > 0) {
+                                                                    var option = '<option>Selecione o Estado </option>';
+                                                                    $.each(dados, function(i, obj) {
+                                                                        option += '<option value="' + obj.sigla + '" >'+obj.nome+' < /option>';
+                                                                    })
+                                                                    $('#mensagem').html('<span class="mensagem">Total de estados encontrados.: '+dados.length+' < /span>'); 
+                                                                    }
+                                                                    else {
+                                                                        Reset();
+                                                                        $('#mensagem').html('<span class="mensagem">Não foram encontrados estados para esse país! < /span>');  
+                                                                        }
+                                                                        $('#cmbEstado').html(option).show();
+                                                                    })
+                                                            })
+
+                                                        <
+                                                        !--Carrega as Cidades-- >
+                                                        $('#cmbEstado').change(function(e) {
+                                                                var estado = $('#cmbEstado').val();
+                                                                $('#mensagem').html('<span class="mensagem">Aguarde, 
+                                                                    carregando... < /span>');  
+
+                                                                    $.getJSON('consulta.php?opcao=cidade&valor=' + estado,
+                                                                        function(dados) {
+
+                                                                            if (dados.length > 0) {
+                                                                                var option = '<option>Selecione a 
+                                                                                Cidade < /option>'; $.each(dados, function(i, obj) {option += '<option>' + obj.nome + '</option>';}) $('#mensagem').html('<span class = "mensagem" > Total de cidades encontradas.: dados.length+' < /span>');
+                                                                                }
+                                                                                else {
+                                                                                    Reset();
+                                                                                    $('#mensagem').html('<span class = "mensagem" > Não foram encontradas cidades para esse estado! < /span>');  
+                                                                                    }
+                                                                                    $('#cmbCidade').html(option).show();
+                                                                                })
+                                                                        })
+
+                                                                    <
+                                                                    !--Resetar Selects-- >
+                                                                    function Reset() {
+                                                                        $('#cmbPais').empty().append('<option>Carregar Países</option>>');
+                                                                        $('#cmbEstado').empty().append('<option>Carregar Estados</option>>');
+                                                                        $('#cmbCidade').empty().append('<option>Carregar Cidades</option>');
+                                                                    }
+                                                                });
     </script>
 </body>
 

@@ -41,7 +41,7 @@ class EnderecoDAO {
             echo $sql->errorCode();
         } 
     }
-    $id;
+    // $id;
 	
     // retorna apenas um endereço
     /**

@@ -24,6 +24,5 @@
 		exit;
 	}
 
-
 	mysqli_query($id_conexao, "SET NAMES 'utf8'");
 ?>

@@ -88,7 +88,7 @@ class PessoaDAO {
                 $pessoa->setRG($dados->rg);
                 $pessoa->setSexo($dados->sexo);
                 $date = new DateTime($dados->nascimento);
-                $pessoa->setNascimento($date->format('d/m/Y H:i:s'));
+                $pessoa->setNascimento($date->format('d/m/Y'));
                 $pessoa->setEmail($dados->email);
                 $pessoa->setId_Endereco($dados->id_endereco);
 
