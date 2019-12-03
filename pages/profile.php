@@ -8,11 +8,53 @@ $id_usuario_logado = $_SESSION["id_usuario"];
 
 include('../php/negocio/class/Pessoa.php');
 include('../php/persistencia/PessoaDAO.php');
+include('../php/negocio/class/Usuario.php');
+include('../php/persistencia/UsuarioDAO.php');
+include('../php/negocio/class/Preferencia.php');
+include('../php/persistencia/PreferenciaDAO.php');
+include('../php/persistencia/MedicoDAO.php');
+include('../php/negocio/class/Medico.php');
+include('../php/persistencia/EnderecoDAO.php');
+include('../php/negocio/class/Endereco.php');
+include('../php/persistencia/PaisDAO.php');
+include('../php/negocio/class/Pais.php');
+include('../php/persistencia/EstadoDAO.php');
+include('../php/negocio/class/Estado.php');
+include('../php/persistencia/CidadeDAO.php');
+include('../php/negocio/class/Cidade.php');
+include('../php/persistencia/ContatoDAO.php');
+include('../php/negocio/class/Contato.php');
 
 //Conexão com Banco de dados
-$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
+$conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $pessoaDAO = new PessoaDAO($conexao);
 $pessoa = $pessoaDAO->getPessoa($id_usuario_logado);
+
+$usuarioDAO = new UsuarioDAO($conexao);
+$usuario = $usuarioDAO->getUsuario($id_usuario_logado);
+
+$preferenciaDAO = new PreferenciaDAO($conexao);
+$preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
+
+$medicoDAO = new MedicoDAO($conexao);
+$medico = $medicoDAO->getMedico($id_usuario_logado);
+
+$enderecoDAO = new EnderecoDAO($conexao);
+$endereco = $enderecoDAO->getEndereco($id_usuario_logado);
+
+$cidadeDAO = new CidadeDAO($conexao);
+$cidade = $cidadeDAO->getCidade($endereco->getId_cidade());
+
+$estadoDAO = new EstadoDAO($conexao);
+$estado = $estadoDAO->getEstado($cidade->getId_Estado());
+
+$paisDAO = new PaisDAO($conexao);
+$pais = $paisDAO->getPais($estado->getId_Pais());
+
+$contatoDAO = new ContatoDAO($conexao);
+$contato = $contatoDAO->getContato($id_usuario_logado);
+
+$pag = isset($_GET['pag']);
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +144,20 @@ desired effect
 
                                 <h3 class="profile-username text-center"><?php echo $pessoa->getNome(); ?></h3>
 
-                                <p class="text-muted text-center">TIPO_USUARIO</p>
+                                <p class="text-muted text-center"><?php
+                                if($usuario->getPerm_Paciente()==1){
+                                    echo " Paciente ";
+                                }
+                                if($usuario->getPerm_Medico()==1){
+                                    echo " Médico ";
+                                }
+                                if($usuario->getPerm_Secretaria()==1){
+                                    echo " Secretaria ";
+                                }
+                                if($usuario->getPerm_Administrador()==1){
+                                    echo " Administrador ";
+                                }
+                                 ?></p>
 
                                 <div class="text-center">
                                     <a href="#" class="btn btn-primary"><b>Editar Imagem</b></a>
@@ -141,7 +196,10 @@ desired effect
                                         <b>E-mail:</b> <a class="pull-right"><?php echo $pessoa->getEmail(); ?> </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>CRM:</b> <a class="pull-right">131646549870 </a>
+                                        <b>CRM:</b> <a class="pull-right"><?php echo $medico->getCRM(); ?> </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Especialidade:</b> <a class="pull-right"><?php echo $medico->getEspecialidade(); ?> </a>
                                     </li>
                                     <div class="text-center">
                                         <a href="#" class="btn btn-primary"><b>Editar Dados Pessoais</b></a>
@@ -169,28 +227,28 @@ desired effect
                                         <div class="box-body">
                                             <ul class="list-group list-group-unbordered">
                                                 <li class="list-group-item">
-                                                    <b>Logradouro</b> <a class="pull-right">Daniel Buchholz</a>
+                                                    <b>Logradouro</b> <a class="pull-right"><?php echo $endereco->getLogradouro(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Bairro</b> <a class="pull-right">Daniel Buchholz</a>
+                                                    <b>Bairro</b> <a class="pull-right"><?php echo $endereco->getBairro(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Número</b> <a class="pull-right">456.464.894-05</a>
+                                                    <b>Número</b> <a class="pull-right"><?php echo $endereco->getNumero(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>CEP</b> <a class="pull-right">Daniel Buchholz</a>
+                                                    <b>CEP</b> <a class="pull-right"><?php echo $endereco->getCEP(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Complemento</b> <a class="pull-right">Daniel Buchholz</a>
+                                                    <b>Complemento</b> <a class="pull-right"><?php echo $endereco->getComplemento(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Cidade</b> <a class="pull-right">456.464.894-05</a>
+                                                    <b>Cidade</b> <a class="pull-right"><?php echo $cidade->getNome(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Estado</b> <a class="pull-right">456.464.894-05</a>
+                                                    <b>Estado</b> <a class="pull-right"><?php echo $estado->getNome(); ?></a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b>Páis</b> <a class="pull-right">456.464.894-05</a>
+                                                    <b>Páis</b> <a class="pull-right"><?php echo $pais->getNome(); ?></a>
                                                 </li>
                                                 <div class="text-center">
                                                     <a href="#" class="btn btn-primary"><b>Editar Endereço</b></a>
@@ -208,10 +266,7 @@ desired effect
                                         <div class="box-body">
                                             <ul class="list-group list-group-unbordered">
                                                 <li class="list-group-item">
-                                                    <b>Contato Pessoal:</b> <a class="pull-right">Daniel Buchholz</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Contato Emergencial:</b> <a class="pull-right">456.464.894-05</a>
+                                                    <b>Contato Pessoal:</b> <a class="pull-right"><?php echo $contato->getTelefone(); ?></a>
                                                 </li>
                                                 <div class="text-center">
                                                     <a href="#" class="btn btn-primary"><b>Editar Contatos</b></a>

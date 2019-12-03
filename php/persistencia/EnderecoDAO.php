@@ -127,13 +127,13 @@ class EnderecoDAO {
     public function alterar(Endereco $endereco)
     {
         $sql = $this->pdo->prepare('update tb_enderecos set id = :id, logradouro = :logradouro, bairro = :bairro, numero = :numero, cep = :cep, complemento = :complemento, id_cidade = :id_cidade');
-        $sql->bindValue(':id', $preferencia->getId());
-        $sql->bindValue(':logradouro', $preferencia->getLogradouro());
-        $sql->bindValue(':bairro', $preferencia->getBairro());
-        $sql->bindValue(':numero', $preferencia->getNumero());
-        $sql->bindValue(':cep', $preferencia->getCep());
-        $sql->bindValue(':complemento', $preferencia->getComplemento());
-        $sql->bindValue(':id_cidade', $preferencia->getId_cidade());
+        $sql->bindValue(':id', $endereco->getId());
+        $sql->bindValue(':logradouro', $endereco->getLogradouro());
+        $sql->bindValue(':bairro', $endereco->getBairro());
+        $sql->bindValue(':numero', $endereco->getNumero());
+        $sql->bindValue(':cep', $endereco->getCep());
+        $sql->bindValue(':complemento', $endereco->getComplemento());
+        $sql->bindValue(':id_cidade', $endereco->getId_cidade());
         
         if ($sql->execute()) {
             // Query succeeded.

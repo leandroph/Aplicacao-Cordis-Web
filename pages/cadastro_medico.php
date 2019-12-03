@@ -115,7 +115,7 @@ $pag = $_GET['pag'];
                         <div class="box">
                             <div class="box-header">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">Cadastrar Médico</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#my_modal_add">Cadastrar Médico</button>
                                     <!-- <button type="button" class="btn btn-warning btn-flat" data-toggle="modal" data-target="#alterar">Alterar Médico</button>
                                     <button type="button" class="btn btn-danger" onclick="atualizar()">Excluir Médico</button> -->
                                 </div>
@@ -416,9 +416,11 @@ $pag = $_GET['pag'];
     <script src="../assets/datatables.net/js/jquery.dataTables.js"></script>
     <script src="../assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <!-- fullCalendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     <script src="../assets/moment/moment.js"></script>
     <script src="../assets/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src='../assets/fullcalendar/dist/locale/pt-br.js'></script>
+    
     <!-- Page specific script -->
 
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
@@ -499,7 +501,7 @@ $pag = $_GET['pag'];
                                     <div class="col-xs-4">
                                         <div class="input-group">
                                             <span class="input-group-addon"><b>CPF</b></span>
-                                            <input type="text" class="form-control" name="cpf" placeholder="">
+                                            <input type="text" class="form-control" name="cpf" id="cpf_format" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
@@ -701,6 +703,263 @@ $pag = $_GET['pag'];
         });
     </script>
 
+    <div class="modal" id="my_modal_add">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center"><b>Novo Cadastro</b></h4>
+                </div>
+                <div class="modal-body" style="">
+                    <div class="box-body">
+                        <form action="adicionar.php" method="get">
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dados de Usuario</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Usuario</b></span>
+                                                <input type="text" class="form-control" name="user" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Senha</b></span>
+                                                <input type="password" class="form-control" name="senha" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="box box-success">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dados Pessoais</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Nome</b></span>
+                                                <input type="text" class="form-control" name="nome" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Sobrenome</b></span>
+                                                <input type="text" class="form-control" name="sobrenome" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CPF</b></span>
+                                                <input type="text" class="form-control" name="cpf" id="cpf" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>RG</b></span>
+                                                <input type="text" class="form-control" name="rg" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Sexo</b></span>
+                                                <div class="form-group">
+                                                    <select id="sexoPessoa" name="sexoPessoa" class="form-control">
+                                                        <option value="-">Escolha Sexo</option>
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Feminino</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Nascimento</b></span>
+                                                <input type="text" class="form-control" name="nascimento" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Email</b></span>
+                                                <input type="text" class="form-control" name="email" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Endereço</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Logradouro</b></span>
+                                                <input type="text" class="form-control" name="logradouro" placeholder="" required>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Bairro</b></span>
+                                                <input type="text" class="form-control" name="bairro" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CEP</b></span>
+                                                <input type="text" class="form-control" name="cep" id="cep_format" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Complemento</b></span>
+                                                <input type="text" class="form-control" name="complemento" placeholder="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Numero</b></span>
+                                                <input type="text" class="form-control" name="numero" placeholder="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="pais">
+                                                <span class="input-group-addon"><b>País</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_pais_cad" id="id_pais_cad" class="form-control">
+                                                        <option>Escolher Pais</option>
+                                                        <?php
+
+                                                        if ($paisLista != null) {
+                                                            foreach ($paisLista as $paises) {
+                                                                echo '<option value="' . $paises->getId() . '">' . $paises->getNome() . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo "<p>Nenhum usuário cadastrado</p>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <!-- <button id="btnPais" type="button" class="btn btn-info fa fa-refresh"></button> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="estado">
+                                                <span class="input-group-addon"><b>Estado</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_estado_cad" id="id_estado_cad" class="form-control">
+                                                        <option>Escolher Estado</option>
+                                                        <?php
+
+                                                        // if ($estadoLista != null) {
+                                                        //     foreach ($estadoLista as $estados) {
+                                                        //         echo '<option value="' . $estados->getId() . '">' . $estados->getNome() . '</option>';
+                                                        //     }
+                                                        // } else {
+                                                        //     echo "<p>Nenhum usuário cadastrado</p>";
+                                                        // }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="cidade">
+                                                <span class="input-group-addon"><b>Cidade</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_cidade_cad" id="id_cidade_cad" class="form-control">
+                                                        <option>Escolher Cidade</option>
+                                                        <?php
+
+                                                        // if ($cidadeLista != null) {
+                                                        //     foreach ($cidadeLista as $cidade) {
+                                                        //         echo '<option value="' . $cidade->getId() . '">' . $cidade->getNome() . '</option>';
+                                                        //     }
+                                                        // } else {
+                                                        //     echo "<p>Nenhum usuário cadastrado</p>";
+                                                        // }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dados Médicos</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CRM</b></span>
+                                                <input type="text" class="form-control" name="crm" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Especialidade</b></span>
+                                                <input type="text" class="form-control" name="especialidade" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Agenda</b></span>
+                                                <div class="form-group">
+                                                    <select class="form-control">
+                                                        <option>Azul</option>
+                                                        <option>Vermelho</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                        <button class="btn btn-success" type="submit">Salvar Alterações</button>
+                    </div>
+                    </form> <!-- <input type="text" class="form-control" name="nome" value="" /> -->
+                </div>
+                <!-- <div class="modal-footer">
+                    
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#cep_format").mask("00.000-000");
+        $("#fone_format").mask("(00) 00000-0000");
+        $("#cpf_format").mask("000.000.000-00");
+        $("#cpf").mask("000.000.000-00");
+    </script>
+
     <script type="text/javascript">
         $('#my_modal').on('show.bs.modal', function(e) {
             var usuaioID = $(e.relatedTarget).data('ID');
@@ -807,6 +1066,55 @@ $pag = $_GET['pag'];
                     });
                 } else {
                     $('#id_cidade').html('<option value="">– Escolha a Cidade –</option>');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#id_pais_cad').change(function() {
+                if ($(this).val()) {
+                    $('#id_estado_cad').hide();
+                    $('.carregando').show();
+                    $.getJSON('consulta.php?search=', {
+                        id: $(this).val(),
+                        tipo: 'pais',
+                        ajax: 'true'
+                    }, function(j) {
+                        var options = '<option value="">Escolha o Estado</option>';
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+                        }
+                        $('#id_estado_cad').html(options).show();
+                        $('.carregando').hide();
+                        $('#id_cidade_cad').html('<option value="">Escolha Estado</option>');
+                    });
+                } else {
+                    $('#id_estado_cad').html('<option value="">– Escolha o Estado –</option>');
+                }
+            });
+        });
+
+        $(function() {
+            $('#id_estado_cad').change(function() {
+                if ($(this).val()) {
+                    $('#id_cidade_cad').hide();
+                    $('.carregando').show();
+                    $.getJSON('consulta.php?search=', {
+                        id: $(this).val(),
+                        tipo: 'estado',
+                        ajax: 'true'
+                    }, function(j) {
+                        var options = '<option value="">Escolha Cidade</option>';
+                        for (var i = 0; i < j.length; i++) {
+                            options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+                        }
+                        $('#id_cidade_cad').html(options).show();
+                        $('.carregando').hide();
+                    });
+                } else {
+                    $('#id_cidade_cad').html('<option value="">– Escolha a Cidade –</option>');
                 }
             });
         });
