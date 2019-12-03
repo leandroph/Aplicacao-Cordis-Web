@@ -145,7 +145,7 @@ $pag = $_GET['pag'];
                                                 $count = $count + 1;
                                                 $idCidade = $cidadeDAO->getCidade($pessoaEndereco->getId_cidade());
                                                 $idEstado = $estadoDAO->getEstado($idCidade->getId_Estado());
-                                                $idPais = $paisDAO->getPais($idEstado->getId_Pais()); 
+                                                $idPais = $paisDAO->getPais($idEstado->getId_Pais());
                                                 echo "<tr>";
                                                 echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $count . "</td>";
                                                 echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
@@ -158,7 +158,7 @@ $pag = $_GET['pag'];
                                                 data-cep='" . $pessoaEndereco->getCEP() . "' data-complemento='" . $pessoaEndereco->getComplemento() . "' data-numero='" . $pessoaEndereco->getNumero() . "'
                                                 data-cidade='" . $pessoaEndereco->getId_cidade() . "' data-crm='" . $medicoLista->getCRM() . "' data-especialidade='" . $medicoLista->getEspecialidade() . "'
                                                 data-agenda='" . $medicoLista->getCorAgenda() . "' data-estado='" . $idEstado->getId() . "' data-pais='" . $idPais->getId() . "'>Editar</a>
-                                                    <a class='btn btn-danger' href='deleta.php?id=" . $pessoaLista->getId_Usuario() . "'>Deletar</a><br/></td>";
+                                                    <a class='btn btn-danger' data-toggle='modal' data-target='#my_modal_del'" . $pessoaLista->getId_Usuario() . "' data-id='" . $pessoaLista->getId_Usuario() . "' data-nome='" . $pessoaLista->getNome() . ' ' . $pessoaLista->getSobrenome() . "'>Deletar</a><br/></td>";
                                                 echo "</tr>";
                                             }
                                         } else {
@@ -423,6 +423,49 @@ $pag = $_GET['pag'];
 
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
 
+    <div class="modal" id="my_modal_del">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center"><b>Exclusão de Cadastro</b></h4>
+                </div>
+                <div class="modal-body" style="">
+                    <div class="box-body">
+                        <div class="box box-warning">
+                            <div class="box-header with-border ">
+                                <h3 class="box-title text-center">Tem certeza que deseja escluir este registro?</h3>
+                                <br>
+                                <form action="excluir.php" method="get">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>ID</b></span>
+                                                <input readonly type="text" class="form-control" name="id" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Nome</b></span>
+                                                <input readonly type="text" class="form-control" name="nome" placeholder="">
+                                                <input readonly type="hidden" class="form-control" name="tipo" value="medico">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="text-right">
+                                        <button class="btn btn-success" type="submit">Sim</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="my_modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -645,6 +688,18 @@ $pag = $_GET['pag'];
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $('#my_modal_del').on('show.bs.modal', function(e) {
+
+            var usuaioID = $(e.relatedTarget).data('id');
+            var pessoaNome = $(e.relatedTarget).data('nome');
+
+            $(e.currentTarget).find('input[name="id"]').val(usuaioID);
+            $(e.currentTarget).find('input[name="nome"]').val(pessoaNome);
+
+        });
+    </script>
 
     <script type="text/javascript">
         $('#my_modal').on('show.bs.modal', function(e) {
