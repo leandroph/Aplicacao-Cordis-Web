@@ -58,7 +58,7 @@ class PaisDAO {
         if ($sql->execute()) {
             // Query succeeded.
             while ($dados = $sql->fetch(PDO::FETCH_OBJ)) {
-                $cidade = new Cidade();
+                $pais = new Pais();
 
                 $pais->setId($dados->id);
                 $pais->setNome($dados->nome);

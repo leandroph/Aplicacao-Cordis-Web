@@ -143,6 +143,9 @@ $pag = $_GET['pag'];
                                                 $pessoaLista = $pessoaDAO->getPessoa($medicoLista->getId_Usuario());
                                                 $pessoaEndereco = $enderecoDAO->getEndereco($pessoaLista->getId_Usuario());
                                                 $count = $count + 1;
+                                                $idCidade = $cidadeDAO->getCidade($pessoaEndereco->getId_cidade());
+                                                $idEstado = $estadoDAO->getEstado($idCidade->getId_Estado());
+                                                $idPais = $paisDAO->getPais($idEstado->getId_Pais()); 
                                                 echo "<tr>";
                                                 echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $count . "</td>";
                                                 echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
@@ -154,7 +157,7 @@ $pag = $_GET['pag'];
                                                 data-email='" . $pessoaLista->getEmail() . "' data-logradouro='" . $pessoaEndereco->getLogradouro() . "' data-bairro='" . $pessoaEndereco->getBairro() . "'
                                                 data-cep='" . $pessoaEndereco->getCEP() . "' data-complemento='" . $pessoaEndereco->getComplemento() . "' data-numero='" . $pessoaEndereco->getNumero() . "'
                                                 data-cidade='" . $pessoaEndereco->getId_cidade() . "' data-crm='" . $medicoLista->getCRM() . "' data-especialidade='" . $medicoLista->getEspecialidade() . "'
-                                                data-agenda='" . $medicoLista->getCorAgenda() . "'>Editar</a>
+                                                data-agenda='" . $medicoLista->getCorAgenda() . "' data-estado='" . $idEstado->getId() . "' data-pais='" . $idPais->getId() . "'>Editar</a>
                                                     <a class='btn btn-danger' href='deleta.php?id=" . $pessoaLista->getId_Usuario() . "'>Deletar</a><br/></td>";
                                                 echo "</tr>";
                                             }
@@ -667,6 +670,10 @@ $pag = $_GET['pag'];
 
             var pessoaSexo = $(e.relatedTarget).data('sexo');
 
+            var pessoaCidade = $(e.relatedTarget).data('cidade');
+            var pessoaEstado = $(e.relatedTarget).data('estado');
+            var pessoaPais = $(e.relatedTarget).data('pais');
+
             $(e.currentTarget).find('input[name="ID"]').val(usuaioID);
             $(e.currentTarget).find('input[name="nome"]').val(pessoaNome);
             $(e.currentTarget).find('input[name="sobrenome"]').val(pessoaSobrenome);
@@ -685,7 +692,9 @@ $pag = $_GET['pag'];
             $(e.currentTarget).find('input[name="crm"]').val(medicoCRM);
             $(e.currentTarget).find('input[name="especialidade"]').val(medicoEspecialidade);
 
-
+            $("#id_cidade").val(pessoaCidade);
+            $("#id_estado").val(pessoaEstado);
+            $("#id_pais").val(pessoaPais);
             $("#sexoPessoa").val(pessoaSexo);
 
         });
@@ -710,15 +719,16 @@ $pag = $_GET['pag'];
                         tipo: 'pais',
                         ajax: 'true'
                     }, function(j) {
-                        var options = '<option value="">Escolha Subcategoria</option>';
+                        var options = '<option value="">Escolha o Estado</option>';
                         for (var i = 0; i < j.length; i++) {
                             options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
                         }
                         $('#id_estado').html(options).show();
                         $('.carregando').hide();
+                        $('#id_cidade').html('<option value="">Escolha Estado</option>');
                     });
                 } else {
-                    $('#id_estado').html('<option value="">– Escolha Subcategoria –</option>');
+                    $('#id_estado').html('<option value="">– Escolha o Estado –</option>');
                 }
             });
         });
@@ -733,7 +743,7 @@ $pag = $_GET['pag'];
                         tipo: 'estado',
                         ajax: 'true'
                     }, function(j) {
-                        var options = '<option value="">Escolha Subcategoria</option>';
+                        var options = '<option value="">Escolha Cidade</option>';
                         for (var i = 0; i < j.length; i++) {
                             options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
                         }
@@ -741,7 +751,7 @@ $pag = $_GET['pag'];
                         $('.carregando').hide();
                     });
                 } else {
-                    $('#id_cidade').html('<option value="">– Escolha Subcategoria –</option>');
+                    $('#id_cidade').html('<option value="">– Escolha a Cidade –</option>');
                 }
             });
         });
