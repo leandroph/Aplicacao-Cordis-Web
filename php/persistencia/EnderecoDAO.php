@@ -34,6 +34,7 @@ class EnderecoDAO {
         $sql->bindValue(':complemento', $endereco->getComplemento());
         $sql->bindValue(':id_cidade', $endereco->getId_cidade());
         if ($sql->execute()) {
+            $endereco->setId($this->pdo->lastInsertId());
             // Query succeeded.
             return true;
         } else {

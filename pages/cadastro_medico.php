@@ -141,7 +141,7 @@ $pag = $_GET['pag'];
                                         if ($medicoListaCadastro != null) {
                                             foreach ($medicoListaCadastro as $medicoLista) {
                                                 $pessoaLista = $pessoaDAO->getPessoa($medicoLista->getId_Usuario());
-                                                $pessoaEndereco = $enderecoDAO->getEndereco($pessoaLista->getId_Usuario());
+                                                $pessoaEndereco = $enderecoDAO->getEndereco($pessoaLista->getId_Endereco());
                                                 $count = $count + 1;
                                                 $idCidade = $cidadeDAO->getCidade($pessoaEndereco->getId_cidade());
                                                 $idEstado = $estadoDAO->getEstado($idCidade->getId_Estado());
@@ -527,7 +527,7 @@ $pag = $_GET['pag'];
                                     <div class="col-xs-6">
                                         <div class="input-group">
                                             <span class="input-group-addon"><b>Nascimento</b></span>
-                                            <input type="text" class="form-control" name="nascimento" placeholder="">
+                                            <input type="text" class="form-control" name="nascimento" id="nascimento" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
@@ -786,7 +786,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>Nascimento</b></span>
-                                                <input type="text" class="form-control" name="nascimento" placeholder="" required>
+                                                <input type="text" class="form-control" name="nascimento" id="nascimento_format" placeholder="" required>
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
@@ -929,7 +929,7 @@ $pag = $_GET['pag'];
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>Agenda</b></span>
                                                 <div class="form-group">
-                                                    <select class="form-control">
+                                                    <select id="agenda" name="agenda" class="form-control">
                                                         <option>Azul</option>
                                                         <option>Vermelho</option>
                                                     </select>
@@ -958,6 +958,8 @@ $pag = $_GET['pag'];
         $("#fone_format").mask("(00) 00000-0000");
         $("#cpf_format").mask("000.000.000-00");
         $("#cpf").mask("000.000.000-00");
+        $("#nascimento").mask("00/00/0000");
+        $("#nascimento_format").mask("00/00/0000");
     </script>
 
     <script type="text/javascript">

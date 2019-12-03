@@ -27,8 +27,7 @@ class UsuarioDAO
      */
     public function inserir(Usuario $usuario)
     {
-        $sql = $this->pdo->prepare('INSERT INTO tb_usuarios (id, login, senha, ativo, perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES (:id, :login, :ativo, :perm_paciente, :perm_medico, :perm_secretaria, :perm_administrador)');
-        $sql->bindValue(':id', $usuario->getId());
+        $sql = $this->pdo->prepare('INSERT INTO tb_usuarios (login, senha, ativo, perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES (:login, :senha, :ativo, :perm_paciente, :perm_medico, :perm_secretaria, :perm_administrador)');
         $sql->bindValue(':login', $usuario->getLogin());
         $sql->bindValue(':senha', $usuario->getSenha());
         $sql->bindValue(':ativo', $usuario->getAtivo());
@@ -37,6 +36,7 @@ class UsuarioDAO
         $sql->bindValue(':perm_secretaria', $usuario->getPerm_Secretaria());
         $sql->bindValue(':perm_administrador', $usuario->getPerm_Administrador());
         if ($sql->execute()) {
+            $usuario->setId($this->pdo->lastInsertId());
             // Query succeeded.
             return true;
         } else {
