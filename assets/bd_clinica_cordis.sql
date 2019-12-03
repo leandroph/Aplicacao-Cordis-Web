@@ -5880,48 +5880,71 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
 
 INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
-	(1, 'leandro', 'heck',  true, true, false, true, true),
-	(2, 'daniel', 'buchholz', true, true, true, true, true),
-	(3, 'cristiano', 'kunas', true, true, true, false, true),
-	(4, 'ana', 'user', true, true, false, true, true),
-	(5, 'paulo', 'user', true, true, false, true, false),
-	(6, 'douglas', 'hoffmann', true, false, true, false, false),
-	(7, 'carmem', 'user', true, true, false, false, true),
-	(8, 'jeferson', 'user', true, false, false, false, true);
+	(1, 'adriana', 'pasa',  true, true, false, true, true),
+	(2, 'hildo', 'traesel', true, true, true, true, true),
+	(3, 'henrique', 'marchi', true, true, true, false, true),
+	(4, 'jose', 'nohn', true, true, false, true, true),
+	(5, 'marcos', 'christensen', true, true, false, true, false),
+	(6, 'luis', 'necker', true, false, true, false, false),
+	(7, 'pedro', 'biasi', true, true, false, false, true),
+	(8, 'robson', 'machado', true, false, false, false, true),
+	(9, 'cristiano', 'kunas', true, false, false, false, true),
+	(10, 'daniel', 'buchholz', true, false, false, false, true),
+	(11, 'douglas', 'hoffman', true, false, false, false, true),
+	(12, 'leandro', 'heck', true, false, false, false, true),
+	(13, 'marisa', 'santos', true, false, false, false, true);
 
 INSERT INTO tb_preferencias(id_usuario, pref_skin, filtro_paciente, filtro_medico, filtro_secretaria, filtro_administrador) VALUES
-	(1, 'skin-blue', false, false, false, false),
-	(2, 'skin-blue', false, false, false, false),
-	(3, 'skin-blue', false, false, false, false),
-	(4, 'skin-blue', false, false, false, false),
-	(5, 'skin-blue', false, false, false, false),
-	(6, 'skin-blue', false, false, false, false),
-	(7, 'skin-blue', false, false, false, false),
-	(8, 'skin-blue', false, false, false, false);
+	(1, 'skin-blue', false, true, false, false),
+	(2, 'skin-blue', false, true, false, false),
+	(3, 'skin-blue', false, true, false, false),
+	(4, 'skin-blue', false, true, false, false),
+	(5, 'skin-blue', false, true, false, false),
+	(6, 'skin-blue', false, true, false, false),
+	(7, 'skin-blue', false, true, false, false),
+	(8, 'skin-blue', false, true, false, false),
+	(9, 'skin-blue', true, false, false, true),
+	(10, 'skin-blue', true, false, false, true),
+	(11, 'skin-blue', true, false, false, true),
+	(12, 'skin-blue', true, false, false, true),
+	(13, 'skin-blue', false, false, true, false);
 
 INSERT INTO tb_pessoas(id_usuario, nome, sobrenome, cpf, rg, sexo, nascimento, email, id_endereco) VALUES 
-	(1, 'Leandro', 'Heck', '575.528.440-78', '222222222', 'F', '1990-03-25', 'ana@teste.com', 4),
-	(2, 'Daniel', 'Buchholz', '887.328.790-59','222222222', 'M', '1993-06-12','paulo@teste.com', 5),
-	(3, 'Cristiano', 'Kunas', '517.232.710-04','222222222', 'M', '1992-08-15', 'jeferson@teste.com', 8),
-	(4, 'Ana', 'teste', '456.111.480-77','222222222', 'M', '1996-06-23', 'douglas@teste.com', 6),
-	(5, 'Paulo', 'teste2', '074.820.940-91','222222222', 'F', '1992-11-04', 'carmem@teste.com', 7),
-	(6, 'Douglas', 'Hoffmann', '027.359.660.89','222222222', 'M', '1992-11-04', 'leandro@teste.com', 1),
-	(7, 'Carmem', 'teste3', '027.359.660.78','222222222', 'M', '1992-11-04', 'daniel@teste.com', 2),
-	(8, 'Jeferson', 'teste4', '027.859.860.89','222222222', 'M', '1992-11-04', 'cristiano@teste.com', 3);
+	(1, 'Adriana', 'Pasa', '575.528.440-78', '483510154', 'F', '1990-03-25', 'adriana@adriana.com', 1),
+	(2, 'Hildo', 'Jose Traesel', '887.328.790-59','140137488', 'M', '1993-06-12','hildo@hildo.com', 2),
+	(3, 'Henrique', 'Falleiro De Marchi', '517.232.710-04','108945339', 'M', '1992-08-15', 'henrique@henrique.com', 3),
+	(4, 'Jose', 'Carlos Bohn', '456.111.480-77','292650632', 'M', '1996-06-23', 'jose@jose.com', 4),
+	(5, 'Marcos', 'Christensen', '074.820.940-91','223000383', 'M', '1992-11-04', 'marcos@marcos.com', 5),
+	(6, 'Luis', 'Antonio Kerber', '027.359.660.89','283674015', 'M', '1992-11-04', 'luis@luis.com', 6),
+	(7, 'Pedro', 'Radalle Biasi', '027.359.660.78','203390489', 'M', '1992-11-04', 'pedro@pedro.com', 6),
+	(8, 'Robson', 'Witczak Machado', '104.976.280-07','224432576', 'M', '1992-11-04', 'robson@robson.com', 7),
+	(9, 'Cristiano', 'Kunas', '529.862.970-99','224432576', 'M', '1993-08-13', 'cristiano@cristiano.com', 5),
+	(10, 'Daniel', 'Buchholz', '188.529.130-25','224432576', 'M', '1997-08-11', 'daniel@daniel.com', 4),
+	(11, 'Douglas', 'Hoffmann', '383.345.040-12','224432576', 'M', '1997-11-22', 'douglas@douglas.com', 3),
+	(12, 'Leandro', 'Heck', '144.077.000-09','224432576', 'M', '1992-07-15', 'leandro@leandro.com', 2),
+	(13, 'Marisa', 'Santos', '474.875.870-88','333698786', 'F', '1992-01-05', 'marisa@marisa.com', 1);
+
 
 INSERT INTO tb_contatos(id_usuario, telefone, tipo) VALUES 
-	(1, '55999261479', 'pessoal'),
-	(2, '9999999999', 'pessoal'),
-	(3, '9999999999', 'pessoal'),
-	(4, '9999999999', 'pessoal'),
-	(5, '9999999999', 'pessoal'),
-	(6, '9999999999', 'pessoal'),
-	(7, '9999999999', 'pessoal'),
-	(8, '9999999999', 'pessoal');
+	(1, '5535122288', 'pessoal'),
+	(2, '5535125344', 'pessoal'),
+	(3, '5521202030', 'pessoal'),
+	(4, '5535128649', 'pessoal'),
+	(5, '5535122800', 'pessoal'),
+	(6, '5535112579', 'pessoal'),
+	(7, '5521204030', 'pessoal'),
+	(8, '5535128300', 'pessoal'),
+	(9, '55997146831', 'pessoal'),
+	(10, '55996412424', 'pessoal'),
+	(11, '55999146833', 'pessoal'),
+	(12, '55987411458', 'pessoal'),
+	(13, '55997455754', 'pessoal');
 
 INSERT INTO tb_pacientes(id_usuario) VALUES
-	(1),
-	(3);
+	(9),
+	(10),
+	(11),
+	(12);
 
 INSERT INTO tb_prontuarios(id, id_usuario, nome, ativo) VALUES 
 	(1, 2, 'Exames da Ana', true),
@@ -5929,15 +5952,24 @@ INSERT INTO tb_prontuarios(id, id_usuario, nome, ativo) VALUES
 	(3, 3, 'Exame de Sangue Jeferson' , true);
 
 INSERT INTO tb_medicos(id_usuario, cor_agenda, crm, especialidade, ativo) VALUES 
-	(1, 'Azul', '1530205070', 'Clinico Geral', false);
+	(1, 'Azul', '21485', 'Ginecologia', true),
+	(2, 'Azul', '11775', 'Ortopedia e Traumatologia', true),
+	(3, 'Azul', '37338', 'Oftalmologia', true),
+	(4, 'Azul', '9901', 'Clinico Geral | Coloproctologia', true),
+	(5, 'Azul', '17031', 'Cardiologia', true),
+	(6, 'Azul', '16358', 'Ortopedia e Traumatologia', true),
+	(7, 'Azul', '1530205070', 'Neurocirurgia', true),
+	(8, 'Azul', '34510', 'Cirurgia Geral | Cirurgia Vascular', true);
+
 	
 INSERT INTO tb_secretarias(id_usuario, cor_agenda, ativo) VALUES 
-	(1, 'Verde', false);
+	(13, 'Verde', false);
 
 INSERT INTO tb_administradores(id_usuario) VALUES 
-	(1),
-	(2),
-	(3);
+	(9),
+	(10),
+	(11),
+	(12);
 
 -- INSERT INTO tb_convenios(id, nome, ativo, nome_empresa, cnpj_empresa, id_endereco, id_contato, id_usuario) VALUES 
 
