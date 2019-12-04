@@ -73,7 +73,7 @@ class AgendamentoDAO {
      */ 
     public function getAgendamento($id) 
     {
-        $sql = $this->pdo->prepare('select * from tb_agendamento where id = :id');
+        $sql = $this->pdo->prepare('select * from tb_agendamentos where id = :id');
         $sql->bindValues(':id', $id);
     
         $sql->execute();

@@ -462,26 +462,16 @@ $pag = $_GET['pag'];
                     $('#cadastrar').modal('show');
                 },
 
-                <?php
-                if ($agendamento != null) {
-                    foreach ($agendamento as $lista) {
-
-                    
-                ?>
+                
 
                 events: [{
-                    id: "<?php echo ''; ?>",
+                    id: '1',
                     title: 'ola',
                     start: '2019-09-23 09:00:00',
                     end: '2019-09-23 11:00:00',
                     color: '#0071c5',
                 }, 
-            <?php
-            }
-            } else {
-                    echo "<p>Nenhum usuário cadastrado</p>";
-                }
-                ?>
+            
                 ]
             });
 
