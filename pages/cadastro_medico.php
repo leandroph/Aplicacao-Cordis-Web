@@ -514,7 +514,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>RG</b></span>
-                                                <input type="text" class="form-control" name="rg" placeholder="">
+                                                <input type="text" class="form-control" name="rg" id="rg_format" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-xs-4">
@@ -584,7 +584,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>Numero</b></span>
-                                                <input type="text" class="form-control" name="numero" placeholder="">
+                                                <input type="text" class="form-control" name="numero" id="numero_format" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -664,7 +664,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>CRM</b></span>
-                                                <input type="text" class="form-control" name="crm" placeholder="">
+                                                <input type="text" class="form-control" name="crm" id="crm_format" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-xs-5">
@@ -775,7 +775,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>RG</b></span>
-                                                <input type="text" class="form-control" name="rg" placeholder="" required>
+                                                <input type="text" class="form-control" name="rg" id="rg_format2" placeholder="" required>
                                             </div>
                                         </div>
                                         <div class="col-xs-4">
@@ -846,7 +846,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>Numero</b></span>
-                                                <input type="text" class="form-control" name="numero" placeholder="" required>
+                                                <input type="text" class="form-control" name="numero" id="numero_format2" placeholder="" required>
                                             </div>
                                         </div>
                                     </div>
@@ -926,7 +926,7 @@ $pag = $_GET['pag'];
                                         <div class="col-xs-4">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><b>CRM</b></span>
-                                                <input type="text" class="form-control" name="crm" placeholder="">
+                                                <input type="text" class="form-control" name="crm" id="crm_format2" placeholder="">
                                             </div>
                                         </div>
                                         <div class="col-xs-5">
@@ -971,6 +971,12 @@ $pag = $_GET['pag'];
         $("#cpf").mask("000.000.000-00");
         $("#nascimento").mask("00/00/0000");
         $("#nascimento_format").mask("00/00/0000");
+        $("#crm_format").mask("000000000");
+        $("#crm_format2").mask("000000000");
+        $("#rg_format").mask("0000000000");
+        $("#rg_format2").mask("0000000000");
+        $("#numero_format").mask("00000000");
+        $("#numero_format2").mask("00000000");
     </script>
 
     <!-- Recupera dados dos inputs e envia modal -->
