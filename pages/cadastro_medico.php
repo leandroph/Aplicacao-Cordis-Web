@@ -146,12 +146,13 @@ $pag = $_GET['pag'];
                                                 $idCidade = $cidadeDAO->getCidade($pessoaEndereco->getId_cidade());
                                                 $idEstado = $estadoDAO->getEstado($idCidade->getId_Estado());
                                                 $idPais = $paisDAO->getPais($idEstado->getId_Pais());
-                                                echo "<tr>";
-                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $count . "</td>";
-                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
-                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getEmail() . "</td>";
-                                                echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $medicoLista->getCRM() . "</td>";
-                                                echo "<td><a class='btn btn-info' role='button' data-toggle='modal' data-target='#my_modal' data-id='" . $pessoaLista->getId_Usuario() . "' 
+                                                if ($medicoLista->getAtivo() == 1) {
+                                                    echo "<tr>";
+                                                    echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $count . "</td>";
+                                                    echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getNome() . " " . $pessoaLista->getSobrenome() . "</td>";
+                                                    echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $pessoaLista->getEmail() . "</td>";
+                                                    echo "<td style='display: table-cell; vertical-align:middle; height:100%;'>" . $medicoLista->getCRM() . "</td>";
+                                                    echo "<td><a class='btn btn-info' role='button' data-toggle='modal' data-target='#my_modal' data-id='" . $pessoaLista->getId_Usuario() . "' 
                                                 data-nome='" . $pessoaLista->getNome() . "' data-sobrenome='" . $pessoaLista->getSobrenome() . "' data-cpf='" . $pessoaLista->getCPF() . "'
                                                 data-rg='" . $pessoaLista->getRG() . "' data-sexo='" . $pessoaLista->getSexo() . "' data-nascimento='" . $pessoaLista->getNascimento() . "'
                                                 data-email='" . $pessoaLista->getEmail() . "' data-logradouro='" . $pessoaEndereco->getLogradouro() . "' data-bairro='" . $pessoaEndereco->getBairro() . "'
@@ -159,7 +160,8 @@ $pag = $_GET['pag'];
                                                 data-cidade='" . $pessoaEndereco->getId_cidade() . "' data-crm='" . $medicoLista->getCRM() . "' data-especialidade='" . $medicoLista->getEspecialidade() . "'
                                                 data-agenda='" . $medicoLista->getCorAgenda() . "' data-estado='" . $idEstado->getId() . "' data-pais='" . $idPais->getId() . "'>Editar</a>
                                                     <a class='btn btn-danger' data-toggle='modal' data-target='#my_modal_del'" . $pessoaLista->getId_Usuario() . "' data-id='" . $pessoaLista->getId_Usuario() . "' data-nome='" . $pessoaLista->getNome() . ' ' . $pessoaLista->getSobrenome() . "'>Deletar</a><br/></td>";
-                                                echo "</tr>";
+                                                    echo "</tr>";
+                                                }
                                             }
                                         } else {
                                             echo "<p>Nenhum usuário cadastrado</p>";
@@ -420,7 +422,7 @@ $pag = $_GET['pag'];
     <script src="../assets/moment/moment.js"></script>
     <script src="../assets/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src='../assets/fullcalendar/dist/locale/pt-br.js'></script>
-    
+
     <!-- Page specific script -->
 
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
@@ -476,217 +478,220 @@ $pag = $_GET['pag'];
                     <h4 class="modal-title text-center"><b>Editar Cadastro</b></h4>
                 </div>
                 <div class="modal-body" style="">
-                    <div class="box-body">
-                        <div class="box box-success">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Dados Pessoais</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Nome</b></span>
-                                            <input type="text" class="form-control" name="nome" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Sobrenome</b></span>
-                                            <input type="text" class="form-control" name="sobrenome" placeholder="">
-                                        </div>
-                                    </div>
+                    <form action="alterar.php" method="get">
+                        <div class="box-body">
+                            <div class="box box-success">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dados Pessoais</h3>
+                                    <input readonly type="hidden" class="form-control" name="ID">
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>CPF</b></span>
-                                            <input type="text" class="form-control" name="cpf" id="cpf_format" placeholder="">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Nome</b></span>
+                                                <input type="text" class="form-control" name="nome" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Sobrenome</b></span>
+                                                <input type="text" class="form-control" name="sobrenome" placeholder="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>RG</b></span>
-                                            <input type="text" class="form-control" name="rg" placeholder="">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CPF</b></span>
+                                                <input type="text" class="form-control" name="cpf" id="cpf_format" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>RG</b></span>
+                                                <input type="text" class="form-control" name="rg" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Sexo</b></span>
+                                                <div class="form-group">
+                                                    <select id="sexoPessoa" name="sexoPessoa" class="form-control">
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Feminino</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Sexo</b></span>
-                                            <div class="form-group">
-                                                <select id="sexoPessoa" class="form-control">
-                                                    <option value="M">Masculino</option>
-                                                    <option value="F">Feminino</option>
-                                                </select>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Nascimento</b></span>
+                                                <input type="text" class="form-control" name="nascimento" id="nascimento" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Email</b></span>
+                                                <input type="text" class="form-control" name="email" placeholder="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Nascimento</b></span>
-                                            <input type="text" class="form-control" name="nascimento" id="nascimento" placeholder="">
+                            </div>
+
+                            <div class="box box-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Endereço</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Logradouro</b></span>
+                                                <input type="text" class="form-control" name="logradouro" placeholder="">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Bairro</b></span>
+                                                <input type="text" class="form-control" name="bairro" placeholder="">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Email</b></span>
-                                            <input type="text" class="form-control" name="email" placeholder="">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CEP</b></span>
+                                                <input type="text" class="form-control" name="cep" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Complemento</b></span>
+                                                <input type="text" class="form-control" name="complemento" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Numero</b></span>
+                                                <input type="text" class="form-control" name="numero" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="pais">
+                                                <span class="input-group-addon"><b>País</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_pais" id="id_pais" class="form-control">
+                                                        <option>Escolher Pais</option>
+                                                        <?php
+
+                                                        if ($paisLista != null) {
+                                                            foreach ($paisLista as $paises) {
+                                                                echo '<option value="' . $paises->getId() . '">' . $paises->getNome() . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo "<p>Nenhum usuário cadastrado</p>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <!-- <button id="btnPais" type="button" class="btn btn-info fa fa-refresh"></button> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="estado">
+                                                <span class="input-group-addon"><b>Estado</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_estado" id="id_estado" class="form-control">
+                                                        <option>Escolher Estado</option>
+                                                        <?php
+
+                                                        if ($estadoLista != null) {
+                                                            foreach ($estadoLista as $estados) {
+                                                                echo '<option value="' . $estados->getId() . '">' . $estados->getNome() . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo "<p>Nenhum usuário cadastrado</p>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group" id="cidade">
+                                                <span class="input-group-addon"><b>Cidade</b></span>
+                                                <div class="form-group">
+                                                    <select name="id_cidade" id="id_cidade" class="form-control">
+                                                        <option>Escolher Cidade</option>
+                                                        <?php
+
+                                                        if ($cidadeLista != null) {
+                                                            foreach ($cidadeLista as $cidade) {
+                                                                echo '<option value="' . $cidade->getId() . '">' . $cidade->getNome() . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo "<p>Nenhum usuário cadastrado</p>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dados Médicos</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>CRM</b></span>
+                                                <input type="text" class="form-control" name="crm" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Especialidade</b></span>
+                                                <input type="text" class="form-control" name="especialidade" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><b>Agenda</b></span>
+                                                <div class="form-group">
+                                                    <select name="agenda" class="form-control">
+                                                        <option>Azul</option>
+                                                        <option>Vermelho</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="box box-warning">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Endereço</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Logradouro</b></span>
-                                            <input type="text" class="form-control" name="logradouro" placeholder="">
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Bairro</b></span>
-                                            <input type="text" class="form-control" name="bairro" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>CEP</b></span>
-                                            <input type="text" class="form-control" name="cep" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Complemento</b></span>
-                                            <input type="text" class="form-control" name="complemento" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Numero</b></span>
-                                            <input type="text" class="form-control" name="numero" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <div class="input-group" id="pais">
-                                            <span class="input-group-addon"><b>País</b></span>
-                                            <div class="form-group">
-                                                <select name="id_pais" id="id_pais" class="form-control">
-                                                    <option>Escolher Pais</option>
-                                                    <?php
-
-                                                    if ($paisLista != null) {
-                                                        foreach ($paisLista as $paises) {
-                                                            echo '<option value="' . $paises->getId() . '">' . $paises->getNome() . '</option>';
-                                                        }
-                                                    } else {
-                                                        echo "<p>Nenhum usuário cadastrado</p>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <!-- <button id="btnPais" type="button" class="btn btn-info fa fa-refresh"></button> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group" id="estado">
-                                            <span class="input-group-addon"><b>Estado</b></span>
-                                            <div class="form-group">
-                                                <select name="id_estado" id="id_estado" class="form-control">
-                                                    <option>Escolher Estado</option>
-                                                    <?php
-
-                                                    if ($estadoLista != null) {
-                                                        foreach ($estadoLista as $estados) {
-                                                            echo '<option value="' . $estados->getId() . '">' . $estados->getNome() . '</option>';
-                                                        }
-                                                    } else {
-                                                        echo "<p>Nenhum usuário cadastrado</p>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="input-group" id="cidade">
-                                            <span class="input-group-addon"><b>Cidade</b></span>
-                                            <div class="form-group">
-                                                <select name="id_cidade" id="id_cidade" class="form-control">
-                                                    <option>Escolher Cidade</option>
-                                                    <?php
-
-                                                    if ($cidadeLista != null) {
-                                                        foreach ($cidadeLista as $cidade) {
-                                                            echo '<option value="' . $cidade->getId() . '">' . $cidade->getNome() . '</option>';
-                                                        }
-                                                    } else {
-                                                        echo "<p>Nenhum usuário cadastrado</p>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="box box-danger">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Dados Médicos</h3>
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-xs-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>CRM</b></span>
-                                            <input type="text" class="form-control" name="crm" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Especialidade</b></span>
-                                            <input type="text" class="form-control" name="especialidade" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><b>Agenda</b></span>
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option>Azul</option>
-                                                    <option>Vermelho</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <input type="text" class="form-control" name="nome" value="" /> -->
+                        <!-- <input type="text" class="form-control" name="nome" value="" /> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Salvar Alterações</button>
+                    <button type="submit" class="btn btn-success">Salvar Alterações</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -964,7 +969,7 @@ $pag = $_GET['pag'];
 
     <script type="text/javascript">
         $('#my_modal').on('show.bs.modal', function(e) {
-            var usuaioID = $(e.relatedTarget).data('ID');
+            var usuaioID = $(e.relatedTarget).data('id');
             var pessoaNome = $(e.relatedTarget).data('nome');
             var pessoaSobrenome = $(e.relatedTarget).data('sobrenome');
             var pessoaCPF = $(e.relatedTarget).data('cpf');

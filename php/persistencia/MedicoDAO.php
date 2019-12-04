@@ -119,12 +119,12 @@ class MedicoDAO {
      */
     public function alterar(Medico $medico)
     {
-        $sql = $this->pdo->prepare('update tb_medicos set id_usuario = :id_usuario, cor_agenda = :cor_agenda, crm = :crm, especialidade = :especialidade, ativo = :ativo');
-        $sql->bindValue(':id_usuario', $preferencia->getId_usuario());
-        $sql->bindValue(':cor_agenda', $preferencia->getCorAgenda());
-        $sql->bindValue(':crm', $preferencia->getCrm());
-        $sql->bindValue(':especialidade', $preferencia->getEspecialidade());
-        $sql->bindValue(':ativo', $preferencia->getAtivo());
+        $sql = $this->pdo->prepare('update tb_medicos set cor_agenda = :cor_agenda, crm = :crm, especialidade = :especialidade, ativo = :ativo where id_usuario = :id_usuario');
+        $sql->bindValue(':id_usuario', $medico->getId_usuario());
+        $sql->bindValue(':cor_agenda', $medico->getCorAgenda());
+        $sql->bindValue(':crm', $medico->getCrm());
+        $sql->bindValue(':especialidade', $medico->getEspecialidade());
+        $sql->bindValue(':ativo', $medico->getAtivo());
         
         if ($sql->execute()) {
             // Query succeeded.
@@ -146,7 +146,7 @@ class MedicoDAO {
     public function delete(Medico $medico)
     {
         $sql = $this->pdo->prepare('delete from tb_medicos where id_usuario = :id_usuario');
-        $sql->bindValue(':id_usuario', $contato->getId_usuario());
+        $sql->bindValue(':id_usuario', $medico->getId_usuario());
         if ($sql->execute()) {
             // Query succeeded.
             return true;

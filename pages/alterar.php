@@ -23,40 +23,25 @@ $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '', 
 $usuarioDAO = new UsuarioDAO($conexao);
 $usuario    = new Usuario;
 
-$usuario->setLogin($_GET['user']);
-$usuario->setSenha($_GET['senha']);
-$usuario->setAtivo(true);
-$usuario->setPerm_Medico(true);
-$usuario->setPerm_Secretaria(false);
-$usuario->setPerm_Paciente(false);
-$usuario->setPerm_Administrador(false);
+$usuario->setId($_GET['ID']);
 
-if ($usuarioDAO->inserir($usuario)) {
-    echo "Operação realizada com sucesso<br/>";
-} else {
-    echo "Ocorreu um erro na operação<br/>";
-}
+// $usuario->setLogin($_GET['user']);
+// $usuario->setSenha($_GET['senha']);
+// $usuario->setAtivo(true);
+// $usuario->setPerm_Medico(true);
+// $usuario->setPerm_Secretaria(false);
+// $usuario->setPerm_Paciente(false);
+// $usuario->setPerm_Administrador(false);
 
-$enderecoDAO = new EnderecoDAO($conexao);
-$endereco    = new Endereco;
-
-$endereco->setLogradouro($_GET['logradouro']);
-$endereco->setBairro($_GET['bairro']);
-$endereco->setCEP($_GET['cep']);
-$endereco->setComplemento($_GET['complemento']);
-$endereco->setNumero($_GET['numero']);
-$endereco->setId_cidade($_GET['id_cidade_cad']);
-
-if ($enderecoDAO->inserir($endereco)) {
-    echo "Operação realizada com sucesso<br/>";
-} else {
-    echo "Ocorreu um erro na operação<br/>";
-}
+// if ($usuarioDAO->inserir($usuario)) {
+//     echo "Operação realizada com sucesso<br/>";
+// } else {
+//     echo "Ocorreu um erro na operação<br/>";
+// }
 
 $pessoaDAO = new PessoaDAO($conexao);
-$pessoa    = new Pessoa;
+$pessoa    = $pessoaDAO->getPessoa($usuario->getId());
 
-$pessoa->setId_Usuario($usuario->getId());
 $pessoa->setNome($_GET['nome']);
 $pessoa->setSobrenome($_GET['sobrenome']);
 $pessoa->setCPF($_GET['cpf']);
@@ -70,16 +55,31 @@ $data = date("Y-m-d",strtotime(str_replace('/','-',$data)));
 $pessoa->setNascimento($data);
 $pessoa->setEmail($_GET['email']);
 $pessoa->setSexo($_GET['sexoPessoa']);
-$pessoa->setId_Endereco($endereco->getId());
 
-if ($pessoaDAO->inserir($pessoa)) {
+if ($pessoaDAO->alterar($pessoa)) {
+    echo "Operação realizada com sucesso<br/>";
+} else {
+    echo "Ocorreu um erro na operação<br/>";
+}
+
+$enderecoDAO = new EnderecoDAO($conexao);
+$endereco    = $enderecoDAO->getEndereco($pessoa->getId_Endereco());
+
+$endereco->setLogradouro($_GET['logradouro']);
+$endereco->setBairro($_GET['bairro']);
+$endereco->setCEP($_GET['cep']);
+$endereco->setComplemento($_GET['complemento']);
+$endereco->setNumero($_GET['numero']);
+$endereco->setId_cidade($_GET['id_cidade']);
+
+if ($enderecoDAO->alterar($endereco)) {
     echo "Operação realizada com sucesso<br/>";
 } else {
     echo "Ocorreu um erro na operação<br/>";
 }
 
 $medicoDAO = new MedicoDAO($conexao);
-$medico    = new Medico;
+$medico    = $medicoDAO->getMedico($usuario->getId());
 
 $medico->setId_Usuario($usuario->getId());
 $medico->setCRM($_GET['crm']);
@@ -87,7 +87,7 @@ $medico->setEspecialidade($_GET['especialidade']);
 $medico->setCorAgenda($_GET['agenda']);
 $medico->setAtivo(true);
 
-if ($medicoDAO->inserir($medico)) {
+if ($medicoDAO->alterar($medico)) {
     echo "Operação realizada com sucesso<br/>";
 } else {
     echo "Ocorreu um erro na operação<br/>";
