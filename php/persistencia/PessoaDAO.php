@@ -100,6 +100,35 @@ class PessoaDAO {
             return null;
         }
     }
+
+    /**
+     * alterar
+     *
+     * @param  mixed $pessoa
+     *
+     * @return void
+     */
+    public function alterar(Pessoa $pessoa)
+    {
+        $sql = $this->pdo->prepare('update tb_pessoas set nome = :nome, sobrenome = :sobrenome, cpf = :cpf, rg = :rg, sexo = :sexo, nascimento = :nascimento, email = :email, id_endereco = :id_endereco where id_usuario = :id_usuario');
+        $sql->bindValue(':id_usuario', $pessoa->getId_Usuario());
+        $sql->bindValue(':nome', $pessoa->getNome());
+        $sql->bindValue(':sobrenome', $pessoa->getSobrenome());
+        $sql->bindValue(':cpf', $pessoa->getCPF());
+        $sql->bindValue(':rg', $pessoa->getRG());
+        $sql->bindValue(':sexo', $pessoa->getSexo());
+        $sql->bindValue(':nascimento', $pessoa->getNascimento());
+        $sql->bindValue(':email', $pessoa->getEmail());
+        $sql->bindValue(':id_endereco', $pessoa->getId_Endereco());
+        
+        if ($sql->execute()) {
+            // Query succeeded.
+            return true;
+        } else {
+            // Query failed.
+            echo $sql->errorCode();
+        }
+    }
     
     /**
      * Seleciona todos registros do banco

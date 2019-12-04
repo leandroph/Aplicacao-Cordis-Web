@@ -104,6 +104,33 @@ class UsuarioDAO
     }
 
     /**
+     * alterar
+     *
+     * @param  mixed $usuario
+     *
+     * @return void
+     */
+    public function alterar(Usuario $usuario)
+    {
+        $sql = $this->pdo->prepare('update tb_usuarios set login = :login, senha = :senha, ativo = :ativo, perm_paciente = :perm_paciente, perm_medico = :perm_medico, perm_secretaria = :perm_secretaria, perm_administrador = :perm_administrador where id = :id');
+        $sql->bindValue(':id', $usuario->getID());
+        $sql->bindValue(':login', $usuario->getLogin());
+        $sql->bindValue(':senha', $usuario->getSenha());
+        $sql->bindValue(':ativo', $usuario->getAtivo());
+        $sql->bindValue(':perm_paciente', $usuario->getPerm_Paciente());
+        $sql->bindValue(':perm_medico', $usuario->getPerm_Medico());
+        $sql->bindValue(':perm_secretaria', $usuario->getPerm_Secretaria());
+        $sql->bindValue(':perm_administrador', $usuario->getPerm_Administrador());
+        if ($sql->execute()) {
+            // Query succeeded.
+            return true;
+        } else {
+            // Query failed.
+            echo $sql->errorCode();
+        }
+    }
+
+    /**
      * Seleciona todos registros do banco
      *
      * @return void
