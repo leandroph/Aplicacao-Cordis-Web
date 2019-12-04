@@ -202,18 +202,18 @@ CREATE TABLE tb_agendamentos (
 	senha					VARCHAR(32) NOT NULL,
 	cod_status				ENUM('Agendado', 'Confirmado', 'Realizado', 'Cancelado'),
 	pago 					BOOLEAN NOT NULL,
-	id_not_email			INT NOT NULL,
-	id_not_sms				INT NOT NULL,
-	id_convenio				INT NOT NULL,
-	id_exames_agendamento	INT NOT NULL, -- verificar possivel nova tabela, para inserir mais de um exame
+	-- id_not_email			INT NOT NULL,
+	-- id_not_sms				INT NOT NULL,
+	-- id_convenio				INT NOT NULL,
+	-- id_exames_agendamento	INT NOT NULL, -- verificar possivel nova tabela, para inserir mais de um exame
 	id_secretaria			INT NOT NULL,
 	id_paciente				INT NOT NULL,
 	id_medico				INT NOT NULL,
 	PRIMARY KEY (id) ,
-	FOREIGN KEY (id_not_email) REFERENCES tb_notificacoes_email (id_notificacao) ,
-	FOREIGN KEY (id_not_sms) REFERENCES tb_notificacoes_sms (id_notificacao) ,
-	FOREIGN KEY (id_convenio) REFERENCES tb_convenios (id) ,
-	FOREIGN KEY (id_exames_agendamento) REFERENCES tb_exames (id) ,
+	-- FOREIGN KEY (id_not_email) REFERENCES tb_notificacoes_email (id_notificacao) ,
+	-- FOREIGN KEY (id_not_sms) REFERENCES tb_notificacoes_sms (id_notificacao) ,
+	-- FOREIGN KEY (id_convenio) REFERENCES tb_convenios (id) ,
+	-- FOREIGN KEY (id_exames_agendamento) REFERENCES tb_exames (id) ,
 	FOREIGN KEY (id_secretaria) REFERENCES tb_secretarias (id_usuario) ,
 	FOREIGN KEY (id_paciente) REFERENCES tb_pacientes (id_usuario),
 	FOREIGN KEY (id_medico) REFERENCES tb_medicos (id_usuario)
@@ -6048,3 +6048,14 @@ INSERT INTO tb_exames(id, nome, valor, especial, ativo) VALUES
 	(73, 'Exame da glicose', 100.00, false, false),
 	(74, 'Exame de HIV', 100.00, false, false),
 	(75, 'Hemaglutinação', 100.00, false, false);
+
+INSERT INTO tb_agendamentos(id, data_hora_inicio, data_hora_fim, valor, observacao, senha, cod_status, pago,
+   id_secretaria, id_paciente, id_medico) VALUES 
+	(1, '2019-10-10 15:15:10', '2019-10-11 15:15:11', 200.00, 'Sem Obs', 1234, 'Agendado', false,
+	13, 9, 1),
+	(2, '2019-11-10 14:15:10', '2019-10-11 14:15:11', 210.00, 'Sem Obs1', 1234, 'Confirmado', false,
+	13, 10, 2),
+	(3, '2019-12-10 13:15:10', '2019-10-11 13:15:11', 300.00, 'Sem Obs2', 1234, 'Realizado', false,
+	13, 11, 8),
+	(4, '2019-09-10 12:15:10', '2019-10-11 12:15:11', 400.00, 'Sem Obs3', 1234, 'Cancelado', false,
+	13, 12, 6);
