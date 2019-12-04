@@ -3,8 +3,8 @@ class Agendamento
 {
     /**Declaração de propriedade */
     private $id;
-	private $data_hora_inicio;
-	private $data_hora_fim;
+	private $dataHoraInicio;
+	private $dataHoraFim;
 	private $valor;
 	private $observacao;
 	private $senha;

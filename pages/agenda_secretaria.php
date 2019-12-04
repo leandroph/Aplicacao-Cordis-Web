@@ -12,6 +12,8 @@ include('../php/negocio/class/Usuario.php');
 include('../php/persistencia/UsuarioDAO.php');
 include('../php/negocio/class/Preferencia.php');
 include('../php/persistencia/PreferenciaDAO.php');
+include('../php/negocio/class/Agendamento.php');
+include('../php/persistencia/AgendamentoDAO.php');
 
 //Conexão com Banco de dados
 $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '');
@@ -23,6 +25,9 @@ $usuario = $usuarioDAO->getUsuario($id_usuario_logado);
 
 $preferenciaDAO = new PreferenciaDAO($conexao);
 $preferencia = $preferenciaDAO->getPreferencia($id_usuario_logado);
+
+$agendamentoDAO = new AgendamentoDAO($conexao);
+$agendamento = $agendamentoDAO->getAgendamentos();
 
 $pag = $_GET['pag'];
 
@@ -66,7 +71,7 @@ $pag = $_GET['pag'];
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-    <?php include('paginaDinamica/barraLateral.php.'); ?>
+        <?php include('paginaDinamica/barraLateral.php.'); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -85,13 +90,13 @@ $pag = $_GET['pag'];
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="box box-solid">
+                    <!-- <div class="col-md-3"> -->
+                    <!-- <div class="box box-solid">
                             <div class="box-header with-border">
                                 <h4 class="box-title">Draggable Events</h4>
                             </div>
                             <div class="box-body">
-                                <!-- the events -->
+                               
                                 <div id="external-events">
                                     <div class="external-event bg-green">Lunch</div>
                                     <div class="external-event bg-yellow">Go home</div>
@@ -106,16 +111,15 @@ $pag = $_GET['pag'];
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /. box -->
-                        <div class="box box-solid">
+                           
+                        </div> -->
+                    <!-- /. box -->
+                    <!-- <div class="box box-solid">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Create Event</h3>
                             </div>
                             <div class="box-body">
                                 <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                    <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
                                     <ul class="fc-color-picker" id="color-chooser">
                                         <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
                                         <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
@@ -132,21 +136,18 @@ $pag = $_GET['pag'];
                                         <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
                                     </ul>
                                 </div>
-                                <!-- /btn-group -->
                                 <div class="input-group">
                                     <input id="new-event" type="text" class="form-control" placeholder="Event Title">
 
                                     <div class="input-group-btn">
                                         <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
                                     </div>
-                                    <!-- /btn-group -->
                                 </div>
-                                <!-- /input-group -->
                             </div>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div> -->
                     <!-- /.col -->
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="box box-primary">
                             <div class="box-body no-padding">
                                 <!-- THE CALENDAR -->
@@ -461,19 +462,27 @@ $pag = $_GET['pag'];
                     $('#cadastrar').modal('show');
                 },
 
+                <?php
+                if ($agendamento != null) {
+                    foreach ($agendamento as $lista) {
+
+                    
+                ?>
+
                 events: [{
-                    id: '1',
+                    id: "<?php echo ''; ?>",
                     title: 'ola',
                     start: '2019-09-23 09:00:00',
                     end: '2019-09-23 11:00:00',
                     color: '#0071c5',
-                }, {
-                    id: '2',
-                    title: 'Teste',
-                    start: '2019-09-24 09:00:00',
-                    end: '2019-09-24 11:00:00',
-                    color: '#0071c5',
-                }, ]
+                }, 
+            <?php
+            }
+            } else {
+                    echo "<p>Nenhum usuário cadastrado</p>";
+                }
+                ?>
+                ]
             });
 
             // calendar.render();

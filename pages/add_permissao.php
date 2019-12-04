@@ -9,7 +9,7 @@ $conexao = new PDO('mysql:host=localhost;dbname=bd_clinica_cordis', 'root', '', 
 $usuarioDAO = new UsuarioDAO($conexao);
 $usuario    = $usuarioDAO->getUsuario($_GET['id']);
 
-$usuario->setPerm_Medico(false);
+$usuario->setPerm_Medico(true);
 
 if ($usuarioDAO->alterar($usuario)) {
     echo "Operação realizada com sucesso<br/>";
@@ -18,9 +18,15 @@ if ($usuarioDAO->alterar($usuario)) {
 }
 
 $medicoDAO = new MedicoDAO($conexao);
-$medico    = $medicoDAO->getMedico($usuario->getId());
+$medico    = new Medico;
 
-if ($medicoDAO->delete($medico)) {
+$medico->setAtivo(true);
+$medico->setCrm($_GET['crm']);
+$medico->setEspecialidade($_GET['especialidade']);
+$medico->setId_Usuario($usuario->getId());
+$medico->setCorAgenda($_GET['agenda']);
+
+if ($medicoDAO->inserir($medico)) {
     echo "Operação realizada com sucesso<br/>";
 } else {
     echo "Ocorreu um erro na operação<br/>";

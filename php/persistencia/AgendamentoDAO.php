@@ -33,10 +33,6 @@ class AgendamentoDAO {
         $sql->bindValues(':senha', $agendamento->getSenha());
         $sql->bindValues(':cod_Status', $agendamento->getCod_Status());
         $sql->bindValues(':pago', $agendamento->getPago());
-        $sql->bindValues(':id_not_email', $agendamento->getIdNotEmail());
-        $sql->bindValues(':id_not_sms', $agendamento->getIdNotSms());
-        $sql->bindValues(':id_convenio', $agendamento->getId_Convenio());
-        $sql->bindValues(':id_exames_agendamento', $agendamento->getId_Exames_Agendamento());
         $sql->bindValues(':id_secretaria', $agendamento->getId_Secretaria());
         $sql->bindValues(':id_paciente', $agendamento->getId_Paciente());
         $sql->bindValues(':id_medico', $agendamento->getId_Medico());
@@ -74,9 +70,10 @@ class AgendamentoDAO {
      * @param  mixed $id
      *
      * @return void
-     */
-    public function getAgendamento($id) {
-        $sql = $this->prepare('select * from tb_agendamento where id = :id');
+     */ 
+    public function getAgendamento($id) 
+    {
+        $sql = $this->pdo->prepare('select * from tb_agendamento where id = :id');
         $sql->bindValues(':id', $id);
     
         $sql->execute();
@@ -85,21 +82,17 @@ class AgendamentoDAO {
             while($dados = $sql->fetch(PDO::FETCH_OBJ)) {
                 $agendamento = new Agendamento();
     
-                $agendamento->setId($dados->$id);
-                $agendamento->setDataHoraInicio($dados->$data_hora_inicio);
-                $agendamento->setDataHoraFim($dados->$data_hora_fim);
-                $agendamento->setValor($dados->$valor);
-                $agendamento->setObservacao($dados->$observacao);
-                $agendamento->setSenha($dados->$senha);
-                $agendamento->setCod_Status($dados->$cod_status);
-                $agendamento->setPago($dados->$pago);
-                $agendamento->setIdNotEmail($dados->$id_not_email);
-                $agendamento->setIdNotSms($dados->$id_not_sms);
-                $agendamento->setId_Convenio($dados->$id_convenio);
-                $agendamento->setId_Exames_Agendamento($dados->$id_exames_agendamento);
-                $agendamento->setId_Secretaria($dados->$id_secretaria);
-                $agendamento->setId_Paciente($dados->$id+paciente);
-                $agendamento->setId_Medico($dados->$id_medico);
+                $agendamento->setId($dados->id);
+                $agendamento->setDataHoraInicio($dados->data_hora_inicio);
+                $agendamento->setDataHoraFim($dados->data_hora_fim);
+                $agendamento->setValor($dados->valor);
+                $agendamento->setObservacao($dados->observacao);
+                $agendamento->setSenha($dados->senha);
+                $agendamento->setCod_Status($dados->cod_status);
+                $agendamento->setPago($dados->pago);
+                $agendamento->setId_Secretaria($dados->id_secretaria);
+                $agendamento->setId_Paciente($dados->id_paciente);
+                $agendamento->setId_Medico($dados->id_medico);
                 
     
                 return $agendamento;
@@ -116,8 +109,8 @@ class AgendamentoDAO {
      *
      * @return void
      */
-    public function getAgendamento() {
-        $sql = $this->prepare('select * from tb_agendamentos');
+    public function getAgendamentos() {
+        $sql = $this->pdo->prepare('select * from tb_agendamentos');
         $sql->execute();
     
         $lista = array();
@@ -126,21 +119,17 @@ class AgendamentoDAO {
             while($dados = $sql->fetch(PDO::FETCH_OBJ)) {
                 $agendamento = new Agendamento();
     
-                $agendamento->setId($dados->$id);
-                $agendamento->setDataHoraInicio($dados->$data_hora_inicio);
-                $agendamento->setDataHoraFim($dados->$data_hora_fim);
-                $agendamento->setValor($dados->$valor);
-                $agendamento->setObservacao($dados->$observacao);
-                $agendamento->setSenha($dados->$senha);
-                $agendamento->setCod_Status($dados->$cod_status);
-                $agendamento->setPago($dados->$pago);
-                $agendamento->setIdNotEmail($dados->$id_not_email);
-                $agendamento->setIdNotSms($dados->$id_not_sms);
-                $agendamento->setId_Convenio($dados->$id_convenio);
-                $agendamento->setId_Exames_Agendamento($dados->$id_exames_agendamento);
-                $agendamento->setId_Secretaria($dados->$id_secretaria);
-                $agendamento->setId_Paciente($dados->$id+paciente);
-                $agendamento->setId_Medico($dados->$id_medico);
+                $agendamento->setId($dados->id);
+                $agendamento->setDataHoraInicio($dados->data_hora_inicio);
+                $agendamento->setDataHoraFim($dados->data_hora_fim);
+                $agendamento->setValor($dados->valor);
+                $agendamento->setObservacao($dados->observacao);
+                $agendamento->setSenha($dados->senha);
+                $agendamento->setCod_Status($dados->cod_status);
+                $agendamento->setPago($dados->pago);
+                $agendamento->setId_Secretaria($dados->id_secretaria);
+                $agendamento->setId_Paciente($dados->id_paciente);
+                $agendamento->setId_Medico($dados->id_medico);
     
                 $lista[] = $agendamento;
             }
@@ -168,10 +157,6 @@ class AgendamentoDAO {
         $sql->bindValues(':senha', $agendamento->getSenha());
         $sql->bindValues(':cod_Status', $agendamento->getCod_Status());
         $sql->bindValues(':pago', $agendamento->getPago());
-        $sql->bindValues(':id_not_email', $agendamento->getIdNotEmail());
-        $sql->bindValues(':id_not_sms', $agendamento->getIdNotSms());
-        $sql->bindValues(':id_convenio', $agendamento->getId_Convenio());
-        $sql->bindValues(':id_exames_agendamento', $agendamento->getId_Exames_Agendamento());
         $sql->bindValues(':id_secretaria', $agendamento->getId_Secretaria());
         $sql->bindValues(':id_paciente', $agendamento->getId_Paciente());
         $sql->bindValues(':id_medico', $agendamento->getId_Medico());
