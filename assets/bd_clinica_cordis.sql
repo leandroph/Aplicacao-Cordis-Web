@@ -5879,7 +5879,7 @@ INSERT INTO  tb_enderecos(id, logradouro, bairro, numero, cep, complemento, id_c
 	(7, 'Rua Carlos Albert', 'Centro', '104', '97984-452', 'Ap 202', 4216), 
 	(8, 'Rua Dom Pedro II', 'Centro', '203', '97984-452', 'Casa', 3919);
 
-INSERT INTO tb_usuarios(id, login, senha, ativo,perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
+INSERT INTO tb_usuarios(id, login, senha, ativo, perm_paciente, perm_medico, perm_secretaria, perm_administrador) VALUES 
 	(1, 'adriana', 'pasa',  true, true, false, true, true),
 	(2, 'hildo', 'traesel', true, true, true, true, true),
 	(3, 'henrique', 'marchi', true, true, true, false, true),
