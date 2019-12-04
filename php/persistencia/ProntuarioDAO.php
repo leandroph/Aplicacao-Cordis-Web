@@ -17,7 +17,7 @@ class ProntuarioDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class ProntuarioDAO {
     }
     
     /**
-     * read
+     * Seleciona um registro do banco
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class ProntuarioDAO {
     }
 
     /**
-     * update
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -100,7 +100,7 @@ class ProntuarioDAO {
     }
     
     /**
-     * delete
+     * Altera registro do banco
      *
      * @return void
      */

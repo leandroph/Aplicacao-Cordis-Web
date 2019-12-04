@@ -19,7 +19,7 @@ class PreferenciaDAO
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $preferencia
      *
@@ -44,7 +44,7 @@ class PreferenciaDAO
     }
 
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $preferencia
      *
@@ -64,7 +64,7 @@ class PreferenciaDAO
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $preferencia
      *
@@ -89,7 +89,7 @@ class PreferenciaDAO
     }
 
     /**
-     * getPreferencia
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -124,7 +124,7 @@ class PreferenciaDAO
     }
 
     /**
-     * getPreferencias
+     * Seleciona todos registros do banco
      *
      * @return void
      */

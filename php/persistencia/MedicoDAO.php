@@ -17,7 +17,7 @@ class MedicoDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $medico
      *
@@ -42,7 +42,7 @@ class MedicoDAO {
    
     // retorna apenas um medico
     /**
-     * getMedico
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -77,7 +77,7 @@ class MedicoDAO {
 
     // retorna uma lista de medicos
     /**
-     * getMedicos
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class MedicoDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $medico
      *
@@ -137,7 +137,7 @@ class MedicoDAO {
     }
     
     /**
-     * delete
+     * Exclui registro do banco
      *
      * @param  mixed $medico
      *

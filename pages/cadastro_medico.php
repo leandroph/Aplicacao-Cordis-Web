@@ -423,8 +423,10 @@ $pag = $_GET['pag'];
     
     <!-- Page specific script -->
 
+    <!-- Include pagina lateral layout -->
     <?php include('paginaDinamica/opcaoLayout.php'); ?>
 
+    <!-- Carrega modal para exclusão de cadastro -->
     <div class="modal" id="my_modal_del">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -468,6 +470,7 @@ $pag = $_GET['pag'];
         </div>
     </div>
 
+    <!-- Carrega modal de edição de cadastros -->
     <div class="modal" id="my_modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -691,6 +694,7 @@ $pag = $_GET['pag'];
         </div>
     </div>
 
+    <!-- Carrega modal para confirmação de exclusão de registro -->
     <script type="text/javascript">
         $('#my_modal_del').on('show.bs.modal', function(e) {
 
@@ -703,6 +707,7 @@ $pag = $_GET['pag'];
         });
     </script>
 
+    <!-- Carrega modal para adição de registros -->
     <div class="modal" id="my_modal_add">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -953,6 +958,7 @@ $pag = $_GET['pag'];
         </div>
     </div>
 
+    <!-- Mascaras para inputs -->
     <script type="text/javascript">
         $("#cep_format").mask("00.000-000");
         $("#fone_format").mask("(00) 00000-0000");
@@ -962,6 +968,7 @@ $pag = $_GET['pag'];
         $("#nascimento_format").mask("00/00/0000");
     </script>
 
+    <!-- Recupera dados dos inputs e envia modal -->
     <script type="text/javascript">
         $('#my_modal').on('show.bs.modal', function(e) {
             var usuaioID = $(e.relatedTarget).data('ID');
@@ -1024,6 +1031,7 @@ $pag = $_GET['pag'];
 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
+    <!-- Carrega listas de estados, cidades, para o form  -->
     <script type="text/javascript">
         $(function() {
             $('#id_pais').change(function() {

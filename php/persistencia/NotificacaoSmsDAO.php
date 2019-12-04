@@ -17,7 +17,7 @@ class NotificacaoSmsDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class NotificacaoSmsDAO {
    
     // retorna apenas uma cidade
     /**
-     * getCidade
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -70,7 +70,7 @@ class NotificacaoSmsDAO {
 
     // retorna uma lista de cidades
     /**
-     * getCidades
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -101,7 +101,7 @@ class NotificacaoSmsDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $cidade
      *
@@ -124,7 +124,7 @@ class NotificacaoSmsDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $cidade
      *

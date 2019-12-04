@@ -17,7 +17,7 @@ class AgendaProntuarioDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $agendaprontuario
      *
@@ -36,7 +36,7 @@ class AgendaProntuarioDAO {
     }
 
     /**
-     * excluir
+     * Excluir registro do banco
      *
      * @param  mixed $agendaprontuario
      *
@@ -55,7 +55,7 @@ class AgendaProntuarioDAO {
     }
 
     /**
-     * getAgendaProntuario
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -86,7 +86,7 @@ class AgendaProntuarioDAO {
     }
     
     /**
-     * getAgendaProntuarios
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -114,6 +114,12 @@ class AgendaProntuarioDAO {
         return $lista;
     }
 
+    /**
+     * Altera registro do banco
+     *
+     * @param AgendaProntuario $anexo
+     * @return void
+     */
     public function alterar(AgendaProntuario $anexo){
         $sql = $this->pdo->prepare('update tb_agends_pronts set id = :id, id_prontuario = :id_prontuario, id_agendamento = :ig_agendamento');
         $sql->bindValues(':id', $agendaprontuario->getId());]

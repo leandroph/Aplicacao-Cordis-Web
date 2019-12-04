@@ -17,7 +17,7 @@ class ClienteDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $pessoa
      *
@@ -37,7 +37,7 @@ class ClienteDAO {
 
 
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $pessoa
      *
@@ -56,7 +56,7 @@ class ClienteDAO {
     }
 
     /**
-     * getCliente
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -86,7 +86,7 @@ class ClienteDAO {
     }
     
     /**
-     * getClientes
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -115,6 +115,12 @@ class ClienteDAO {
         return $lista;
     }
 
+    /**
+     * Altera registro do banco
+     *
+     * @param Cliente $cliente
+     * @return void
+     */
     public function alterar(Cliente $cliente){
         $sql = $this->pdo->prepare('update tb_anexos set id = :id, nome = :nome, caminho = :caminho, id_agendamento = :id_agendamento');
         $sql->bindValue(':id', $anexo->getId());

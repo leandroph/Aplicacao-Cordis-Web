@@ -23,6 +23,6 @@
 		echo "Não foi possível conectar ao banco de dados.";
 		exit;
 	}
-
+	/** Seta utf8 para registros do banco */
 	mysqli_query($id_conexao, "SET NAMES 'utf8'");
 ?>

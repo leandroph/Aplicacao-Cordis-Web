@@ -1,9 +1,14 @@
 <?php
 
 session_start();
-
+/**
+ * Includes
+ */
 include("../bd/conecta.php");
 
+/**
+ * Realiza login
+ */
 if (isset($_POST['login']) && isset($_POST['senha'])) {
     $login = $_POST['login'];
     $senha = $_POST['senha'];

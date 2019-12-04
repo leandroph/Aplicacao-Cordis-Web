@@ -17,7 +17,7 @@ class ContatoDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $contato
      *
@@ -39,9 +39,8 @@ class ContatoDAO {
     
     }
     
-    // retorna apenas um contato
     /**
-     * getContato
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -74,7 +73,7 @@ class ContatoDAO {
 
     // retorna uma lista de contatos
     /**
-     * getContatos
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -106,7 +105,7 @@ class ContatoDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $contato
      *
@@ -130,7 +129,7 @@ class ContatoDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $cidade
      *

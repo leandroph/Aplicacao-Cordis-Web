@@ -19,7 +19,7 @@ class UsuarioDAO
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $usuario
      *
@@ -47,7 +47,7 @@ class UsuarioDAO
 
 
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $usuario
      *
@@ -67,7 +67,7 @@ class UsuarioDAO
     }
 
     /**
-     * getUsuario
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -104,7 +104,7 @@ class UsuarioDAO
     }
 
     /**
-     * getUsuarios
+     * Seleciona todos registros do banco
      *
      * @return void
      */

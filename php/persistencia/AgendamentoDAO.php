@@ -17,7 +17,7 @@ class AgendamentoDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $agendamento
      *
@@ -49,7 +49,7 @@ class AgendamentoDAO {
     }
     
     /**
-     * excluir
+     * Excluir registro do banco
      *
      * @param  mixed $agendamento
      *
@@ -69,7 +69,7 @@ class AgendamentoDAO {
     }
     
     /**
-     * getAgendamento
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -112,7 +112,7 @@ class AgendamentoDAO {
     }
     
     /**
-     * getAgendamento
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -152,6 +152,12 @@ class AgendamentoDAO {
         return $lista;
     }
 
+    /**
+     * Altera registro do banco
+     *
+     * @param Agendamento $agendamento
+     * @return void
+     */
     public function alterar(Agendamento $agendamento){
         $sql = $this->pdo->prepare('update tb_anexos set id = :id, data_hora_inicio = :data_hora_inicio, data_hora_fim = :data_hora_fim, valor = :valor, observacao = :observacao, senha = :senha, cod_status = :cod_status, pago = :pago, id_not_email = : id_not_email, id_not_sms = :id_not_sms, id_convenio = :id:convenio, id_exames_agendamento = :id_exames_agendamento, id_secretaria = :id_secretaria, id_paciente = :id_paciente, id_medico = :id_medico ');
         $sql->bindValues(':id', $agendamento->getId());

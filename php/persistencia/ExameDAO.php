@@ -17,7 +17,7 @@ class ExameDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -41,7 +41,7 @@ class ExameDAO {
     
     // retorna apenas uma exame
     /**
-     * getExame
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -76,7 +76,7 @@ class ExameDAO {
     
     // retorna uma lista de exames
     /**
-     * getExames
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class ExameDAO {
     }
 
     /**
-     * update
+     * Altera registro do banco
      *
      * @return void
      */
@@ -135,7 +135,7 @@ class ExameDAO {
     }
     
     /**
-     * delete
+     * Exclui registro do banco
      *
      * @return void
      */

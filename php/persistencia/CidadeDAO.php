@@ -17,7 +17,7 @@ class CidadeDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $cidade
      *
@@ -39,12 +39,10 @@ class CidadeDAO {
     
     }
    
-    // retorna apenas uma cidade
     /**
-     * getCidade
+     * Seleciona um registro do banco
      *
-     * @param  mixed $id
-     *
+     * @param [type] $id
      * @return void
      */
     public function getCidade($id)
@@ -72,9 +70,8 @@ class CidadeDAO {
         }
     }
 
-    // retorna uma lista de cidades
     /**
-     * getCidades
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -106,10 +103,9 @@ class CidadeDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
-     * @param  mixed $cidade
-     *
+     * @param Cidade $cidade
      * @return void
      */
     public function alterar(Cidade $cidade)
@@ -130,7 +126,7 @@ class CidadeDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $cidade
      *

@@ -17,7 +17,7 @@ public function __construct($pdo) {
 }
 
 /**
- * inserir
+ * Insere registro no banco
  *
  * @param  mixed $administrador
  *
@@ -34,10 +34,9 @@ public function inserir(Administrador $administrador) {
 }
 
 /**
- * excluir
+ * Exclui registro do banco
  *
- * @param  mixed $administrador
- *
+ * @param Administrador $administrador
  * @return void
  */
 public function excluir(Administrador $administrador) {
@@ -53,10 +52,9 @@ public function excluir(Administrador $administrador) {
 }
 
 /**
- * getAdministrador
+ * Seleciona um registro do banco
  *
- * @param  mixed $id
- *
+ * @param [type] $id
  * @return void
  */
 public function getAdministrador($id) {
@@ -81,7 +79,7 @@ public function getAdministrador($id) {
 }
 
 /**
- * getAdministradores
+ * Seleciona todos registros do banco
  *
  * @return void
  */
@@ -107,6 +105,12 @@ public function getAdministradores() {
     return $lista;
 }
 
+/**
+ * Altera registro do banco
+ *
+ * @param Administrador $administrador
+ * @return void
+ */
 public function alterar(Administrador $administrador){
     $sql = $this->pdo->prepare('update tb_administradores set id_usuario = :id_usuario');
     $sql->bindValue(':id_usuario', $anexo->getId_Usuario());

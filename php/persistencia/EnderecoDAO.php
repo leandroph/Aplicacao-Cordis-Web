@@ -17,10 +17,9 @@ class EnderecoDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
-     * @param  mixed $endereco
-     *
+     * @param Endereco $endereco
      * @return void
      */
     public function inserir(Endereco $endereco) 
@@ -46,7 +45,7 @@ class EnderecoDAO {
 	
     // retorna apenas um endereço
     /**
-     * getEndereco
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -83,7 +82,7 @@ class EnderecoDAO {
 
     // retorna uma lista de endereços
     /**
-     * getEnderecos
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -119,7 +118,7 @@ class EnderecoDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $endereco
      *
@@ -146,7 +145,7 @@ class EnderecoDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $endereco
      *

@@ -17,8 +17,9 @@ class ConvenioDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
+     * @param Convenio $convenio
      * @return void
      */
     public function inserir(Convenio $convenio) {
@@ -36,7 +37,7 @@ class ConvenioDAO {
     }
     
     /**
-     * read
+     * Seleciona um registro do banco
      *
      * @return void
      */
@@ -68,7 +69,7 @@ class ConvenioDAO {
     }
 
     /**
-     * update
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -102,7 +103,7 @@ class ConvenioDAO {
     }
    
     /**
-     * delete
+     * Altera registro do banco
      *
      * @return void
      */
@@ -124,6 +125,12 @@ class ConvenioDAO {
 
     }
 
+    /**
+     * Exclui registro do banco
+     *
+     * @param Convenio $convenio
+     * @return void
+     */
     public function excluir(Convenio $convenio)
     {
         $sql = $this->pdo->prepare('delete from tb_convenios where id = :id');

@@ -17,7 +17,7 @@ class PessoaDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $pessoa
      *
@@ -45,7 +45,7 @@ class PessoaDAO {
 
 
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $pessoa
      *
@@ -64,7 +64,7 @@ class PessoaDAO {
     }
 
     /**
-     * getPessoa
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -102,7 +102,7 @@ class PessoaDAO {
     }
     
     /**
-     * getPessoas
+     * Seleciona todos registros do banco
      *
      * @return void
      */

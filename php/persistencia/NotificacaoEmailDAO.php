@@ -17,7 +17,7 @@ class NotificacaoEmailDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class NotificacaoEmailDAO {
     
     // retorna apenas uma notificacao de email
     /**
-     * getNotificacao
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -85,7 +85,7 @@ class NotificacaoEmailDAO {
     
     // retorna uma lista de notificacoes de email
     /**
-     * get
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -124,7 +124,7 @@ class NotificacaoEmailDAO {
     }
 
     /**
-     * update
+     * Altera registro do banco
      *
      * @return void
      */
@@ -152,7 +152,7 @@ class NotificacaoEmailDAO {
     }
     
     /**
-     * delete
+     * Exclui registro do banco
      *
      * @return void
      */

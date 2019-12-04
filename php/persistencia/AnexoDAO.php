@@ -17,7 +17,7 @@ class AnexoDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class AnexoDAO {
     }
     
     /**
-     * read
+     * Excluir registro no banco
      *
      * @return void
      */
@@ -52,8 +52,9 @@ class AnexoDAO {
     }
 
     /**
-     * update
+     * Seleciona um registro do banco
      *
+     * @param [type] $id
      * @return void
      */
     public function getAnexo($id) {
@@ -82,7 +83,7 @@ class AnexoDAO {
     }
     
     /**
-     * delete
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -111,6 +112,12 @@ class AnexoDAO {
         return $lista;
     }
 
+    /**
+     * Altera registro do banco
+     *
+     * @param Anexo $anexo
+     * @return void
+     */
     public function alterar(Anexo $anexo){
         $sql = $this->pdo->prepare('update tb_anexos set id = :id, nome = :nome, caminho = :caminho, id_agendamento = :id_agendamento');
         $sql->bindValue(':id', $anexo->getId());

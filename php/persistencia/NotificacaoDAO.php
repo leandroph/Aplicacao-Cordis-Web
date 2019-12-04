@@ -17,7 +17,7 @@ class NotificacaoDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -41,7 +41,7 @@ class NotificacaoDAO {
     }
     
     /**
-     * read
+     * Seleciona um registro do banco
      *
      * @return void
      */
@@ -74,7 +74,7 @@ class NotificacaoDAO {
     }
 
     /**
-     * update
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class NotificacaoDAO {
 
     
     /**
-     * delete
+     * Altera registro do banco
      *
      * @return void
      */
@@ -135,6 +135,12 @@ class NotificacaoDAO {
 
     }
 
+    /**
+     * Exclui registro do banco
+     *
+     * @param Notificacao $notificacao
+     * @return void
+     */
     public function excluir(Notificacao $notificacao)
     {
         $sql = $this->pdo->prepare('delete from tb_notificacoes where id = :id');

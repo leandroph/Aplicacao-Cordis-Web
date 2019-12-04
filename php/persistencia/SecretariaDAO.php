@@ -17,7 +17,7 @@ class SecretariaDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $secretaria
      *
@@ -41,7 +41,7 @@ class SecretariaDAO {
 
     // retorna apenas uma secretaria
     /**
-     * getSecretaria
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -74,7 +74,7 @@ class SecretariaDAO {
 
     // retorna uma lista de secretarias
     /**
-     * getSecretarias
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -106,7 +106,7 @@ class SecretariaDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $secretaria
      *
@@ -130,7 +130,7 @@ class SecretariaDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $secretaria
      *

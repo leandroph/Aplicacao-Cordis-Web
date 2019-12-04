@@ -17,7 +17,7 @@ class PaisDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $pais
      *
@@ -42,7 +42,7 @@ class PaisDAO {
     
     // retorna apenas uma pais
     /**
-     * getPais
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -75,7 +75,7 @@ class PaisDAO {
     
     // retorna uma lista de paises
     /**
-     * getPaises
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -107,7 +107,7 @@ class PaisDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $pais
      *
@@ -131,7 +131,7 @@ class PaisDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $pais
      *

@@ -17,7 +17,7 @@ class EstadoDAO {
     }
 
     /**
-     * inserir
+     * Insere registro no banco
      *
      * @param  mixed $estado
      *
@@ -41,7 +41,7 @@ class EstadoDAO {
     
     // retorna apenas uma estado
     /**
-     * getEstado
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -75,7 +75,7 @@ class EstadoDAO {
     
     // retorna uma lista de estados
     /**
-     * getEstado
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -109,7 +109,7 @@ class EstadoDAO {
     }
 
     /**
-     * alterar
+     * Altera registro do banco
      *
      * @param  mixed $estado
      *
@@ -133,7 +133,7 @@ class EstadoDAO {
     }
     
     /**
-     * excluir
+     * Exclui registro do banco
      *
      * @param  mixed $estado
      *

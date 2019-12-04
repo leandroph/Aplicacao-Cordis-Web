@@ -17,7 +17,7 @@ class PacienteDAO {
     }
 
     /**
-     * create
+     * Insere registro no banco
      *
      * @return void
      */
@@ -37,7 +37,7 @@ class PacienteDAO {
     
     // retorna apenas uma paciente
     /**
-     * getPaciente
+     * Seleciona um registro do banco
      *
      * @param  mixed $id
      *
@@ -68,7 +68,7 @@ class PacienteDAO {
     
     // retorna uma lista de pacientes
     /**
-     * getPacientes
+     * Seleciona todos registros do banco
      *
      * @return void
      */
@@ -99,7 +99,7 @@ class PacienteDAO {
     }
 
     /**
-     * update
+     * Altera registro do banco
      *
      * @return void
      */
@@ -119,7 +119,7 @@ class PacienteDAO {
     }
     
     /**
-     * delete
+     * Exclui registro do banco
      *
      * @return void
      */

@@ -1,21 +1,22 @@
 <?php
 class Agendamento
 {
-    private id,
-	private data_hora_inicio,
-	private data_hora_fim,
-	private valor,
-	private observacao,
-	private senha,
-	private cod_status,
-	private pago,
-	private id_not_email,
-	private id_not_sms,
-	private id_convenio,
-	private id_exames_agendamento,
-	private id_secretaria,
-	private id_paciente,
-	private id_medico,
+    /**Declaração de propriedade */
+    private $id;
+	private $data_hora_inicio;
+	private $data_hora_fim;
+	private $valor;
+	private $observacao;
+	private $senha;
+	private $cod_status;
+	private $pago;
+	private $id_not_email;
+	private $id_not_sms;
+	private $id_convenio;
+	private $id_exames_agendamento;
+	private $id_secretaria;
+	private $id_paciente;
+	private $id_medico;
 	
     
     /**Geters and Seters */
