@@ -96,29 +96,29 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria</span>
+                            <a disabled href="#">
+                                <i class="fa fa-user-plus"></i> <span>Cadastro Secretaria / Em Manutenção </span> 
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-flask"></i> <span>Cadastro Exames / Em Manutenção</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-medkit"></i> <span>Cadastro Convenio / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
                             <a href="pages/calendar.html">
-                                <i class="fa fa-flask"></i> <span>Cadastro Exames</span>
-                                <span class="pull-right-container">
-                                </span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-medkit"></i> <span>Cadastro Convenio</span>
-                                <span class="pull-right-container">
-                                </span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica</span>
+                                <i class="fa fa-hospital-o"></i> <span>Cadastro Clínica / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
@@ -127,22 +127,22 @@
                     <?php if ($usuario->getPerm_Medico() == 1) { ?>
                         <li class="header">MÉDICO</li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> <span>Agenda / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                            <a href="#">
+                                <i class="fa fa-bell-o"></i> <span>Notificações / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                            <a href="#">
+                                <i class="fa fa-pie-chart"></i> <span>Relatorios / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
@@ -158,22 +158,22 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="secretaria_agenda.php">
-                                <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente</span>
+                            <a href="#">
+                                <i class="fa fa-user-plus"></i> <span>Cadastro de Paciente / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-bell-o"></i> <span>Notificações</span>
+                            <a href="#">
+                                <i class="fa fa-bell-o"></i> <span>Notificações / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-pie-chart"></i> <span>Relatorios</span>
+                            <a href="#">
+                                <i class="fa fa-pie-chart"></i> <span>Relatorios / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
@@ -182,15 +182,15 @@
                     <?php if ($usuario->getPerm_Paciente() == 1) { ?>
                         <li class="header">PACIENTE</li>
                         <li class="">
-                            <a href="agenda_secretaria.php">
-                                <i class="fa fa-calendar"></i> <span>Agenda</span>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> <span>Agenda / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="secretaria_agenda.php">
-                                <i class="fa fa-file-o"></i> <span>Prontuario</span>
+                            <a href="#">
+                                <i class="fa fa-file-o"></i> <span>Prontuario / Em Manutenção</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
